@@ -217,7 +217,7 @@ $$('.rv,.split,.crest,.phones').forEach(function(el){io?io.observe(el):el.classL
 
 /* the film */
 var fv=$('#film'),fpp=$('#fpp'),fsnd=$('#fsnd'),fpaused=false,fvis=true;
-function fsync(){if(!fpaused&&fvis)play(fv);else fv.pause()}
+function fsync(){if(!fpaused&&fvis){if(fv.paused)play(fv)}else if(!fv.paused)fv.pause()}
 function ftoggle(){fpaused=!fpaused;setIcon(fpp,fpaused?'player-play':'player-pause');fpp.setAttribute('aria-label',fpaused?'Play the film':'Pause the film');fsync()}
 fpp.addEventListener('click',ftoggle);
 $('.shield').addEventListener('click',ftoggle);
@@ -235,7 +235,7 @@ function layout(){ph.forEach(function(p,i){var dd=((i-cur+n+1)%n)-1;p.style.setP
   setIcon($('.chip',ph[cur]),paused?'player-play':'player-pause')}
 function sync(){vids.forEach(function(v,i){var want=i===cur&&vis&&!paused;
   if(i===cur&&near&&!v.getAttribute('src')){v.src=v.dataset.src;v.preload='auto'}
-  if(want)play(v);else if(!v.paused)v.pause()})}
+  if(want){if(v.paused)play(v)}else if(!v.paused)v.pause()})}
 function go(i){i=(i+n)%n;paused=false;if(i!==cur){vids[cur].pause();cur=i;try{vids[cur].currentTime=0}catch(e){}}layout();sync()}
 vids.forEach(function(v,i){v.addEventListener('ended',function(){if(i===cur&&!paused)go(cur+1)});
   v.addEventListener('playing',function(){$('img',ph[i]).style.opacity=0})});
@@ -247,7 +247,7 @@ root.addEventListener('pointercancel',function(){sx=null});
 ph.forEach(function(p,i){p.addEventListener('click',function(){if(moved)return;if(i===cur){paused=!paused;layout();sync()}else go(i)});
   p.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();p.click()}else if(e.key==='ArrowRight'){go(cur+1);ph[cur].focus()}else if(e.key==='ArrowLeft'){go(cur-1);ph[cur].focus()}})});
 dots.forEach(function(b,i){b.addEventListener('click',function(){go(i)})});
-if(io){new IntersectionObserver(function(es){vis=es[0].isIntersecting;sync()},{threshold:.3}).observe(root);
+if(io){new IntersectionObserver(function(es){vis=es[0].intersectionRatio>=.3;sync()},{threshold:[0,.3,.6,.9]}).observe(root);
   new IntersectionObserver(function(es){if(es[0].isIntersecting){near=true;sync()}},{rootMargin:'300px 0px'}).observe(root)}
 else{vis=near=true}
 function sizes(){var pw=ph[0].offsetWidth||180,w=root.clientWidth;
@@ -256,7 +256,9 @@ W.addEventListener('resize',sizes);sizes();layout();sync();
 
 /* scroll progress */
 var prog=$('.progress'),tick=false;
-function onScroll(){var h=de.scrollHeight-W.innerHeight;prog.style.setProperty('--p',h>0?(W.scrollY/h).toFixed(4):0);tick=false}
+/* phones browsers pause muted films they think are off screen; nudge them back on every scroll */
+function onScroll(){var h=de.scrollHeight-W.innerHeight;prog.style.setProperty('--p',h>0?(W.scrollY/h).toFixed(4):0);fsync();sync();tick=false}
+setInterval(function(){if(!d.hidden){fsync();sync()}},1500);
 W.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(onScroll)}},{passive:true});onScroll();
 })();
 </script>
