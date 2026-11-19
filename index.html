@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>NALU, the sample film</title>
-<meta name="description" content="A film made for NALU, before a single brick is laid. A free sample from Aurian Haus.">
-<meta name="theme-color" content="#15120F">
+<title>NALU sample film</title>
+<meta name="description" content="The NALU sample film, then twelve shots one by one. A free sample from Aurian Haus.">
+<meta name="theme-color" content="#F1E9DA">
 <meta name="color-scheme" content="light">
 <meta name="robots" content="noindex,nofollow,noarchive">
 <meta property="og:title" content="NALU, the sample film">
-<meta property="og:description" content="A film made for NALU, before a single brick is laid. A free sample from Aurian Haus.">
+<meta property="og:description" content="The sample film and its twelve shots. A free sample from Aurian Haus.">
 <meta property="og:image" content="hero/hero-1440.webp">
 <link rel="icon" type="image/png" href="img/aurian-haus-ring.png">
 <link rel="apple-touch-icon" href="img/aurian-haus-ring.png">
@@ -50,6 +50,19 @@ em{font-style:italic;font-weight:500;color:var(--gold-text)}
 .glow.b{width:55vmax;height:55vmax;right:-22vmax;top:30vh;background:radial-gradient(closest-side,rgba(232,200,112,.26),rgba(232,200,112,0));animation:drift 26s ease-in-out infinite alternate}
 @keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-8vmax,10vh,0)}}
 
+/* top bar */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:max(14px,env(safe-area-inset-top));min-height:64px}
+.top img{height:34px;width:auto}
+.pill{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 16px;border-radius:999px;background:var(--glass);border:1px solid var(--hair);color:var(--ink);font:600 16px "Inter Tight",sans-serif;box-shadow:var(--shadow)}
+.pill svg.i{width:18px;height:18px;color:var(--gold-text)}
+
+/* sticky guide: slim glass pill */
+.dock{position:sticky;top:max(8px,env(safe-area-inset-top));z-index:60;display:flex;justify-content:center;padding:8px 12px 0;pointer-events:none}
+.dock-in{position:relative;pointer-events:auto;display:flex;align-items:center;gap:2px;padding:3px;border-radius:999px;background:rgba(255,250,242,.8);-webkit-backdrop-filter:blur(18px) saturate(1.3);backdrop-filter:blur(18px) saturate(1.3);border:1px solid var(--hair);box-shadow:0 14px 34px -22px rgba(92,68,30,.45),0 1px 0 rgba(255,255,255,.8) inset;overflow:hidden}
+.dock a{position:relative;z-index:2;display:inline-flex;align-items:center;min-height:44px;padding:0 15px;border-radius:999px;text-decoration:none;color:var(--ink);font:600 16px/1 "Inter Tight",sans-serif;white-space:nowrap;transition:color 600ms var(--e)}
+.dock a.on{color:var(--ivory)}
+.dock .ind{position:absolute;z-index:1;top:3px;bottom:3px;left:0;width:0;border-radius:999px;background:var(--ink);box-shadow:0 0 0 1px rgba(201,166,107,.6),0 8px 20px -10px rgba(26,26,26,.6);opacity:0;transition:transform 800ms var(--e),width 800ms var(--e),opacity 500ms var(--e)}
+.dock .bar{position:absolute;left:18px;right:18px;bottom:1px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--gold),var(--gold-soft));transform-origin:0 50%;transform:scaleX(var(--p,0));opacity:.9}
 
 /* reveal: slow and soft, transform and opacity only */
 .js .split .w{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .04em .14em;margin:0 -.04em -.14em}
@@ -65,6 +78,29 @@ h2{font:500 clamp(42px,5.2vw,68px)/1.02 "Cormorant Garamond",Georgia,serif;lette
 .sub{margin-top:10px;font-size:19px;color:var(--ink2);max-width:46ch}
 section.block{padding-top:clamp(72px,9vw,128px);scroll-margin-top:64px}
 .head{margin-bottom:clamp(20px,2.6vw,34px)}
+
+/* 1. the film, title above */
+.film{padding-top:clamp(22px,4vw,44px);scroll-margin-top:64px}
+.film-head{display:grid;gap:14px;margin-bottom:clamp(20px,2.6vw,30px)}
+.lead{max-width:34ch;font-size:clamp(19px,1.5vw,21px);color:var(--ink2)}
+.film-label{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 14px;margin:0 0 10px}
+.film-label .ey{margin:0}
+.film-label h2{font-size:clamp(28px,2.4vw,34px);line-height:1.1}
+.frame{position:relative;border-radius:var(--r-lg);padding:7px;background:var(--glass-hi);border:1px solid var(--hair);box-shadow:var(--shadow)}
+.screen{position:relative;isolation:isolate;overflow:hidden;border-radius:calc(var(--r-lg) - 7px);background:var(--beige);aspect-ratio:16/9}
+.screen video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.shield{position:absolute;inset:0;z-index:2;cursor:pointer}
+.pp{position:absolute;z-index:3;left:12px;bottom:12px;display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:rgba(255,250,242,.9);border:1px solid var(--hair);color:var(--ink);box-shadow:0 10px 24px -12px rgba(26,26,26,.5);transition:transform 500ms var(--e)}
+.pp:hover{transform:scale(1.06)}
+.pp:active{transform:scale(.94)}
+.pp svg.i{width:20px;height:20px}
+.time{display:flex;align-items:center;gap:14px;padding:10px 10px 4px 12px}
+.track{position:relative;flex:1;height:44px;cursor:pointer;touch-action:none}
+.track::before{content:"";position:absolute;left:0;right:0;top:50%;height:4px;margin-top:-2px;border-radius:4px;background:var(--beige);box-shadow:0 0 0 1px rgba(201,166,107,.35) inset}
+.track .fill{position:absolute;left:0;top:50%;height:4px;margin-top:-2px;width:100%;border-radius:4px;background:linear-gradient(90deg,var(--gold),var(--gold-soft));transform-origin:0 50%;transform:scaleX(var(--t,0))}
+.track .knob{position:absolute;top:50%;left:0;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:var(--ivory);border:2px solid var(--gold);box-shadow:0 2px 8px rgba(92,68,30,.3);transform:translateX(var(--kx,0px))}
+.clock{font:600 16px "Inter Tight",sans-serif;color:var(--ink2);font-variant-numeric:tabular-nums;white-space:nowrap}
+.note{margin:12px 4px 0;font-size:17px;color:var(--ink2)}
 
 /* 2. the shots: a swipe rail, one card centred, the next one peeking */
 .rail{display:flex;gap:12px;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:8px 36px 30px;outline:none}
@@ -102,6 +138,33 @@ section.block{padding-top:clamp(72px,9vw,128px);scroll-margin-top:64px}
 .rb svg.i{width:22px;height:22px}
 .tip{display:flex;align-items:center;gap:10px;margin-top:16px;color:var(--ink2);font-size:17px}
 .tip svg.i{width:20px;height:20px;color:var(--gold-text)}
+
+/* 3. what else: the section locks and the three cards slide in one by one */
+.pin-stage{display:flex;flex-direction:column}
+.deck{display:grid;gap:16px}
+.card{display:grid;grid-template-rows:auto 1fr;overflow:hidden;border-radius:var(--r-lg);padding:7px;background:rgba(255,250,242,.94);border:1px solid var(--hair);box-shadow:var(--shadow)}
+.card .pic{position:relative;overflow:hidden;border-radius:calc(var(--r-lg) - 7px);background:var(--beige);aspect-ratio:16/10}
+.card .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--op,50% 50%)}
+.card .txt{padding:16px 12px 12px;display:grid;align-content:start;gap:6px}
+.card .k{display:inline-flex;align-items:center;gap:8px;font:600 16px "Inter Tight",sans-serif;color:var(--gold-text)}
+.card .k svg.i{width:20px;height:20px}
+.card h3{font:500 clamp(30px,2.6vw,36px)/1.06 "Cormorant Garamond",Georgia,serif;color:var(--ink)}
+.card p{font-size:18px;line-height:1.45;color:var(--ink2)}
+.steps{display:none;align-items:center;gap:12px;margin-top:16px}
+.steps .bars{display:flex;gap:6px}
+.steps .bars i{width:28px;height:3px;border-radius:3px;background:rgba(105,72,22,.25);overflow:hidden;position:relative}
+.steps .bars i::after{content:"";position:absolute;inset:0;background:var(--ink);transform-origin:0 50%;transform:scaleX(var(--f,0))}
+.steps span{font:600 16px "Inter Tight",sans-serif;color:var(--ink2);font-variant-numeric:tabular-nums}
+/* locked mode, switched on by the script when the screen is tall enough and motion is allowed */
+.pinned .pin-track{height:330vh;height:330svh}
+.pinned .pin-stage{position:sticky;top:var(--stick);height:calc(100vh - var(--stick));height:calc(100svh - var(--stick));padding-bottom:max(18px,env(safe-area-inset-bottom))}
+.pinned .head{margin-bottom:16px}
+.pinned .deck{position:relative;flex:1;min-height:0;display:block}
+.pinned .deck{margin-top:22px}
+.pinned .card{position:absolute;inset:0;will-change:transform,opacity;transform-origin:50% 0;background:var(--ivory);transition:none !important;translate:none !important}
+.pinned .card .pic{aspect-ratio:auto;min-height:120px}
+.pinned .card{grid-template-rows:1fr auto}
+.pinned .steps{display:flex}
 
 /* 4. talk */
 .talk{position:relative;isolation:isolate;overflow:hidden;margin:0 auto;max-width:820px;padding:30px 20px 26px;border-radius:var(--r-lg);background:rgba(255,250,242,.86);border:1px solid var(--hair);box-shadow:var(--shadow);text-align:center;display:grid;justify-items:center;gap:10px}
@@ -173,110 +236,6 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
 .lb-nav{display:flex;align-items:center;gap:14px;pointer-events:auto}
 .lb-hint{font-size:16px;color:rgba(255,250,242,.6)}
 
-
-/* ---- premium pass: hero, value, reel, proof, get ---- */
-[hidden]{display:none !important}
-.cta{position:fixed;z-index:60;top:max(14px,env(safe-area-inset-top));right:max(var(--gut),env(safe-area-inset-right));display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;background:rgba(21,18,15,.84);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid rgba(201,166,107,.75);color:var(--ivory);font:600 17px/1 "Inter Tight",sans-serif;text-decoration:none;transition:opacity 700ms var(--e),transform 700ms var(--e),background 500ms var(--e)}
-.cta:hover{background:var(--night)}
-.cta.away{opacity:0;pointer-events:none;transform:translateY(-8px)}
-
-.hero{position:relative;height:100vh;height:100svh;min-height:540px;overflow:hidden;background:var(--night);color:var(--ivory);isolation:isolate}
-.hero .screen{position:absolute;inset:0;background:var(--night)}
-.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;pointer-events:none}
-/* Phones in portrait: the film is 16:9, so show it whole and sharp over a soft blurred fill instead of zooming it 3x */
-@media (max-aspect-ratio:1/1){
- .hero .screen::before{content:"";position:absolute;inset:-40px;background:url(media/nalu-film-earlier-poster.jpg) center/cover no-repeat;filter:blur(28px) brightness(.55) saturate(1.1);transform:scale(1.1)}
- .hero video{object-fit:contain;object-position:50% 42%;z-index:0}
-}
-.hero .shade{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(21,18,15,.55) 0%,rgba(21,18,15,0) 22%,rgba(21,18,15,0) 42%,rgba(21,18,15,.82) 100%)}
-.shield{position:absolute;inset:0;z-index:2;cursor:pointer}
-.hero-logo{position:absolute;z-index:3;left:max(var(--gut),env(safe-area-inset-left));top:calc(max(14px,env(safe-area-inset-top)) + 7px);height:34px;width:auto;pointer-events:none}
-.hero-copy{position:absolute;z-index:3;left:0;right:0;bottom:0;padding:0 var(--gut) calc(max(26px,env(safe-area-inset-bottom)) + 76px);text-align:center;pointer-events:none}
-.mark{font:300 clamp(84px,21vw,300px)/.9 "Cormorant Garamond",Georgia,serif;letter-spacing:.14em;margin-right:-.14em;color:var(--ivory);text-shadow:0 2px 50px rgba(0,0,0,.4)}
-.hero-line{margin-top:clamp(14px,2vw,26px);font:400 clamp(20px,1.7vw,26px)/1.3 "Inter Tight",sans-serif;color:rgba(255,250,242,.92);text-shadow:0 1px 20px rgba(0,0,0,.5)}
-.hero-line::before{content:"";display:block;width:56px;height:1px;background:var(--gold);margin:0 auto clamp(14px,2vw,22px)}
-.cue{position:absolute;z-index:3;left:50%;bottom:max(20px,env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;align-items:center;gap:8px;font:500 17px "Inter Tight",sans-serif;color:rgba(255,250,242,.9);pointer-events:none;animation:bob 3.2s ease-in-out infinite}
-.cue svg.i{width:20px;height:20px;color:var(--gold-soft)}
-@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,6px)}}
-.pp{position:absolute;z-index:4;right:max(var(--gut),env(safe-area-inset-right));bottom:max(14px,env(safe-area-inset-bottom));display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:rgba(21,18,15,.55);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(255,250,242,.4);color:var(--ivory);transition:transform 500ms var(--e),background 400ms var(--e)}
-.pp:hover{transform:scale(1.08);background:rgba(21,18,15,.8)}
-.pp:active{transform:scale(.94)}
-.pp svg.i{width:20px;height:20px}
-
-.value{padding:clamp(104px,17vw,240px) 0}
-.value .wrap{max-width:calc(1240px + 2 * var(--gut))}
-.rule{width:64px;height:1px;background:var(--gold);margin-bottom:clamp(24px,3vw,40px)}
-.value h2{font-size:clamp(46px,7.6vw,124px);line-height:1;font-weight:400;letter-spacing:-.02em}
-.hl{height:1px;border:0;background:linear-gradient(90deg,transparent,var(--hair),transparent);max-width:var(--maxw);margin:0 auto}
-
-.reel{position:relative;background:var(--night);color:var(--ivory);padding:clamp(80px,10vw,150px) 0 clamp(72px,9vw,130px)}
-.reel .head{margin-bottom:clamp(28px,4vw,64px);max-width:calc(1600px + 2 * var(--gut))}
-.reel .ey{color:var(--gold-soft)}
-.reel h2{color:var(--ivory);font-size:clamp(44px,6.4vw,100px);font-weight:400}
-.reel em{color:var(--gold-soft)}
-.reel .sub{color:rgba(255,250,242,.82);font-size:clamp(19px,1.6vw,22px);margin-top:16px}
-.feats{display:grid;gap:12px}
-.feat{display:block;position:relative;width:100%;max-width:1600px;margin:0 auto;text-align:left;color:var(--ivory);padding:0}
-.feat .ph{position:relative;isolation:isolate;display:block;overflow:hidden;aspect-ratio:16/9;background:#2A2520}
-.feat video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;transition:transform 1800ms var(--e)}
-.feat .cap{position:absolute;z-index:2;left:0;right:0;bottom:0;display:flex;align-items:baseline;gap:clamp(12px,1.6vw,22px);padding:clamp(56px,9vw,150px) clamp(64px,8vw,120px) clamp(18px,2.6vw,44px) clamp(18px,3vw,52px);background:linear-gradient(180deg,rgba(21,18,15,0),rgba(21,18,15,.78));pointer-events:none}
-.feat .cap i{font:600 17px "Inter Tight",sans-serif;font-style:normal;color:var(--gold-soft);font-variant-numeric:tabular-nums}
-.feat .cap b{font:400 clamp(30px,3.7vw,60px)/1.04 "Cormorant Garamond",Georgia,serif;letter-spacing:-.01em;text-wrap:balance}
-.feat .zoom{position:absolute;z-index:3;right:clamp(14px,2vw,32px);bottom:clamp(14px,2vw,32px);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:rgba(21,18,15,.5);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,250,242,.4);color:var(--ivory);transition:transform 600ms var(--e),background 400ms}
-.feat .zoom svg.i{width:20px;height:20px}
-.feat.lifted .ph{visibility:hidden}
-.seeall{display:flex;flex-direction:column;align-items:center;gap:14px;margin-top:clamp(36px,5vw,72px);padding:0 var(--gut);text-align:center}
-.btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:62px;padding:0 38px;border-radius:999px;border:1px solid var(--gold);background:rgba(255,250,242,.05);color:var(--ivory);font:600 19px "Inter Tight",sans-serif;transition:background 600ms var(--e),color 600ms var(--e),transform 600ms var(--e)}
-.btn-ghost:hover{background:var(--gold);color:var(--ink);transform:translateY(-2px)}
-.btn-ghost:active{transform:scale(.98)}
-.btn-ghost svg.i{width:20px;height:20px}
-.allrail{margin:clamp(32px,4vw,56px) auto 0;background:var(--ground);color:var(--ink);padding:clamp(32px,4vw,64px) 0 clamp(12px,2vw,28px)}
-.allrail .ey{margin-bottom:6px}
-
-.proof{padding:clamp(96px,14vw,200px) 0;text-align:center}
-.proof .wrap{max-width:calc(1040px + 2 * var(--gut))}
-.proof .ey{justify-content:center}
-.proof .ey::after{content:"";width:34px;height:1px;background:var(--gold);flex:none}
-.proof h2{font-size:clamp(38px,6vw,92px);font-weight:400;line-height:1.02}
-.proof p.lede{margin:clamp(24px,3vw,40px) auto 0;max-width:34ch;font-size:clamp(20px,1.8vw,26px);line-height:1.45;color:var(--ink2)}
-
-.get{padding:clamp(24px,4vw,64px) 0 clamp(88px,11vw,170px)}
-.get .head{margin-bottom:clamp(28px,4vw,56px)}
-.get h2{font-size:clamp(40px,5vw,76px);font-weight:400}
-.tiles{display:grid;gap:clamp(40px,6vw,64px)}
-.tile .pic{position:relative;overflow:hidden;border-radius:22px;aspect-ratio:4/3;background:var(--beige)}
-.tile .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--op,50% 50%)}
-.tile .txt{padding-top:22px;margin-top:22px;border-top:1px solid var(--hair);display:grid;gap:10px}
-.tile .n{font:600 17px "Inter Tight",sans-serif;color:var(--gold-text);font-variant-numeric:tabular-nums}
-.tile h3{font:400 clamp(34px,3.2vw,46px)/1.05 "Cormorant Garamond",Georgia,serif;color:var(--ink);text-wrap:balance}
-.tile p{font-size:19px;line-height:1.5;color:var(--ink2);max-width:30ch}
-
-.rm .cue{animation:none}
-.rm .feat .zoom,.rm .btn-ghost,.rm .cta,.rm .pp{transition:none;transform:none !important}
-@media (min-width:700px){
- .feats{gap:clamp(24px,3vw,44px);padding:0 var(--gut)}
- .feat .ph{border-radius:22px}
- .shot{flex-basis:calc((100% - 12px) / 2);scroll-snap-align:start;scroll-snap-stop:normal}
- .rail{padding-inline:max(var(--gut),calc((100% - var(--maxw)) / 2));scroll-padding-inline:max(var(--gut),calc((100% - var(--maxw)) / 2));gap:16px}
-}
-@media (min-width:900px){
- .hero-logo{height:40px}
- .shot{flex-basis:calc((100% - 40px) / 3)}
- .rail{gap:20px}
- .tiles{grid-template-columns:repeat(3,1fr);gap:clamp(28px,3vw,48px)}
- .talk{padding:44px 48px 46px}
- .go{width:auto;min-width:320px}
- .lb-info .in{grid-template-columns:minmax(0,1fr) auto;align-items:end;padding-bottom:calc(max(16px,env(safe-area-inset-bottom)) + 28px)}
- .lb-slide{padding-bottom:calc(max(16px,env(safe-area-inset-bottom)) + 190px)}
-}
-@media (hover:hover) and (pointer:fine){
- .feat:hover video{transform:scale(1.025)}
- .feat:hover .zoom{transform:scale(1.1)}
-}
-@media (hover:hover) and (pointer:fine) and (min-width:700px){.arrows{display:flex}}
-@media (max-width:899px){.lb-nav{justify-content:space-between;align-items:center}}
-@media (max-width:380px){.cta{padding:0 16px}}
-
 /* reduced motion: fades stay, nothing slides, zooms or drifts, clips keep playing */
 .rm .rv{translate:none !important}
 .rm .split .w>span{transform:none !important}
@@ -285,69 +244,92 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
 .rm .dock .ind{transition:opacity 500ms var(--e)}
 .js.rm .talk .crest i{--a:180deg;animation:none}
 
+@media (max-width:420px){.dock a{padding:0 12px}}
+@media (max-width:360px){.dock a{padding:0 9px}}
+@media (min-width:700px){
+ .shot{flex-basis:calc((100% - 12px) / 2);scroll-snap-align:start;scroll-snap-stop:normal}
+ .rail{padding-inline:max(var(--gut),calc((100% - var(--maxw)) / 2));scroll-padding-inline:max(var(--gut),calc((100% - var(--maxw)) / 2));gap:16px}
+}
+@media (min-width:900px){
+ .top img{height:40px}
+ .film-head{grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:28px}
+ h1{font-size:clamp(76px,6.4vw,104px)}
+ .lead{max-width:26ch;padding-bottom:12px}
+ .pp{left:18px;bottom:18px;width:52px;height:52px}
+ .shot{flex-basis:calc((100% - 40px) / 3)}
+ .rail{gap:20px}
+ .deck{grid-template-columns:repeat(3,1fr);gap:22px}
+ .pinned .deck{display:grid;align-content:start;flex:none;margin-top:0}
+ .film.wrap{max-width:calc(clamp(680px,(100vh - 470px) * 16 / 9,var(--maxw)) + 2 * var(--gut))}
+ .pinned .card{position:relative;inset:auto;transform-origin:50% 100%}
+ .pinned .card .pic{aspect-ratio:4/3}
+ .pinned .card{grid-template-rows:auto 1fr}
+ .pinned .pin-track{height:250vh}
+ .pinned .pin-stage{justify-content:center;padding-bottom:6vh}
+ .talk{padding:44px 48px 46px}
+ .go{width:auto;min-width:320px}
+ .lb-info .in{grid-template-columns:minmax(0,1fr) auto;align-items:end;padding-bottom:calc(max(16px,env(safe-area-inset-bottom)) + 28px)}
+ .lb-slide{padding-bottom:calc(max(16px,env(safe-area-inset-bottom)) + 190px)}
+}
+@media (hover:hover) and (pointer:fine) and (min-width:700px){.arrows{display:flex}}
+@media (max-width:899px){
+ .lb-nav{justify-content:space-between;align-items:center}
+}
 </style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="player-play" viewBox="0 0 24 24"><path d="M7 4v16l13 -8l-13 -8" /></symbol><symbol id="player-pause" viewBox="0 0 24 24"><path d="M6 6a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1l0 -12" /> <path d="M14 6a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1l0 -12" /></symbol><symbol id="arrow-down" viewBox="0 0 24 24"><path d="M12 5l0 14" /> <path d="M18 13l-6 6" /> <path d="M6 13l6 6" /></symbol><symbol id="gift" viewBox="0 0 24 24"><path d="M3 9a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1l0 -2" /> <path d="M12 8l0 13" /> <path d="M19 12v7a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-7" /> <path d="M7.5 8a2.5 2.5 0 0 1 0 -5a4.8 8 0 0 1 4.5 5a4.8 8 0 0 1 4.5 -5a2.5 2.5 0 0 1 0 5" /></symbol><symbol id="home" viewBox="0 0 24 24"><path d="M5 12l-2 0l9 -9l9 9l-2 0" /> <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /> <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></symbol><symbol id="users-group" viewBox="0 0 24 24"><path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /> <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" /> <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /> <path d="M17 10h2a2 2 0 0 1 2 2v1" /> <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /> <path d="M3 13v-1a2 2 0 0 1 2 -2h2" /></symbol><symbol id="calendar-repeat" viewBox="0 0 24 24"><path d="M12.5 21h-6.5a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v3" /> <path d="M16 3v4" /> <path d="M8 3v4" /> <path d="M4 11h12" /> <path d="M20 14l2 2h-3" /> <path d="M20 18l2 -2" /> <path d="M19 16a3 3 0 1 0 2 5.236" /></symbol><symbol id="bulb" viewBox="0 0 24 24"><path d="M3 12h1m8 -9v1m8 8h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7" /> <path d="M9 16a5 5 0 1 1 6 0a3.5 3.5 0 0 0 -1 3a2 2 0 0 1 -4 0a3.5 3.5 0 0 0 -1 -3" /> <path d="M9.7 17l4.6 0" /></symbol><symbol id="coin" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /> <path d="M14.8 9a2 2 0 0 0 -1.8 -1h-2a2 2 0 1 0 0 4h2a2 2 0 1 1 0 4h-2a2 2 0 0 1 -1.8 -1" /> <path d="M12 7v10" /></symbol><symbol id="target" viewBox="0 0 24 24"><path d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /> <path d="M7 12a5 5 0 1 0 10 0a5 5 0 1 0 -10 0" /> <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></symbol><symbol id="arrow-up-right" viewBox="0 0 24 24"><path d="M17 7l-10 10" /> <path d="M8 7l9 0l0 9" /></symbol><symbol id="x" viewBox="0 0 24 24"><path d="M18 6l-12 12" /> <path d="M6 6l12 12" /></symbol><symbol id="chevron-left" viewBox="0 0 24 24"><path d="M15 6l-6 6l6 6" /></symbol><symbol id="chevron-right" viewBox="0 0 24 24"><path d="M9 6l6 6l-6 6" /></symbol><symbol id="arrows-maximize" viewBox="0 0 24 24"><path d="M16 4l4 0l0 4" /> <path d="M14 10l6 -6" /> <path d="M8 20l-4 0l0 -4" /> <path d="M4 20l6 -6" /> <path d="M16 20l4 0l0 -4" /> <path d="M14 14l6 6" /> <path d="M8 4l-4 0l0 4" /> <path d="M4 4l6 6" /></symbol><symbol id="brand-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M18.497 4.409a10 10 0 0 1 -10.36 16.828l-.223 -.098l-4.759 .849l-.11 .011a1 1 0 0 1 -.11 0l-.102 -.013l-.108 -.024l-.105 -.037l-.099 -.047l-.093 -.058l-.014 -.011l-.012 -.007l-.086 -.073l-.077 -.08l-.067 -.088l-.056 -.094l-.034 -.07l-.04 -.108l-.028 -.128l-.012 -.102a1 1 0 0 1 0 -.125l.012 -.1l.024 -.11l.045 -.122l1.433 -3.304l-.009 -.014a10 10 0 0 1 1.549 -12.454l.215 -.203a10 10 0 0 1 13.226 -.217m-8.997 3.09a1.5 1.5 0 0 0 -1.5 1.5v1a6 6 0 0 0 6 6h1a1.5 1.5 0 0 0 0 -3h-1l-.144 .007a1.5 1.5 0 0 0 -1.128 .697l-.042 .074l-.022 -.007a4.01 4.01 0 0 1 -2.435 -2.435l-.008 -.023l.075 -.041a1.5 1.5 0 0 0 .704 -1.272v-1a1.5 1.5 0 0 0 -1.5 -1.5"/></symbol><symbol id="mail" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10"/><path d="M3 7l9 6l9 -6"/></symbol><symbol id="message-circle" viewBox="0 0 24 24"><path d="M3 20l1.3 -3.9c-2.324 -3.437 -1.426 -7.872 2.1 -10.374c3.526 -2.501 8.59 -2.296 11.845 .48c3.255 2.777 3.695 7.266 1.029 10.501c-2.666 3.235 -7.615 4.215 -11.574 2.293l-4.7 1" /></symbol></svg>
 <div class="room" aria-hidden="true"><span class="glow a"></span><span class="glow b"></span></div>
 
-<a class="cta" id="cta" href="#talk">Let’s talk</a>
+<div class="wrap top">
+  <img src="img/aurian-haus-logo-black.png" alt="Aurian Haus" width="117" height="30" draggable="false">
+  <span class="pill"><svg class="i" aria-hidden="true"><use href="#gift"/></svg>Free sample</span>
+</div>
+
+<nav class="dock" aria-label="On this page">
+  <div class="dock-in">
+    <span class="ind" aria-hidden="true"></span>
+    <a href="#film">Film</a>
+    <a href="#shots">Shots</a>
+    <a href="#more">What else</a>
+    <a href="#talk">Talk</a>
+    <span class="bar" aria-hidden="true"></span>
+  </div>
+</nav>
 
 <main>
-  <section class="hero" id="film" aria-label="The NALU sample film">
-    <div class="screen">
-      <video id="nalu-film" muted loop playsinline autoplay preload="auto" poster="media/nalu-film-earlier-poster.jpg" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-label="The NALU sample film"><source src="media/nalu-film-earlier.mp4" type="video/mp4"></video>
+  <section class="film wrap" id="film" aria-labelledby="h-film">
+    <div class="film-head">
+      <div>
+        <p class="ey rv">For NALU</p>
+        <h1 class="split">NALU, <em>shot by shot.</em></h1>
+      </div>
+      <p class="lead rv" style="--i:3">The sample film first. Then twelve shots, one at a time.</p>
     </div>
-    <div class="shade" aria-hidden="true"></div>
-    <div class="shield" role="button" tabindex="0" aria-label="Pause the film"></div>
-    <img class="hero-logo" src="img/aurian-haus-logo-light.png" alt="Aurian Haus" width="117" height="30" draggable="false">
-    <div class="hero-copy">
-      <h1 class="mark rv" style="--i:2">NALU</h1>
-      <p class="hero-line rv" style="--i:5">A sample film for NALU</p>
+    <div class="rv" style="--i:2">
+      <div class="film-label"><p class="ey">Step 1 of 4</p><h2 id="h-film">The film, <em>in full</em></h2></div>
+      <div class="frame">
+        <div class="screen">
+          <video id="nalu-film" muted loop playsinline preload="metadata" poster="media/nalu-film-poster.webp" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-label="The NALU sample film"><source src="media/nalu-film-1080.mp4" type="video/mp4"><source src="media/nalu-film-720.mp4" type="video/mp4"></video>
+          <div class="shield" role="button" tabindex="0" aria-label="Pause the film"></div>
+          <button class="pp" type="button" id="fpp" aria-label="Pause the film"><svg class="i" aria-hidden="true"><use href="#player-pause"/></svg></button>
+        </div>
+        <div class="time">
+          <div class="track" id="ftrack" role="slider" tabindex="0" aria-label="Where the film is up to" aria-valuemin="0" aria-valuemax="23" aria-valuenow="0" aria-valuetext="0 seconds"><span class="fill"></span><span class="knob"></span></div>
+          <span class="clock" id="fclock">0:00 / 0:23</span>
+        </div>
+      </div>
+      <p class="note">26 seconds. Tap the film to pause.</p>
     </div>
-    <p class="cue" aria-hidden="true">Scroll<svg class="i"><use href="#arrow-down"/></svg></p>
-    <button class="pp" type="button" id="fpp" aria-label="Pause the film"><svg class="i" aria-hidden="true"><use href="#player-pause"/></svg></button>
   </section>
 
-  <section class="value" id="why" aria-label="Why a film">
-    <div class="wrap">
-      <div class="rule rv" aria-hidden="true"></div>
-      <h2 class="split">Your buyers see the life at NALU <em>before it’s built.</em></h2>
-    </div>
-  </section>
-
-  <section class="reel" id="shots" aria-labelledby="h-shots">
+  <section class="block" id="shots" aria-labelledby="h-shots">
     <div class="wrap head">
-      <p class="ey rv">Six moments</p>
-      <h2 id="h-shots" class="split">Made from <em>renders alone</em></h2>
-      <p class="sub rv">Tap any shot to see it big.</p>
+      <p class="ey rv">Step 2 of 4</p>
+      <h2 id="h-shots" class="split">Twelve shots, <em>one by one</em></h2>
+      <p class="sub rv">Each one plays on a loop. Tap a shot to see it big.</p>
     </div>
-    <div class="feats">
-      <button class="feat rv" type="button" data-i="0" aria-label="Open shot 1, The arrival">
-        <span class="ph"><video muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-hidden="true" tabindex="-1" data-poster="media/shot-01.webp" data-src="media/shot-01.mp4"></video><span class="cap"><i>01</i><b>Arrive somewhere special.</b></span><span class="zoom" aria-hidden="true"><svg class="i"><use href="#arrows-maximize"/></svg></span></span>
-      </button>
-      <button class="feat rv" type="button" data-i="1" aria-label="Open shot 2, Morning on the balcony">
-        <span class="ph"><video muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-hidden="true" tabindex="-1" data-poster="media/shot-02.webp" data-src="media/shot-02.mp4"></video><span class="cap"><i>02</i><b>Mornings with the whole view below.</b></span><span class="zoom" aria-hidden="true"><svg class="i"><use href="#arrows-maximize"/></svg></span></span>
-      </button>
-      <button class="feat rv" type="button" data-i="7" aria-label="Open shot 8, The pool from above">
-        <span class="ph"><video muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-hidden="true" tabindex="-1" data-poster="media/shot-08.webp" data-src="media/shot-08.mp4"></video><span class="cap"><i>08</i><b>The whole pool, at a glance.</b></span><span class="zoom" aria-hidden="true"><svg class="i"><use href="#arrows-maximize"/></svg></span></span>
-      </button>
-      <button class="feat rv" type="button" data-i="8" aria-label="Open shot 9, Pool at dusk">
-        <span class="ph"><video muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-hidden="true" tabindex="-1" data-poster="media/shot-09.webp" data-src="media/shot-09.mp4"></video><span class="cap"><i>09</i><b>Evening settles over the water.</b></span><span class="zoom" aria-hidden="true"><svg class="i"><use href="#arrows-maximize"/></svg></span></span>
-      </button>
-      <button class="feat rv" type="button" data-i="5" aria-label="Open shot 6, Bathhouse steps">
-        <span class="ph"><video muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-hidden="true" tabindex="-1" data-poster="media/shot-06.webp" data-src="media/shot-06.mp4"></video><span class="cap"><i>06</i><b>Light on green stone. The spa in one frame.</b></span><span class="zoom" aria-hidden="true"><svg class="i"><use href="#arrows-maximize"/></svg></span></span>
-      </button>
-      <button class="feat rv" type="button" data-i="6" aria-label="Open shot 7, The NALU wall">
-        <span class="ph"><video muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-hidden="true" tabindex="-1" data-poster="media/shot-07.webp" data-src="media/shot-07.mp4"></video><span class="cap"><i>07</i><b>The NALU name, set in stone.</b></span><span class="zoom" aria-hidden="true"><svg class="i"><use href="#arrows-maximize"/></svg></span></span>
-      </button>
-    </div>
-    <div class="seeall">
-      <button class="btn-ghost rv" type="button" id="seeall" aria-expanded="false" aria-controls="allrail"><span id="seelabel">See all 12</span><svg class="i" aria-hidden="true"><use href="#chevron-right"/></svg></button>
-    </div>
-    <div class="allrail" id="allrail" hidden>
-      <div class="wrap"><p class="ey">All twelve shots</p></div>
-      <div class="rail" id="rail" tabindex="0" role="region" aria-roledescription="carousel" aria-label="The twelve shots. Use the left and right arrow keys to move.">
+    <div class="rail rv" id="rail" tabindex="0" role="region" aria-roledescription="carousel" aria-label="The twelve shots. Use the left and right arrow keys to move.">
       <button class="shot" type="button" data-src="media/shot-01.mp4" data-poster="media/shot-01.webp" data-title="The arrival" data-cap="A classic convertible rolls into the entrance at golden hour. It opens the film and sets the tone: arriving somewhere special." aria-label="Open shot 1, The arrival">
         <span class="ph"><video muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-hidden="true" tabindex="-1" poster="media/shot-01.webp" data-poster="media/shot-01.webp" data-src="media/shot-01.mp4"></video><span class="num" aria-hidden="true">01</span><span class="zoom" aria-hidden="true"><svg class="i"><use href="#arrows-maximize"/></svg></span></span>
         <span class="cap"><b>The arrival</b><span>A classic convertible rolls into the entrance at golden hour.</span></span>
@@ -396,49 +378,49 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
         <span class="ph"><video muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-hidden="true" tabindex="-1"  data-poster="media/shot-12.webp" data-src="media/shot-12.mp4"></video><span class="num" aria-hidden="true">12</span><span class="zoom" aria-hidden="true"><svg class="i"><use href="#arrows-maximize"/></svg></span></span>
         <span class="cap"><b>Sunglasses off</b><span>At the NALU sign she lowers her sunglasses and smiles.</span></span>
       </button>
-      </div>
-      <div class="wrap">
-        <div class="rail-foot">
-          <p class="count" id="rcount" aria-live="polite">1 <i>/ 12</i></p>
-          <div class="dots" id="rdots" aria-hidden="true"></div>
-          <div class="arrows">
-            <button class="rb" type="button" id="rprev" aria-label="Previous shots"><svg class="i" aria-hidden="true"><use href="#chevron-left"/></svg></button>
-            <button class="rb" type="button" id="rnext" aria-label="Next shots"><svg class="i" aria-hidden="true"><use href="#chevron-right"/></svg></button>
-          </div>
+    </div>
+    <div class="wrap">
+      <div class="rail-foot">
+        <p class="count" id="rcount" aria-live="polite">1 <i>/ 12</i></p>
+        <div class="dots" id="rdots" aria-hidden="true"></div>
+        <div class="arrows">
+          <button class="rb" type="button" id="rprev" aria-label="Previous shots"><svg class="i" aria-hidden="true"><use href="#chevron-left"/></svg></button>
+          <button class="rb" type="button" id="rnext" aria-label="Next shots"><svg class="i" aria-hidden="true"><use href="#chevron-right"/></svg></button>
         </div>
       </div>
+      <p class="tip rv"><svg class="i" aria-hidden="true"><use href="#arrows-maximize"/></svg>In the big view, swipe or use the arrows for the next shot.</p>
     </div>
   </section>
 
-  <section class="proof" id="proof" aria-labelledby="h-proof">
-    <div class="wrap">
-      <p class="ey rv">Our work</p>
-      <h2 id="h-proof" class="split">Made by the team behind <em>86 Hedges Ave</em> for Kollosche</h2>
-      <p class="lede rv" style="--i:2">We make launch films and content from renders, before a single brick is laid.</p>
-    </div>
-  </section>
-
-  <hr class="hl">
-
-  <section class="get" id="more" aria-labelledby="h-more">
-    <div class="wrap">
-      <div class="head">
-        <p class="ey rv">What you get</p>
-        <h2 id="h-more" class="split">Three things, <em>made for NALU</em></h2>
-      </div>
-      <div class="tiles">
-        <article class="tile rv" style="--i:0">
-          <div class="pic"><img src="media/shot-09.webp" alt="" draggable="false" loading="lazy"></div>
-          <div class="txt"><span class="n">01</span><h3>Launch film</h3><p>One film that sells the whole development.</p></div>
-        </article>
-        <article class="tile rv" style="--i:1">
-          <div class="pic"><img src="media/shot-11.webp" alt="" draggable="false" loading="lazy" style="--op:50% 55%"></div>
-          <div class="txt"><span class="n">02</span><h3>Weekly social content</h3><p>Fresh reels every week, until the last home sells.</p></div>
-        </article>
-        <article class="tile rv" style="--i:2">
-          <div class="pic"><img src="media/shot-02.webp" alt="" draggable="false" loading="lazy" style="--op:60% 50%"></div>
-          <div class="txt"><span class="n">03</span><h3>See a home before it’s built</h3><p>Made from your plans and interior renders.</p></div>
-        </article>
+  <section class="block pin" id="more" aria-labelledby="h-more">
+    <div class="pin-track">
+      <div class="pin-stage wrap">
+        <div class="head">
+          <p class="ey rv">Step 3 of 4</p>
+          <h2 id="h-more" class="split">What else <em>we can make</em></h2>
+          <p class="sub rv">All from your renders. No waiting for the build.</p>
+        </div>
+        <div class="deck">
+          <article class="card rv" style="--i:0">
+            <div class="pic"><img src="media/shot-02.webp" alt="" draggable="false" loading="lazy" style="--op:60% 50%"></div>
+            <div class="txt"><span class="k"><svg class="i" aria-hidden="true"><use href="#home"/></svg>The residences</span>
+              <h3>See a home before it's built</h3>
+              <p>Made from your plans and interior renders.</p></div>
+          </article>
+          <article class="card rv" style="--i:1">
+            <div class="pic"><img src="media/shot-11.webp" alt="" draggable="false" loading="lazy" style="--op:50% 55%"></div>
+            <div class="txt"><span class="k"><svg class="i" aria-hidden="true"><use href="#users-group"/></svg>Every buyer</span>
+              <h3>A film for each kind of buyer</h3>
+              <p>Downsizers, families, and buyers interstate or overseas.</p></div>
+          </article>
+          <article class="card rv" style="--i:2">
+            <div class="pic"><img src="media/shot-08.webp" alt="" draggable="false" loading="lazy" style="--op:50% 50%"></div>
+            <div class="txt"><span class="k"><svg class="i" aria-hidden="true"><use href="#calendar-repeat"/></svg>Launch to sold out</span>
+              <h3>Fresh content every week</h3>
+              <p>Reels for socials, ads and the display suite, until the last home sells.</p></div>
+          </article>
+        </div>
+        <div class="steps" aria-hidden="true"><span class="bars"><i></i><i></i><i></i></span><span id="pstep">1 of 3</span></div>
       </div>
     </div>
   </section>
@@ -447,7 +429,8 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
     <div class="talk rv">
       <div class="crest" aria-hidden="true"><i></i></div>
       <div class="crestrule" aria-hidden="true"></div>
-      <h2 id="h-next">Let’s talk about NALU</h2>
+      <p class="ey">Step 4 of 4</p>
+      <h2 id="h-next">Want this for the residences?</h2>
       <p>Talk to Brandon or Jürgen. Based on the Gold Coast, working anywhere in the world, in person or online. All we need is your renders and a few location shots.</p>
       <div class="who">
         <a class="wa" href="https://wa.me/61400357305" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#brand-whatsapp"/></svg><span><b>Brandon</b><small>0400 357 305</small></span></a>
@@ -529,37 +512,27 @@ $$('.split').forEach(function(el){var i=0;(function walk(n){[].slice.call(n.chil
 var io='IntersectionObserver' in W?new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;e.target.classList.add('in');io.unobserve(e.target)})},{rootMargin:'0px 0px -6% 0px',threshold:.06}):null;
 $$('.rv,.split').forEach(function(el){io?io.observe(el):el.classList.add('in')});
 
-/* ---------- 1. the film: full screen, silent, loops. Tap to pause ---------- */
-var fv=$('#nalu-film'),fpp=$('#fpp'),fsh=$('.hero .shield'),fpaused=false,fvis=true;
+/* ---------- 1. the film: silent, plays when on screen, tap to pause, drag the line to jump ---------- */
+var fv=$('#nalu-film'),fpp=$('#fpp'),fsh=$('.screen .shield'),ftr=$('#ftrack'),fcl=$('#fclock'),fpaused=false,fvis=false;
+function mmss(s){s=Math.max(0,Math.round(s||0));return Math.floor(s/60)+':'+('0'+s%60).slice(-2)}
 function ficon(){fpp.querySelector('use').setAttribute('href',fpaused?'#player-play':'#player-pause');var l=fpaused?'Play the film':'Pause the film';fpp.setAttribute('aria-label',l);fsh.setAttribute('aria-label',l)}
 function fsync(){if(!fpaused&&fvis&&!lbOpen&&!d.hidden){if(fv.paused)play(fv)}else if(!fv.paused)fv.pause()}
-function ftoggle(){fpaused=!fpaused;ficon();fsync()}
+function ftoggle(){fpaused=!fpaused;if(!fpaused)fvis=true;ficon();fsync()}
 fpp.addEventListener('click',ftoggle);fsh.addEventListener('click',ftoggle);
 fsh.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();ftoggle()}});
+function ftime(){var dur=fv.duration||23.33,t=fv.currentTime||0,f=Math.min(1,t/dur);ftr.style.setProperty('--t',f.toFixed(4));ftr.style.setProperty('--kx',(f*ftr.clientWidth).toFixed(1)+'px');
+  fcl.textContent=mmss(t)+' / '+mmss(dur);ftr.setAttribute('aria-valuenow',Math.round(t));ftr.setAttribute('aria-valuetext',Math.round(t)+' seconds')}
+fv.addEventListener('timeupdate',ftime);fv.addEventListener('loadedmetadata',ftime);
+(function(){var raf;function loop(){ftime();raf=requestAnimationFrame(loop)}fv.addEventListener('play',function(){cancelAnimationFrame(raf);loop()});fv.addEventListener('pause',function(){cancelAnimationFrame(raf);ftime()})})();
+function seekAt(x){var r=ftr.getBoundingClientRect(),p=clamp((x-r.left)/r.width,0,1);if(fv.duration){fv.currentTime=p*fv.duration;ftime()}}
+var fdrag=false;
+ftr.addEventListener('pointerdown',function(e){fdrag=true;fv.preload='auto';try{ftr.setPointerCapture(e.pointerId)}catch(_){}seekAt(e.clientX)});
+ftr.addEventListener('pointermove',function(e){if(fdrag)seekAt(e.clientX)});
+ftr.addEventListener('pointerup',function(){fdrag=false});ftr.addEventListener('pointercancel',function(){fdrag=false});
+ftr.addEventListener('keydown',function(e){if(!fv.duration)return;if(e.key==='ArrowRight'){fv.currentTime=Math.min(fv.duration,fv.currentTime+2);e.preventDefault()}else if(e.key==='ArrowLeft'){fv.currentTime=Math.max(0,fv.currentTime-2);e.preventDefault()}ftime()});
 ficon();
-if('IntersectionObserver' in W){new IntersectionObserver(function(es){fvis=es[0].intersectionRatio>=.12;fsync()},{threshold:[0,.12,.5]}).observe($('.hero'))}
-play(fv);
-
-/* ---------- the six big shots: load as they near, play only while on screen ---------- */
-var feats=$$('.feat'),fvids=feats.map(function(f){return $('video',f)}),fr=feats.map(function(){return 0}),featFor={};
-feats.forEach(function(f){featFor[+f.dataset.i]=f});
-function fattach(k){var v=fvids[k];if(v.dataset.poster&&!v.getAttribute('poster'))v.setAttribute('poster',v.dataset.poster);if(!v.getAttribute('src')){v.preload='auto';v.src=v.dataset.src}}
-function featVids(){feats.forEach(function(f,k){var v=fvids[k],want=!lbOpen&&!d.hidden&&fr[k]>=.35&&!!v.getAttribute('src');if(want){if(v.paused)play(v)}else if(!v.paused)v.pause()})}
-if('IntersectionObserver' in W){
-  var fnear=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)fattach(feats.indexOf(e.target))})},{rootMargin:'800px 0px'});
-  var fseen=new IntersectionObserver(function(es){es.forEach(function(e){fr[feats.indexOf(e.target)]=e.isIntersecting?e.intersectionRatio:0});featVids()},{threshold:[0,.35,.6,1]});
-  feats.forEach(function(f){fnear.observe(f);fseen.observe(f)});
-}else{feats.forEach(function(f,k){fattach(k);fr[k]=1})}
-
-/* "See all 12": opens the full swipe rail below */
-var seeBtn=$('#seeall'),seeLbl=$('#seelabel'),allr=$('#allrail');
-function railShown(){return !allr.hidden}
-seeBtn.addEventListener('click',function(){var open=allr.hidden;allr.hidden=!open;seeBtn.setAttribute('aria-expanded',open?'true':'false');seeLbl.textContent=open?'Show fewer':'See all 12';
-  if(open){measurePer();railMeasure();anim(allr,[{opacity:0,transform:'translateY(18px)'},{opacity:1,transform:'none'}],{duration:reduce?250:900,easing:E});
-    setTimeout(function(){allr.scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'})},60)}});
-/* the call-to-action hides while the contact card is on screen */
-var cta=$('#cta');
-if('IntersectionObserver' in W){new IntersectionObserver(function(es){cta.classList.toggle('away',es[0].isIntersecting)},{threshold:.25}).observe($('#talk'))}
+if('IntersectionObserver' in W){new IntersectionObserver(function(es){fvis=es[0].intersectionRatio>=.3;if(fvis&&fv.preload!=='auto')fv.preload='auto';fsync()},{threshold:[0,.3,.6]}).observe($('.screen'))}
+else{fvis=true;fsync()}
 
 /* ---------- 2. the shot rail: native swipe + snap, mouse drag with a flick, arrows and keys ---------- */
 var rail=$('#rail'),cards=$$('.shot',rail),N=cards.length,vids=cards.map(function(c){return $('video',c)}),
@@ -569,14 +542,14 @@ var dotEls=$$('i',rdots);
 function targets(){var max=Math.max(0,rail.scrollWidth-rail.clientWidth),rr=rail.getBoundingClientRect(),cs=getComputedStyle(cards[0]),center=cs.scrollSnapAlign.indexOf('center')>-1,pl=parseFloat(getComputedStyle(rail).scrollPaddingLeft)||0;
   return cards.map(function(c){var r=c.getBoundingClientRect(),left=r.left-rr.left+rail.scrollLeft,t=center?left-(rail.clientWidth-r.width)/2:left-pl;return clamp(t,0,max)})}
 function nearest(left,ts){ts=ts||targets();var b=0,bd=1e9;ts.forEach(function(t,i){var dd=Math.abs(t-left);if(dd<bd-.5){bd=dd;b=i}});return b}
-function measurePer(){if(!rail.clientWidth)return;var cw=cards[0].getBoundingClientRect().width,gap=parseFloat(getComputedStyle(rail).columnGap)||12,cs=getComputedStyle(rail),inner=rail.clientWidth-(parseFloat(cs.paddingLeft)||0)-(parseFloat(cs.paddingRight)||0);
+function measurePer(){var cw=cards[0].getBoundingClientRect().width,gap=parseFloat(getComputedStyle(rail).columnGap)||12,cs=getComputedStyle(rail),inner=rail.clientWidth-(parseFloat(cs.paddingLeft)||0)-(parseFloat(cs.paddingRight)||0);
   perView=Math.max(1,Math.round((inner+gap)/(cw+gap)))}
 function goTo(i,instant){var ts=targets();i=clamp(i,0,N-1);rail.scrollTo({left:ts[i],behavior:(instant||reduce)?'auto':'smooth'})}
 function railUI(){var last=Math.min(N,act+perView);
   rcount.innerHTML=(perView>1?(act+1)+'&ndash;'+last:(act+1))+' <i>/ '+N+'</i>';
   dotEls.forEach(function(e,k){e.classList.toggle('on',k>=act&&k<last)});
   rprev.disabled=act<=0;rnext.disabled=last>=N}
-function railMeasure(){if(!rail.clientWidth)return;var a=nearest(rail.scrollLeft);if(rail.scrollLeft>=rail.scrollWidth-rail.clientWidth-2)a=Math.max(0,N-perView);act=a;railUI();railVids()}
+function railMeasure(){var a=nearest(rail.scrollLeft);if(rail.scrollLeft>=rail.scrollWidth-rail.clientWidth-2)a=Math.max(0,N-perView);act=a;railUI();railVids()}
 var rq=0;rail.addEventListener('scroll',function(){if(!rq)rq=requestAnimationFrame(function(){rq=0;railMeasure()})},{passive:true});
 rprev.addEventListener('click',function(){goTo(act-perView)});
 rnext.addEventListener('click',function(){goTo(act+perView)});
@@ -615,10 +588,30 @@ if('IntersectionObserver' in W){
   new IntersectionObserver(function(es){if(es[0].isIntersecting){railNear=true;railVids()}},{rootMargin:'600px 0px'}).observe(rail);
 }else{railVis=railNear=true;cards.forEach(function(c){c._r=1})}
 
+/* ---------- 3. what else: lock the section, slide the three cards in one by one ---------- */
+var pin=$('.pin'),ptrack=$('.pin-track',pin),pstage=$('.pin-stage',pin),pcards=$$('.card',pin),pbars=$$('.steps .bars i',pin),pstep=$('#pstep'),pinned=false,stackMode=false;
+function pinWanted(){return !mqRM.matches&&W.innerHeight>=600&&W.innerWidth>=320}
+function setStick(){var db=$('.dock-in').getBoundingClientRect();var top=parseFloat(getComputedStyle($('.dock')).top)||8;de.style.setProperty('--stick',Math.round(top+8+db.height+10)+'px')}
+function pinSetup(){var want=pinWanted();stackMode=W.innerWidth<900;
+  if(want!==pinned){pinned=want;pin.classList.toggle('pinned',want);
+    if(!want)pcards.forEach(function(c){c.style.transform='';c.style.opacity=''})}
+  if(pinned)pcards.forEach(function(c){c.classList.add('in')});pinTick()}
+var WIN_S=[[0,.2],[.3,.56],[.64,.9]],WIN_R=[[0,.24],[.3,.54],[.6,.84]];
+function pinTick(){if(!pinned)return;var r=ptrack.getBoundingClientRect(),vh=W.innerHeight;
+  if(r.bottom<-80||r.top>vh+80)return;
+  var sh=pstage.offsetHeight,range=Math.max(1,r.height-sh),p=clamp((vh*.5-r.top)/(range+vh*.5),0,1),win=stackMode?WIN_S:WIN_R;
+  var e=win.map(function(w){return easeOut(clamp((p-w[0])/(w[1]-w[0]),0,1))});
+  if(stackMode){var H=pcards[0].offsetHeight||400;
+    pcards.forEach(function(c,k){var above=0;for(var j=k+1;j<e.length;j++)above+=e[j];
+      var ty=(1-e[k])*(H+60)-11*above,s=1-.05*above;
+      c.style.transform='translate3d(0,'+ty.toFixed(1)+'px,0) scale('+s.toFixed(4)+')';c.style.opacity=(e[k]<=0?0:1-.22*above).toFixed(3);c.style.zIndex=k+1})}
+  else{pcards.forEach(function(c,k){c.style.transform='translate3d(0,'+((1-e[k])*90).toFixed(1)+'px,0) scale('+(.96+.04*e[k]).toFixed(4)+')';c.style.opacity=e[k].toFixed(3)})}
+  var n=0;e.forEach(function(x,k){pbars[k].style.setProperty('--f',x.toFixed(3));if(x>.5)n=k+1});pstep.textContent=Math.max(1,n)+' of 3'}
+
 /* ---------- the big view (Photos style) ---------- */
 var lb=$('#lb'),lbg=$('#lb-bg'),view=$('#lb-view'),ltrack=$('#lb-track'),slides=$$('.lb-slide',ltrack),medias=slides.map(function(s){return $('.lb-media',s)}),
     ltop=$('#lb-top'),linfo=$('#lb-info'),lct=$('#lb-count'),ltl=$('#lb-title'),lcp=$('#lb-cap'),lprev=$('#lb-prev'),lnext=$('#lb-next'),lclose=$('#lb-close'),
-    lv=$('#lb-video'),cur=0,VW=1,lpaused=false,lastFocus=null,busy=false,origin=null,openedAt=-1;
+    lv=$('#lb-video'),cur=0,VW=1,lpaused=false,lastFocus=null,busy=false;
 var chrome=[lbg,ltop,linfo];
 function lsync(){if(lbOpen&&!lpaused&&!d.hidden){if(lv.paused&&lv.getAttribute('src'))play(lv)}else if(!lv.paused)lv.pause();lb.classList.toggle('is-paused',lbOpen&&lpaused)}
 lv.addEventListener('playing',function(){lv.classList.add('on')});
@@ -632,35 +625,32 @@ function go(i,ms){i=clamp(i,0,N-1);var changed=i!==cur;cur=i;poster(i-1);poster(
   if(changed){info(cur);if(!reduce)anim($('.in',linfo),[{opacity:.2,transform:'translateY(6px)'},{opacity:1,transform:'none'}],{duration:500,easing:E})}
   clearTimeout(mt);mt=setTimeout(function(){mount(cur)},changed?Math.min(ms,380):0)}
 function layout(){VW=view.clientWidth||W.innerWidth;setX(-cur*VW,0)}
-function oEl(i){if(i===openedAt&&origin&&origin.offsetParent)return origin;if(featFor[i])return featFor[i];if(railShown()&&cards[i])return cards[i];return null}
-function cardRect(i){var el=oEl(i);return el?$('.ph',el).getBoundingClientRect():null}
+function cardRect(i){return $('.ph',cards[i]).getBoundingClientRect()}
 function flipFrom(m,r0,ms,back,done){var r1=m.getBoundingClientRect();
   var k=r0.width/r1.width,fx='translate('+(r0.left-r1.left).toFixed(1)+'px,'+(r0.top-r1.top).toFixed(1)+'px) scale('+k.toFixed(4)+')';
   var a=anim(m,back?[{transform:m.style.transform||'none'},{transform:fx}]:[{transform:fx},{transform:'none'}],{duration:ms,easing:E,fill:back?'forwards':'none'});
   if(a&&done)a.onfinish=done;else if(done)done();return a}
-function openLb(i,from){if(lbOpen||busy)return;origin=from||null;openedAt=i;lastFocus=d.activeElement;lbOpen=true;busy=true;
+function openLb(i){if(lbOpen||busy)return;lastFocus=d.activeElement;lbOpen=true;busy=true;
   lb.removeAttribute('inert');lb.classList.add('open');lb.setAttribute('aria-hidden','false');de.style.overflow='hidden';
-  $$('main,.cta').forEach(function(el){el.setAttribute('inert','')});
-  cur=i;layout();poster(i-1);poster(i);poster(i+1);info(i);railVids();featVids();fsync();
-  var m=medias[i],oe=oEl(i);m.style.transform='';
-  if(reduce||!oe){chrome.forEach(function(c){c.style.opacity=1});anim(lb,[{opacity:0},{opacity:1}],{duration:250});busy=false}
-  else{oe.classList.add('lifted');
+  $$('main,.dock,.top').forEach(function(el){el.setAttribute('inert','')});
+  cur=i;layout();poster(i-1);poster(i);poster(i+1);info(i);railVids();fsync();
+  var m=medias[i];m.style.transform='';
+  if(reduce){chrome.forEach(function(c){c.style.opacity=1});anim(lb,[{opacity:0},{opacity:1}],{duration:250});busy=false}
+  else{cards[i].classList.add('lifted');
     chrome.forEach(function(c){anim(c,[{opacity:0},{opacity:1}],{duration:c===lbg?420:600,delay:c===lbg?0:160,easing:E,fill:'backwards'});c.style.opacity=1});
-    flipFrom(m,cardRect(i),560,false,function(){oe.classList.remove('lifted');busy=false})}
+    flipFrom(m,cardRect(i),560,false,function(){cards[i].classList.remove('lifted');busy=false})}
   mount(i);setTimeout(function(){lclose.focus({preventScroll:true})},80)}
-function closeLb(){if(!lbOpen||busy)return;busy=true;var i=cur,m=medias[i],oe=oEl(i);
-  if(railShown())goTo(i,true);
-  if(oe){var rr=oe.getBoundingClientRect();if(rr.bottom<40||rr.top>W.innerHeight-40)oe.scrollIntoView({block:'center'})}
+function closeLb(){if(!lbOpen||busy)return;busy=true;var i=cur,m=medias[i];
+  goTo(i,true);
   function finish(){lbOpen=false;busy=false;lb.classList.remove('open','is-paused');lb.setAttribute('aria-hidden','true');lb.setAttribute('inert','');de.style.overflow='';
-    lv.pause();lv.classList.remove('on');cards.concat(feats).forEach(function(c){c.classList.remove('lifted')});
+    lv.pause();lv.classList.remove('on');cards.forEach(function(c){c.classList.remove('lifted')});
     medias.forEach(function(x){x.style.transform='';if(x.getAnimations)x.getAnimations().forEach(function(a){a.cancel()})});chrome.forEach(function(c){c.style.opacity=''});
-    $$('main,.cta').forEach(function(el){el.removeAttribute('inert')});railMeasure();featVids();fsync();if(lastFocus&&lastFocus.focus)lastFocus.focus({preventScroll:true})}
-  if(reduce||!oe){anim(lb,[{opacity:1},{opacity:0}],{duration:220}).onfinish=finish;return}
-  requestAnimationFrame(function(){var r0=cardRect(i);oe.classList.add('lifted');
+    $$('main,.dock,.top').forEach(function(el){el.removeAttribute('inert')});railMeasure();fsync();if(lastFocus&&lastFocus.focus)lastFocus.focus({preventScroll:true})}
+  if(reduce){anim(lb,[{opacity:1},{opacity:0}],{duration:220}).onfinish=finish;return}
+  requestAnimationFrame(function(){var r0=cardRect(i);cards[i].classList.add('lifted');
     chrome.forEach(function(c){var o=parseFloat(getComputedStyle(c).opacity);anim(c,[{opacity:o},{opacity:0}],{duration:c===lbg?460:260,easing:E,fill:'forwards'})});
     flipFrom(m,r0,480,true,finish)})}
-cards.forEach(function(c,i){c.addEventListener('click',function(){openLb(i,c)})});
-feats.forEach(function(f){f.addEventListener('click',function(){openLb(+f.dataset.i,f)})});
+cards.forEach(function(c,i){c.addEventListener('click',function(){openLb(i)})});
 lprev.addEventListener('click',function(){go(cur-1)});lnext.addEventListener('click',function(){go(cur+1)});
 lclose.addEventListener('click',closeLb);
 d.addEventListener('keydown',function(e){if(!lbOpen)return;
@@ -693,17 +683,28 @@ view.addEventListener('wheel',function(e){e.preventDefault();if(Math.abs(e.delta
   if(Math.abs(wacc)>60){go(cur+(wacc>0?1:-1));wacc=0;wlock=now+650}},{passive:false});
 if(mqFine.matches)$('#lb-hint').textContent='Use the arrow keys';
 
-/* ---------- resize ---------- */
-var rz=0;function onResize(){measurePer();railMeasure();if(lbOpen)layout()}
+/* ---------- the guide: highlights where you are, gold line shows how far down ---------- */
+var links=$$('.dock a'),ind=$('.dock .ind'),bar=$('.dock .bar'),secs=links.map(function(a){return d.getElementById(a.getAttribute('href').slice(1))}),on=-1,tick=false;
+function place(){if(on<0){ind.style.opacity=0;return}var a=links[on],r=a.getBoundingClientRect(),p=a.parentNode.getBoundingClientRect();
+  ind.style.width=r.width+'px';ind.style.transform='translateX('+(r.left-p.left-3)+'px)';ind.style.opacity=1}
+function where(){var y=W.innerHeight*.42,k=-1;secs.forEach(function(s,i){if(s.getBoundingClientRect().top<=y)k=i});
+  if(W.innerHeight+W.scrollY>=de.scrollHeight-4)k=secs.length-1;
+  if(k!==on){on=k;links.forEach(function(a,i){a.classList.toggle('on',i===on);if(i===on)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});place()}}
+links.forEach(function(a){a.addEventListener('click',function(e){var t=d.getElementById(a.getAttribute('href').slice(1));if(!t)return;e.preventDefault();
+  var y=t.getBoundingClientRect().top+W.scrollY-(t.id==='film'?80:(t.id==='more'&&pinned?0:64));W.scrollTo({top:Math.max(0,y),behavior:reduce?'auto':'smooth'})})});
+function onScroll(){tick=false;var h=de.scrollHeight-W.innerHeight;bar.style.setProperty('--p',h>0?(W.scrollY/h).toFixed(4):0);where();pinTick()}
+W.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(onScroll)}},{passive:true});
+var rz=0;function onResize(){setStick();measurePer();pinSetup();railMeasure();if(lbOpen)layout();place();onScroll();ftime()}
 W.addEventListener('resize',function(){clearTimeout(rz);rz=setTimeout(onResize,80)});
-if(mqRM.addEventListener)mqRM.addEventListener('change',function(){reduce=mqRM.matches;de.classList.toggle('rm',reduce)});
-d.addEventListener('visibilitychange',function(){railVids();featVids();fsync();lsync()});
-measurePer();railMeasure();
+if(mqRM.addEventListener)mqRM.addEventListener('change',function(){reduce=mqRM.matches;de.classList.toggle('rm',reduce);pinSetup()});
+d.addEventListener('visibilitychange',function(){railVids();fsync();lsync()});
+if(d.fonts&&d.fonts.ready)d.fonts.ready.then(function(){place();setStick();pinTick()});
+setStick();measurePer();pinSetup();railMeasure();onScroll();
 /* Low Power Mode can refuse autoplay until the first touch: try again then */
-['touchstart','pointerdown','keydown'].forEach(function(n){W.addEventListener(n,function(){railVids();featVids();fsync()},{passive:true,once:true})});
+['touchstart','pointerdown','keydown'].forEach(function(n){W.addEventListener(n,function(){railVids();fsync()},{passive:true,once:true})});
 /* phone browsers sometimes pause muted films, so nudge them back */
-setInterval(function(){if(!d.hidden){railVids();featVids();fsync();lsync()}},2000);
-W.__nalu={goTo:goTo,openLb:openLb,closeLb:closeLb,go:go,state:function(){return {lbOpen:lbOpen,cur:cur,hero:!fv.paused,feats:fvids.filter(function(v){return !v.paused}).length,railOpen:railShown()}}};
+setInterval(function(){if(!d.hidden){railVids();fsync();lsync()}},2000);
+W.__nalu={goTo:goTo,openLb:openLb,closeLb:closeLb,go:go,state:function(){return {act:act,perView:perView,cur:cur,lbOpen:lbOpen,pinned:pinned,stack:stackMode,playing:vids.filter(function(v){return !v.paused}).length,held:vids.filter(function(v){return v.getAttribute('src')}).length}}};
 })();
 </script>
 </body>
