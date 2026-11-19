@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>NALU, shot by shot</title>
-<meta name="description" content="Twelve shots from the NALU sample film, one by one. A free sample from Aurian Haus.">
+<title>NALU sample film</title>
+<meta name="description" content="The NALU sample film, then each of its twelve shots. A free sample from Aurian Haus.">
 <meta name="theme-color" content="#131311">
 <meta name="color-scheme" content="dark">
 <meta name="robots" content="noindex,nofollow,noarchive">
-<meta property="og:title" content="NALU, shot by shot">
-<meta property="og:description" content="Twelve shots from the sample film. A free sample from Aurian Haus.">
+<meta property="og:title" content="NALU, the sample film">
+<meta property="og:description" content="The sample film and its twelve shots. A free sample from Aurian Haus.">
 <meta property="og:image" content="hero/hero-1440.webp">
 <link rel="icon" type="image/png" href="img/aurian-haus-ring.png">
 <link rel="apple-touch-icon" href="img/aurian-haus-ring.png">
@@ -80,19 +80,48 @@ h2{font:500 clamp(42px,5.2vw,72px)/1.02 "Cormorant Garamond",Georgia,serif;lette
 .cap h3{font:500 clamp(30px,3vw,38px)/1.08 "Cormorant Garamond",Georgia,serif;color:#fff}
 .cap p{margin-top:6px;font-size:18px;line-height:1.45;color:var(--on2);max-width:46ch}
 
-/* how it comes together */
-.steps{list-style:none;display:grid;gap:12px}
-.steps li{display:flex;gap:16px;align-items:flex-start;padding:20px 20px;border-radius:var(--r);background:rgba(255,250,242,.04);border:1px solid rgba(255,250,242,.1)}
-.steps .n{flex:none;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--gold2);color:var(--night);font:700 18px "Inter Tight",sans-serif}
-.steps b{display:block;font:600 21px/1.25 "Inter Tight",sans-serif;color:#fff}
-.steps span.t{display:block;margin-top:4px;font-size:18px;line-height:1.45;color:var(--on2)}
 
-/* later */
-.later{position:relative;isolation:isolate;overflow:hidden;margin:clamp(48px,7vw,84px) auto 0;max-width:760px;padding:30px 24px;border-radius:var(--r);background:var(--night2);text-align:center;display:grid;justify-items:center;gap:8px;border:1px solid rgba(201,166,107,.35)}
-.later::before{content:"";position:absolute;left:50%;top:-40%;width:120%;height:90%;transform:translateX(-50%);z-index:-1;background:radial-gradient(closest-side,rgba(201,166,107,.28),rgba(201,166,107,.08) 50%,rgba(201,166,107,0) 85%);filter:blur(24px);pointer-events:none}
-.later .ic{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:rgba(232,200,112,.14);color:var(--gold2);margin-bottom:6px}
-.later h3{font:500 clamp(32px,4vw,46px)/1.1 "Cormorant Garamond",Georgia,serif;color:#fff;text-wrap:balance}
-.later p{color:var(--on2);font-size:19px;max-width:38ch}
+/* the film */
+.film-wrap{display:grid;gap:14px}
+.screen{position:relative;isolation:isolate;overflow:hidden;border-radius:var(--r);background:#000;aspect-ratio:16/9;box-shadow:0 0 0 1px rgba(201,166,107,.4),0 50px 80px -46px rgba(0,0,0,.95)}
+.screen video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.screen::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,0) 62%,rgba(0,0,0,.42) 100%)}
+.shield{position:absolute;inset:0;z-index:2;cursor:pointer}
+.ctrl{position:absolute;left:12px;bottom:12px;z-index:3;display:flex;gap:6px;padding:4px;border-radius:999px;background:rgba(8,8,8,.6);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(232,200,112,.4)}
+.ctrl button{display:inline-flex;align-items:center;gap:8px;min-height:48px;min-width:48px;justify-content:center;padding:0 16px 0 12px;border-radius:999px;color:#fff;font:600 16px "Inter Tight",sans-serif;transition:background 240ms var(--e)}
+.ctrl button:hover{background:rgba(255,255,255,.12)}
+.ctrl .pp{padding:0;width:48px;background:var(--gold2);color:var(--night)}
+.ctrl .pp:hover{background:var(--gold)}
+.ctrl svg.i{width:20px;height:20px}
+.film-note{display:flex;align-items:center;gap:10px;font-size:18px;color:var(--on2)}
+.film-note svg.i{color:var(--gold2);width:20px;height:20px}
+
+/* what else we can make */
+.more{display:grid;gap:16px}
+.card{overflow:hidden;border-radius:var(--r);background:var(--night2);border:1px solid rgba(201,166,107,.3);box-shadow:0 30px 50px -40px rgba(0,0,0,.9);display:grid;grid-template-columns:38% 1fr;align-items:stretch}
+.card .pic{position:relative;overflow:hidden;background:#000;min-height:160px}
+.card .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--op,50% 50%);transition:transform 1400ms var(--e)}
+.card .txt{padding:18px 18px 20px;display:grid;align-content:center;gap:6px}
+.card .k{display:inline-flex;align-items:center;gap:8px;font:600 16px "Inter Tight",sans-serif;color:var(--gold2)}
+.card .k svg.i{width:20px;height:20px}
+.card h3{font:500 clamp(28px,3vw,34px)/1.08 "Cormorant Garamond",Georgia,serif;color:#fff}
+.card p{font-size:18px;line-height:1.45;color:var(--on2)}
+@media (hover:hover){.card:hover .pic img{transform:scale(1.05)}}
+
+/* next step */
+.next{position:relative;isolation:isolate;overflow:hidden;margin:clamp(48px,7vw,84px) auto 0;max-width:760px;padding:30px 24px;border-radius:var(--r);background:var(--night2);text-align:center;display:grid;justify-items:center;gap:8px;border:1px solid rgba(201,166,107,.35)}
+.next::before{content:"";position:absolute;left:50%;top:-40%;width:120%;height:90%;transform:translateX(-50%);z-index:-1;background:radial-gradient(closest-side,rgba(201,166,107,.28),rgba(201,166,107,.08) 50%,rgba(201,166,107,0) 85%);filter:blur(24px);pointer-events:none}
+.next .ic{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:rgba(232,200,112,.14);color:var(--gold2);margin-bottom:6px}
+.next h3{font:500 clamp(34px,4vw,48px)/1.1 "Cormorant Garamond",Georgia,serif;color:#fff;text-wrap:balance}
+.next p{color:var(--on2);font-size:19px;max-width:38ch}
+.next .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:8px 0 4px}
+.next .chips span{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 14px;border-radius:999px;background:rgba(232,200,112,.1);border:1px solid rgba(232,200,112,.3);color:var(--on);font:500 16px "Inter Tight",sans-serif}
+.next .chips svg.i{width:18px;height:18px;color:var(--gold2)}
+.next .go{display:inline-flex;align-items:center;gap:10px;min-height:56px;margin-top:10px;padding:0 26px;white-space:nowrap;border-radius:999px;background:var(--gold2);color:var(--night);font:600 18px "Inter Tight",sans-serif;text-decoration:none;transition:background 240ms var(--e),transform 240ms var(--e)}
+.next .go:hover{background:var(--gold);transform:translateY(-1px)}
+.next .go:active{transform:scale(.98)}
+.next .go svg.i{width:20px;height:20px}
+.next .how{font-size:17px;color:var(--on2)}
 
 footer{margin-top:56px;padding:30px 0 calc(40px + env(safe-area-inset-bottom));border-top:1px solid rgba(201,166,107,.3);display:grid;gap:10px;justify-items:center;text-align:center}
 footer img{width:52px;height:52px}
@@ -102,6 +131,7 @@ footer p{font-size:16px;color:var(--on2);max-width:52ch}
 .rm .rv,.rm .split .w>span{translate:none !important;transform:none !important}
 .rm .hero-media img{transition:none;transform:none}
 .rm .cue svg.i{animation:none}
+.rm .card .pic img,.rm .next .go{transition:none;transform:none}
 
 @media (min-width:900px){
  .hero{min-height:min(92svh,940px)}
@@ -112,14 +142,44 @@ footer p{font-size:16px;color:var(--on2);max-width:52ch}
  .copy{margin-top:auto;padding-top:60px}
  h1{font-size:clamp(96px,9vw,132px)}
  .shots{grid-template-columns:1fr 1fr}
- .steps{grid-template-columns:1fr 1fr;gap:16px}
- .steps li{padding:24px}
- .later{padding:44px 48px}
+ .more{grid-template-columns:repeat(3,1fr);gap:20px}
+ .card{grid-template-columns:1fr;grid-template-rows:auto 1fr}
+ .card .pic{aspect-ratio:4/3;min-height:0}
+ .card .txt{padding:20px 22px 24px;align-content:start}
+ .next{padding:44px 48px}
+ .ctrl{left:18px;bottom:18px}
 }
 </style>
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="player-pause" viewBox="0 0 24 24"><path d="M6 6a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1l0 -12" /><path d="M14 6a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1l0 -12" /></symbol><symbol id="player-play" viewBox="0 0 24 24"><path d="M7 4v16l13 -8l-13 -8" /></symbol><symbol id="gift" viewBox="0 0 24 24"><path d="M3 9a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1l0 -2" /><path d="M12 8l0 13" /><path d="M19 12v7a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-7" /><path d="M7.5 8a2.5 2.5 0 0 1 0 -5a4.8 8 0 0 1 4.5 5a4.8 8 0 0 1 4.5 -5a2.5 2.5 0 0 1 0 5" /></symbol><symbol id="arrow-down" viewBox="0 0 24 24"><path d="M12 5l0 14" /><path d="M18 13l-6 6" /><path d="M6 13l6 6" /></symbol><symbol id="movie" viewBox="0 0 24 24"><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M8 4l0 16" /><path d="M16 4l0 16" /><path d="M4 8l4 0" /><path d="M4 16l4 0" /><path d="M4 12l16 0" /><path d="M16 8l4 0" /><path d="M16 16l4 0" /></symbol></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="player-pause" viewBox="0 0 24 24"><path d="M6 6a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1l0 -12" /><path d="M14 6a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1l0 -12" /></symbol><symbol id="player-play" viewBox="0 0 24 24"><path d="M7 4v16l13 -8l-13 -8" /></symbol><symbol id="gift" viewBox="0 0 24 24"><path d="M3 9a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1l0 -2" /><path d="M12 8l0 13" /><path d="M19 12v7a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-7" /><path d="M7.5 8a2.5 2.5 0 0 1 0 -5a4.8 8 0 0 1 4.5 5a4.8 8 0 0 1 4.5 -5a2.5 2.5 0 0 1 0 5" /></symbol><symbol id="arrow-down" viewBox="0 0 24 24"><path d="M12 5l0 14" /><path d="M18 13l-6 6" /><path d="M6 13l6 6" /></symbol><symbol id="movie" viewBox="0 0 24 24"><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M8 4l0 16" /><path d="M16 4l0 16" /><path d="M4 8l4 0" /><path d="M4 16l4 0" /><path d="M4 12l16 0" /><path d="M16 8l4 0" /><path d="M16 16l4 0" /></symbol><symbol id="volume" viewBox="0 0 24 24"><path d="M15 8a5 5 0 0 1 0 8" />
+  <path d="M17.7 5a9 9 0 0 1 0 14" />
+  <path d="M6 15h-2a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h2l3.5 -4.5a.8 .8 0 0 1 1.5 .5v14a.8 .8 0 0 1 -1.5 .5l-3.5 -4.5" /></symbol><symbol id="volume-off" viewBox="0 0 24 24"><path d="M15 8a5 5 0 0 1 1.912 4.934m-1.377 2.602a5 5 0 0 1 -.535 .464" />
+  <path d="M17.7 5a9 9 0 0 1 2.362 11.086m-1.676 2.299a9 9 0 0 1 -.686 .615" />
+  <path d="M9.069 5.054l.431 -.554a.8 .8 0 0 1 1.5 .5v2m0 4v8a.8 .8 0 0 1 -1.5 .5l-3.5 -4.5h-2a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h2l1.294 -1.664" />
+  <path d="M3 3l18 18" /></symbol><symbol id="home" viewBox="0 0 24 24"><path d="M5 12l-2 0l9 -9l9 9l-2 0" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></symbol><symbol id="users-group" viewBox="0 0 24 24"><path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+  <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" />
+  <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+  <path d="M17 10h2a2 2 0 0 1 2 2v1" />
+  <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+  <path d="M3 13v-1a2 2 0 0 1 2 -2h2" /></symbol><symbol id="calendar-repeat" viewBox="0 0 24 24"><path d="M12.5 21h-6.5a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v3" />
+  <path d="M16 3v4" />
+  <path d="M8 3v4" />
+  <path d="M4 11h12" />
+  <path d="M20 14l2 2h-3" />
+  <path d="M20 18l2 -2" />
+  <path d="M19 16a3 3 0 1 0 2 5.236" /></symbol><symbol id="phone-call" viewBox="0 0 24 24"><path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2" />
+  <path d="M15 7a2 2 0 0 1 2 2" />
+  <path d="M15 3a6 6 0 0 1 6 6" /></symbol><symbol id="bulb" viewBox="0 0 24 24"><path d="M3 12h1m8 -9v1m8 8h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7" />
+  <path d="M9 16a5 5 0 1 1 6 0a3.5 3.5 0 0 0 -1 3a2 2 0 0 1 -4 0a3.5 3.5 0 0 0 -1 -3" />
+  <path d="M9.7 17l4.6 0" /></symbol><symbol id="coin" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+  <path d="M14.8 9a2 2 0 0 0 -1.8 -1h-2a2 2 0 1 0 0 4h2a2 2 0 1 1 0 4h-2a2 2 0 0 1 -1.8 -1" />
+  <path d="M12 7v10" /></symbol><symbol id="target" viewBox="0 0 24 24"><path d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+  <path d="M7 12a5 5 0 1 0 10 0a5 5 0 1 0 -10 0" />
+  <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></symbol><symbol id="arrow-up-right" viewBox="0 0 24 24"><path d="M17 7l-10 10" />
+  <path d="M8 7l9 0l0 9" /></symbol><symbol id="sparkles" viewBox="0 0 24 24"><path d="M16 18a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2m0 -12a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2m-7 12a6 6 0 0 1 6 -6a6 6 0 0 1 -6 -6a6 6 0 0 1 -6 6a6 6 0 0 1 6 6" /></symbol></svg>
 <div class="progress" aria-hidden="true"></div>
 
 <header class="hero" id="top">
@@ -132,12 +192,30 @@ footer p{font-size:16px;color:var(--on2);max-width:52ch}
   <div class="wrap copy">
     <p class="ey rv">For NALU</p>
     <h1 class="split">NALU, <em>shot by shot.</em></h1>
-    <p class="lead rv" style="--i:3">Twelve moments from the sample film, one at a time. What each one shows, and how we would use it.</p>
-    <a class="cue rv" style="--i:4" href="#shots">See the shots<svg class="i" aria-hidden="true"><use href="#arrow-down"/></svg></a>
+    <p class="lead rv" style="--i:3">The sample film first. Then each of its twelve shots, one at a time.</p>
+    <a class="cue rv" style="--i:4" href="#film">Watch the film<svg class="i" aria-hidden="true"><use href="#arrow-down"/></svg></a>
   </div>
 </header>
 
 <main class="wrap">
+  <section class="block" id="film" aria-labelledby="h-film">
+    <div class="head">
+      <h2 id="h-film" class="split">The film, <em>in full</em></h2>
+      <p class="sub rv">26 seconds. Tap the film to pause, or turn the sound on.</p>
+    </div>
+    <div class="film-wrap rv">
+      <div class="screen">
+        <video id="nalu-film" muted loop playsinline preload="metadata" poster="media/nalu-film-poster.webp" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-label="The NALU sample film"><source src="media/nalu-film-1080.mp4" type="video/mp4"><source src="media/nalu-film-720.mp4" type="video/mp4"></video>
+        <div class="shield" role="button" tabindex="0" aria-label="Pause the film"></div>
+        <div class="ctrl">
+          <button class="pp" type="button" id="fpp" aria-label="Pause the film"><svg class="i" aria-hidden="true"><use href="#player-pause"/></svg></button>
+          <button type="button" id="fsnd" aria-label="Turn sound on"><svg class="i" aria-hidden="true"><use href="#volume-off"/></svg><span>Tap for sound</span></button>
+        </div>
+      </div>
+      <p class="film-note"><svg class="i" aria-hidden="true"><use href="#sparkles"/></svg>Sound effects only for now. The music comes next.</p>
+    </div>
+  </section>
+
   <section class="block" id="shots" aria-labelledby="h-shots">
     <div class="head">
       <h2 id="h-shots" class="split">Twelve shots, <em>one by one</em></h2>
@@ -243,23 +321,40 @@ footer p{font-size:16px;color:var(--on2);max-width:52ch}
     </div>
   </section>
 
-  <section class="block" id="how" aria-labelledby="h-how">
+  <section class="block" id="more" aria-labelledby="h-more">
     <div class="head">
-      <h2 id="h-how" class="split">How it <em>comes together</em></h2>
-      <p class="sub rv">The full film joins these shots with sound. Here is how.</p>
+      <h2 id="h-more" class="split">What else <em>we can make</em></h2>
+      <p class="sub rv">All from your renders. No waiting for the build.</p>
     </div>
-    <ol class="steps">
-      <li class="rv" style="--i:0"><span class="n">1</span><div><b>Sound leads the picture</b><span class="t">Each sound arrives just before its shot, so the cut feels smooth, never jumpy.</span></div></li>
-      <li class="rv" style="--i:1"><span class="n">2</span><div><b>Soft blends between shots</b><span class="t">The sound melts from one scene into the next.</span></div></li>
-      <li class="rv" style="--i:0"><span class="n">3</span><div><b>Music made for NALU</b><span class="t">One music track runs over the top and carries the whole film.</span></div></li>
-      <li class="rv" style="--i:1"><span class="n">4</span><div><b>One look across every shot</b><span class="t">A light film grain and one colour grade tie all twelve shots together.</span></div></li>
-    </ol>
+    <div class="more">
+      <article class="card rv" style="--i:0">
+        <div class="pic"><img src="media/shot-02.webp" alt="" draggable="false" loading="lazy" style="--op:60% 50%"></div>
+        <div class="txt"><span class="k"><svg class="i" aria-hidden="true"><use href="#home"/></svg>The residences</span>
+          <h3>See a home before it's built</h3>
+          <p>Made from your plans and interior renders.</p></div>
+      </article>
+      <article class="card rv" style="--i:1">
+        <div class="pic"><img src="media/shot-11.webp" alt="" draggable="false" loading="lazy" style="--op:50% 55%"></div>
+        <div class="txt"><span class="k"><svg class="i" aria-hidden="true"><use href="#users-group"/></svg>Every buyer</span>
+          <h3>A film for each kind of buyer</h3>
+          <p>Downsizers, families, and buyers in Sydney, Melbourne or New Zealand.</p></div>
+      </article>
+      <article class="card rv" style="--i:2">
+        <div class="pic"><img src="media/shot-08.webp" alt="" draggable="false" loading="lazy" style="--op:50% 50%"></div>
+        <div class="txt"><span class="k"><svg class="i" aria-hidden="true"><use href="#calendar-repeat"/></svg>Launch to sold out</span>
+          <h3>Fresh content every week</h3>
+          <p>Reels for socials, ads and the display suite, until the last home sells.</p></div>
+      </article>
+    </div>
   </section>
 
-  <section class="later rv" aria-label="What happens next">
-    <span class="ic"><svg class="i" aria-hidden="true"><use href="#movie"/></svg></span>
-    <h3>The full film comes later</h3>
-    <p>Once it is finished with music, it comes back here to watch.</p>
+  <section class="next rv" aria-labelledby="h-next">
+    <span class="ic"><svg class="i" aria-hidden="true"><use href="#phone-call"/></svg></span>
+    <h3 id="h-next">Want this for the residences?</h3>
+    <p>Jump on a quick call with Brandon.</p>
+    <div class="chips"><span><svg class="i" aria-hidden="true"><use href="#bulb"/></svg>Ideas</span><span><svg class="i" aria-hidden="true"><use href="#coin"/></svg>Pricing</span><span><svg class="i" aria-hidden="true"><use href="#target"/></svg>What to make first</span></div>
+    <p class="how">Reply in the chat and we'll lock in a time.</p>
+    <a class="go" href="https://aurianhaus.com" target="_blank" rel="noopener">Visit aurianhaus.com<svg class="i" aria-hidden="true"><use href="#arrow-up-right"/></svg></a>
   </section>
 
   <footer>
@@ -278,8 +373,8 @@ var $$=function(s,r){return [].slice.call((r||d).querySelectorAll(s))};
 function play(v){var p=v.play();if(p&&p.catch)p.catch(function(){})}
 
 /* view only: no right-click menu, no dragging */
-d.addEventListener('contextmenu',function(e){if(e.target.closest('video,.vid,img'))e.preventDefault()});
-d.addEventListener('dragstart',function(e){if(e.target.closest('video,.vid,img'))e.preventDefault()});
+d.addEventListener('contextmenu',function(e){if(e.target.closest('video,.vid,.screen,img'))e.preventDefault()});
+d.addEventListener('dragstart',function(e){if(e.target.closest('video,.vid,.screen,img'))e.preventDefault()});
 
 /* word split */
 $$('.split').forEach(function(el){var i=0;(function walk(n){[].slice.call(n.childNodes).forEach(function(c){
@@ -291,6 +386,21 @@ $$('.split').forEach(function(el){var i=0;(function walk(n){[].slice.call(n.chil
 var io='IntersectionObserver' in W?new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;e.target.classList.add('in');io.unobserve(e.target)})},{rootMargin:'0px 0px -8% 0px',threshold:.08}):null;
 $$('.rv,.split').forEach(function(el){io?io.observe(el):el.classList.add('in')});
 var hero=d.querySelector('.hero');requestAnimationFrame(function(){hero.classList.add('in')});
+
+
+/* the film: plays muted when on screen, tap to pause, sound on request */
+var fv=d.getElementById('nalu-film'),fpp=d.getElementById('fpp'),fsnd=d.getElementById('fsnd'),fsh=d.querySelector('.shield'),fpaused=reduce,fvis=false;
+function ficon(){var p=fpaused;fpp.querySelector('use').setAttribute('href',p?'#player-play':'#player-pause');var l=p?'Play the film':'Pause the film';fpp.setAttribute('aria-label',l);fsh.setAttribute('aria-label',l)}
+function fsync(){if(!fpaused&&fvis){if(fv.paused)play(fv)}else if(!fv.paused)fv.pause()}
+function ftoggle(){fpaused=!fpaused;if(!fpaused)fvis=true;ficon();fsync()}
+fpp.addEventListener('click',ftoggle);fsh.addEventListener('click',ftoggle);
+fsh.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();ftoggle()}});
+fsnd.addEventListener('click',function(){fv.muted=!fv.muted;fsnd.querySelector('use').setAttribute('href',fv.muted?'#volume-off':'#volume');
+  fsnd.querySelector('span').textContent=fv.muted?'Tap for sound':'Sound on';fsnd.setAttribute('aria-label',fv.muted?'Turn sound on':'Turn sound off');
+  if(!fv.muted){fpaused=false;fvis=true;ficon();play(fv)}else fsync()});
+ficon();
+if('IntersectionObserver' in W){new IntersectionObserver(function(es){fvis=es[0].intersectionRatio>=.3;if(fvis&&fv.preload!=='auto')fv.preload='auto';fsync()},{threshold:[0,.3,.6]}).observe(d.querySelector('.screen'))}
+else{fvis=true;fsync()}
 
 /* shots: load when near, play only while on screen, tap to pause */
 var cards=$$('.shot'),vids=cards.map(function(c){return c.querySelector('video')}),
@@ -314,8 +424,8 @@ if('IntersectionObserver' in W){
 
 /* scroll progress; phone browsers pause muted films, so nudge them back */
 var prog=d.querySelector('.progress'),tick=false;
-function onScroll(){var h=de.scrollHeight-W.innerHeight;prog.style.setProperty('--p',h>0?(W.scrollY/h).toFixed(4):0);vids.forEach(function(v,i){sync(i)});tick=false}
-setInterval(function(){if(!d.hidden)vids.forEach(function(v,i){sync(i)})},1500);
+function onScroll(){var h=de.scrollHeight-W.innerHeight;prog.style.setProperty('--p',h>0?(W.scrollY/h).toFixed(4):0);vids.forEach(function(v,i){sync(i)});fsync();tick=false}
+setInterval(function(){if(!d.hidden){vids.forEach(function(v,i){sync(i)});fsync()}},1500);
 W.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(onScroll)}},{passive:true});onScroll();
 })();
 </script>
