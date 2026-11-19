@@ -331,10 +331,51 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
 }
 .rm .wk,.rm .wk .zoom,.rm .wl-stage{transition:none;transform:none !important}
 .rm .wk .live i{animation:none}
+
+/* 3a. the residences, next: three real stills, a short how-we-work strip, one warm line */
+.nx-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.nx{position:relative;display:flex;flex-direction:column;margin:0;border-radius:28px;padding:7px;background:linear-gradient(160deg,rgba(255,252,246,.82),rgba(255,248,236,.5));-webkit-backdrop-filter:blur(18px) saturate(1.35);backdrop-filter:blur(18px) saturate(1.35);border:1px solid var(--hair);box-shadow:var(--shadow);transition:transform 700ms var(--e),box-shadow 700ms var(--e)}
+.nx:first-child{grid-column:1 / -1}
+.nx .ph{position:relative;isolation:isolate;overflow:hidden;flex:1;border-radius:21px;aspect-ratio:4/5;background:var(--beige)}
+.nx:first-child .ph{aspect-ratio:16/9}
+.nx .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--op,50% 50%)}
+.nx .ph::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;border-radius:inherit;background:linear-gradient(115deg,rgba(255,255,255,.22) 0%,rgba(255,255,255,0) 32%),linear-gradient(0deg,rgba(21,18,15,.3),rgba(21,18,15,0) 34%);box-shadow:inset 0 0 0 1px rgba(255,250,242,.35)}
+.nx .tag{position:absolute;z-index:3;top:11px;left:11px;display:inline-flex;align-items:center;gap:8px;min-height:32px;padding:0 13px 0 11px;border-radius:99px;background:rgba(255,250,242,.78);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid var(--hair);color:var(--ink);font:600 16px/1 "Inter Tight",sans-serif}
+.nx .tag i{width:8px;height:8px;border-radius:50%;background:var(--gold);flex:none}
+.nx figcaption{display:grid;gap:2px;padding:12px 10px 8px}
+.nx figcaption small{font:600 16px "Inter Tight",sans-serif;color:var(--gold-text)}
+.nx figcaption b{font:500 clamp(24px,2.4vw,30px)/1.08 "Cormorant Garamond",Georgia,serif;color:var(--ink)}
+.nx-rooms{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;list-style:none;margin:22px 0 4px}
+.nx-rooms li{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 14px;border-radius:999px;background:var(--ivory);border:1px solid var(--hair);color:var(--ink);font:500 16px "Inter Tight",sans-serif}
+.nx-rooms svg.i{width:18px;height:18px;color:var(--gold-text)}
+.nx-tip{justify-content:center;text-align:center}
+.how{position:relative;margin-top:clamp(40px,5vw,64px);padding:26px 16px 24px;border-radius:var(--r-lg);background:rgba(255,250,242,.86);border:1px solid var(--hair);box-shadow:var(--shadow);text-align:center}
+.how h3{font:500 clamp(32px,3vw,40px)/1.05 "Cormorant Garamond",Georgia,serif;color:var(--ink)}
+.how-steps{display:grid;grid-template-columns:1fr 1fr;gap:20px 12px;list-style:none;margin:22px 0 0;counter-reset:hs}
+.how-steps li{position:relative;display:grid;justify-items:center;align-content:start;gap:10px;counter-increment:hs}
+.how-steps .b{position:relative;display:grid;place-items:center;width:60px;height:60px;border-radius:50%;background:var(--ivory);border:1px solid var(--hair);color:var(--gold-text);box-shadow:0 10px 24px -14px rgba(92,68,30,.5)}
+.how-steps .b svg.i{width:26px;height:26px}
+.how-steps .b::after{content:counter(hs);position:absolute;top:-6px;right:-6px;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--ink);color:var(--ivory);font:600 14px/1 "Inter Tight",sans-serif}
+.how-steps span.t{font:600 18px/1.25 "Inter Tight",sans-serif;color:var(--ink);max-width:12ch}
+.love{display:grid;justify-items:center;gap:6px;margin-top:28px;padding-top:24px;border-top:1px solid var(--hair-soft)}
+.love p{font:500 clamp(28px,3.2vw,38px)/1.1 "Cormorant Garamond",Georgia,serif;color:var(--ink);max-width:22ch;text-wrap:balance}
+@media (min-width:700px){
+ .nx-grid{grid-template-columns:1.5fr 1fr 1fr;gap:20px}
+ .nx:first-child{grid-column:auto}
+ .nx .ph,.nx:first-child .ph{aspect-ratio:auto;min-height:clamp(340px,32vw,430px)}
+ .nx:first-child .ph img{--op:38% 50%}
+ .how{padding:34px 36px 32px}
+ .how-steps{grid-template-columns:repeat(4,1fr);gap:12px}
+ .how-steps li:not(:last-child)::before{content:"";position:absolute;top:30px;left:calc(50% + 40px);right:calc(-50% + 40px);height:1px;background:linear-gradient(90deg,var(--gold),rgba(201,166,107,.15))}
+}
+@media (hover:hover) and (pointer:fine){
+ .nx:hover{transform:translateY(-5px);box-shadow:0 1px 0 rgba(255,255,255,.85) inset,0 0 0 1px var(--gold),0 36px 60px -34px rgba(92,68,30,.6),0 0 60px -12px rgba(232,200,112,.5)}
+}
+.rm .nx{transition:none;transform:none !important}
 </style>
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="player-play" viewBox="0 0 24 24"><path d="M7 4v16l13 -8l-13 -8" /></symbol><symbol id="player-pause" viewBox="0 0 24 24"><path d="M6 6a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1l0 -12" /> <path d="M14 6a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1l0 -12" /></symbol><symbol id="arrow-down" viewBox="0 0 24 24"><path d="M12 5l0 14" /> <path d="M18 13l-6 6" /> <path d="M6 13l6 6" /></symbol><symbol id="gift" viewBox="0 0 24 24"><path d="M3 9a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1l0 -2" /> <path d="M12 8l0 13" /> <path d="M19 12v7a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-7" /> <path d="M7.5 8a2.5 2.5 0 0 1 0 -5a4.8 8 0 0 1 4.5 5a4.8 8 0 0 1 4.5 -5a2.5 2.5 0 0 1 0 5" /></symbol><symbol id="home" viewBox="0 0 24 24"><path d="M5 12l-2 0l9 -9l9 9l-2 0" /> <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /> <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></symbol><symbol id="users-group" viewBox="0 0 24 24"><path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /> <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" /> <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /> <path d="M17 10h2a2 2 0 0 1 2 2v1" /> <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /> <path d="M3 13v-1a2 2 0 0 1 2 -2h2" /></symbol><symbol id="calendar-repeat" viewBox="0 0 24 24"><path d="M12.5 21h-6.5a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v3" /> <path d="M16 3v4" /> <path d="M8 3v4" /> <path d="M4 11h12" /> <path d="M20 14l2 2h-3" /> <path d="M20 18l2 -2" /> <path d="M19 16a3 3 0 1 0 2 5.236" /></symbol><symbol id="bulb" viewBox="0 0 24 24"><path d="M3 12h1m8 -9v1m8 8h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7" /> <path d="M9 16a5 5 0 1 1 6 0a3.5 3.5 0 0 0 -1 3a2 2 0 0 1 -4 0a3.5 3.5 0 0 0 -1 -3" /> <path d="M9.7 17l4.6 0" /></symbol><symbol id="coin" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /> <path d="M14.8 9a2 2 0 0 0 -1.8 -1h-2a2 2 0 1 0 0 4h2a2 2 0 1 1 0 4h-2a2 2 0 0 1 -1.8 -1" /> <path d="M12 7v10" /></symbol><symbol id="target" viewBox="0 0 24 24"><path d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /> <path d="M7 12a5 5 0 1 0 10 0a5 5 0 1 0 -10 0" /> <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></symbol><symbol id="arrow-up-right" viewBox="0 0 24 24"><path d="M17 7l-10 10" /> <path d="M8 7l9 0l0 9" /></symbol><symbol id="x" viewBox="0 0 24 24"><path d="M18 6l-12 12" /> <path d="M6 6l12 12" /></symbol><symbol id="chevron-left" viewBox="0 0 24 24"><path d="M15 6l-6 6l6 6" /></symbol><symbol id="chevron-right" viewBox="0 0 24 24"><path d="M9 6l6 6l-6 6" /></symbol><symbol id="arrows-maximize" viewBox="0 0 24 24"><path d="M16 4l4 0l0 4" /> <path d="M14 10l6 -6" /> <path d="M8 20l-4 0l0 -4" /> <path d="M4 20l6 -6" /> <path d="M16 20l4 0l0 -4" /> <path d="M14 14l6 6" /> <path d="M8 4l-4 0l0 4" /> <path d="M4 4l6 6" /></symbol><symbol id="brand-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M18.497 4.409a10 10 0 0 1 -10.36 16.828l-.223 -.098l-4.759 .849l-.11 .011a1 1 0 0 1 -.11 0l-.102 -.013l-.108 -.024l-.105 -.037l-.099 -.047l-.093 -.058l-.014 -.011l-.012 -.007l-.086 -.073l-.077 -.08l-.067 -.088l-.056 -.094l-.034 -.07l-.04 -.108l-.028 -.128l-.012 -.102a1 1 0 0 1 0 -.125l.012 -.1l.024 -.11l.045 -.122l1.433 -3.304l-.009 -.014a10 10 0 0 1 1.549 -12.454l.215 -.203a10 10 0 0 1 13.226 -.217m-8.997 3.09a1.5 1.5 0 0 0 -1.5 1.5v1a6 6 0 0 0 6 6h1a1.5 1.5 0 0 0 0 -3h-1l-.144 .007a1.5 1.5 0 0 0 -1.128 .697l-.042 .074l-.022 -.007a4.01 4.01 0 0 1 -2.435 -2.435l-.008 -.023l.075 -.041a1.5 1.5 0 0 0 .704 -1.272v-1a1.5 1.5 0 0 0 -1.5 -1.5"/></symbol><symbol id="mail" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10"/><path d="M3 7l9 6l9 -6"/></symbol><symbol id="message-circle" viewBox="0 0 24 24"><path d="M3 20l1.3 -3.9c-2.324 -3.437 -1.426 -7.872 2.1 -10.374c3.526 -2.501 8.59 -2.296 11.845 .48c3.255 2.777 3.695 7.266 1.029 10.501c-2.666 3.235 -7.615 4.215 -11.574 2.293l-4.7 1" /></symbol></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="player-play" viewBox="0 0 24 24"><path d="M7 4v16l13 -8l-13 -8" /></symbol><symbol id="player-pause" viewBox="0 0 24 24"><path d="M6 6a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1l0 -12" /> <path d="M14 6a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1l0 -12" /></symbol><symbol id="arrow-down" viewBox="0 0 24 24"><path d="M12 5l0 14" /> <path d="M18 13l-6 6" /> <path d="M6 13l6 6" /></symbol><symbol id="gift" viewBox="0 0 24 24"><path d="M3 9a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1l0 -2" /> <path d="M12 8l0 13" /> <path d="M19 12v7a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-7" /> <path d="M7.5 8a2.5 2.5 0 0 1 0 -5a4.8 8 0 0 1 4.5 5a4.8 8 0 0 1 4.5 -5a2.5 2.5 0 0 1 0 5" /></symbol><symbol id="home" viewBox="0 0 24 24"><path d="M5 12l-2 0l9 -9l9 9l-2 0" /> <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /> <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></symbol><symbol id="users-group" viewBox="0 0 24 24"><path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /> <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" /> <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /> <path d="M17 10h2a2 2 0 0 1 2 2v1" /> <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /> <path d="M3 13v-1a2 2 0 0 1 2 -2h2" /></symbol><symbol id="calendar-repeat" viewBox="0 0 24 24"><path d="M12.5 21h-6.5a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v3" /> <path d="M16 3v4" /> <path d="M8 3v4" /> <path d="M4 11h12" /> <path d="M20 14l2 2h-3" /> <path d="M20 18l2 -2" /> <path d="M19 16a3 3 0 1 0 2 5.236" /></symbol><symbol id="bulb" viewBox="0 0 24 24"><path d="M3 12h1m8 -9v1m8 8h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7" /> <path d="M9 16a5 5 0 1 1 6 0a3.5 3.5 0 0 0 -1 3a2 2 0 0 1 -4 0a3.5 3.5 0 0 0 -1 -3" /> <path d="M9.7 17l4.6 0" /></symbol><symbol id="coin" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /> <path d="M14.8 9a2 2 0 0 0 -1.8 -1h-2a2 2 0 1 0 0 4h2a2 2 0 1 1 0 4h-2a2 2 0 0 1 -1.8 -1" /> <path d="M12 7v10" /></symbol><symbol id="target" viewBox="0 0 24 24"><path d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /> <path d="M7 12a5 5 0 1 0 10 0a5 5 0 1 0 -10 0" /> <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></symbol><symbol id="arrow-up-right" viewBox="0 0 24 24"><path d="M17 7l-10 10" /> <path d="M8 7l9 0l0 9" /></symbol><symbol id="x" viewBox="0 0 24 24"><path d="M18 6l-12 12" /> <path d="M6 6l12 12" /></symbol><symbol id="chevron-left" viewBox="0 0 24 24"><path d="M15 6l-6 6l6 6" /></symbol><symbol id="chevron-right" viewBox="0 0 24 24"><path d="M9 6l6 6l-6 6" /></symbol><symbol id="arrows-maximize" viewBox="0 0 24 24"><path d="M16 4l4 0l0 4" /> <path d="M14 10l6 -6" /> <path d="M8 20l-4 0l0 -4" /> <path d="M4 20l6 -6" /> <path d="M16 20l4 0l0 -4" /> <path d="M14 14l6 6" /> <path d="M8 4l-4 0l0 4" /> <path d="M4 4l6 6" /></symbol><symbol id="brand-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M18.497 4.409a10 10 0 0 1 -10.36 16.828l-.223 -.098l-4.759 .849l-.11 .011a1 1 0 0 1 -.11 0l-.102 -.013l-.108 -.024l-.105 -.037l-.099 -.047l-.093 -.058l-.014 -.011l-.012 -.007l-.086 -.073l-.077 -.08l-.067 -.088l-.056 -.094l-.034 -.07l-.04 -.108l-.028 -.128l-.012 -.102a1 1 0 0 1 0 -.125l.012 -.1l.024 -.11l.045 -.122l1.433 -3.304l-.009 -.014a10 10 0 0 1 1.549 -12.454l.215 -.203a10 10 0 0 1 13.226 -.217m-8.997 3.09a1.5 1.5 0 0 0 -1.5 1.5v1a6 6 0 0 0 6 6h1a1.5 1.5 0 0 0 0 -3h-1l-.144 .007a1.5 1.5 0 0 0 -1.128 .697l-.042 .074l-.022 -.007a4.01 4.01 0 0 1 -2.435 -2.435l-.008 -.023l.075 -.041a1.5 1.5 0 0 0 .704 -1.272v-1a1.5 1.5 0 0 0 -1.5 -1.5"/></symbol><symbol id="mail" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10"/><path d="M3 7l9 6l9 -6"/></symbol><symbol id="message-circle" viewBox="0 0 24 24"><path d="M3 20l1.3 -3.9c-2.324 -3.437 -1.426 -7.872 2.1 -10.374c3.526 -2.501 8.59 -2.296 11.845 .48c3.255 2.777 3.695 7.266 1.029 10.501c-2.666 3.235 -7.615 4.215 -11.574 2.293l-4.7 1" /></symbol><symbol id="sofa" viewBox="0 0 24 24"><path d="M4 11a2 2 0 0 1 2 2v1h12v-1a2 2 0 1 1 4 0v5a1 1 0 0 1 -1 1h-18a1 1 0 0 1 -1 -1v-5a2 2 0 0 1 2 -2" /><path d="M4 11v-3a3 3 0 0 1 3 -3h10a3 3 0 0 1 3 3v3" /><path d="M12 5v9" /></symbol><symbol id="tools-kitchen-2" viewBox="0 0 24 24"><path d="M19 3v12h-5c-.023 -3.681 .184 -7.406 5 -12m0 12v6h-1v-3m-10 -14v17m-3 -17v3a3 3 0 1 0 6 0v-3" /></symbol><symbol id="bed" viewBox="0 0 24 24"><path d="M5 9a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M22 17v-3h-20" /><path d="M2 8v9" /><path d="M12 14h10v-2a3 3 0 0 0 -3 -3h-7v5" /></symbol><symbol id="bath" viewBox="0 0 24 24"><path d="M4 12h16a1 1 0 0 1 1 1v3a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-3a1 1 0 0 1 1 -1" /><path d="M6 12v-7a2 2 0 0 1 2 -2h3v2.25" /><path d="M4 21l1 -1.5" /><path d="M20 21l-1 -1.5" /></symbol><symbol id="armchair" viewBox="0 0 24 24"><path d="M5 11a2 2 0 0 1 2 2v2h10v-2a2 2 0 1 1 4 0v4a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-4a2 2 0 0 1 2 -2" /><path d="M5 11v-5a3 3 0 0 1 3 -3h8a3 3 0 0 1 3 3v5" /><path d="M6 19v2" /><path d="M18 19v2" /></symbol><symbol id="sunrise" viewBox="0 0 24 24"><path d="M3 17h1m16 0h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7m-9.7 5.7a4 4 0 0 1 8 0" /><path d="M3 21l18 0" /><path d="M12 9v-6l3 3m-6 0l3 -3" /></symbol><symbol id="send" viewBox="0 0 24 24"><path d="M10 14l11 -11" /><path d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5" /></symbol><symbol id="layout-board" viewBox="0 0 24 24"><path d="M4 6a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2l0 -12" /><path d="M4 9h8" /><path d="M12 15h8" /><path d="M12 4v16" /></symbol><symbol id="thumb-up" viewBox="0 0 24 24"><path d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3" /></symbol><symbol id="movie" viewBox="0 0 24 24"><path d="M4 6a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2l0 -12" /><path d="M8 4l0 16" /><path d="M16 4l0 16" /><path d="M4 8l4 0" /><path d="M4 16l4 0" /><path d="M4 12l16 0" /><path d="M16 8l4 0" /><path d="M16 16l4 0" /></symbol></svg>
 <div class="room" aria-hidden="true"><span class="glow a"></span><span class="glow b"></span></div>
 
 <div class="wrap top">
@@ -478,6 +519,53 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
           </article>
         </div>
         <div class="steps" aria-hidden="true"><span class="bars"><i></i><i></i><i></i></span><span id="pstep">1 of 3</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="next" aria-labelledby="h-res">
+    <div class="wrap head">
+      <p class="ey rv">Coming next</p>
+      <h2 id="h-res" class="split">The residences, <em>next</em></h2>
+      <p class="sub rv">We can show the residences, and any room not shown yet. We just need the interior renders and floor plans.</p>
+    </div>
+    <div class="wrap">
+      <div class="nx-grid">
+        <figure class="nx rv" style="--i:0">
+          <div class="ph"><img src="media/next/residences-lounge.webp" alt="Your render of the residences lounge, soft light, a green sofa and a long dining table" draggable="false" loading="lazy"><span class="tag"><i></i>Coming next</span></div>
+          <figcaption><small>Your render</small><b>Residences lounge</b></figcaption>
+        </figure>
+        <figure class="nx rv" style="--i:1">
+          <div class="ph"><img src="media/next/lounge-lookout.webp" alt="Your render looking from the lounge through open doors to the pool and the sea" draggable="false" loading="lazy"><span class="tag"><i></i>Coming next</span></div>
+          <figcaption><small>Your render</small><b>Lounge lookout</b></figcaption>
+        </figure>
+        <figure class="nx rv" style="--i:2">
+          <div class="ph"><img src="media/next/level-5-dusk.webp" alt="Your render of the Level 5 balconies at dusk, with the pool and the sea" draggable="false" loading="lazy" style="--op:30% 50%"><span class="tag"><i></i>Coming next</span></div>
+          <figcaption><small>Your render</small><b>Level 5, dusk</b></figcaption>
+        </figure>
+      </div>
+      <ul class="nx-rooms rv" aria-label="Rooms we can show">
+        <li><svg class="i" aria-hidden="true"><use href="#sofa"/></svg>Living</li>
+        <li><svg class="i" aria-hidden="true"><use href="#tools-kitchen-2"/></svg>Kitchen</li>
+        <li><svg class="i" aria-hidden="true"><use href="#bed"/></svg>Bedroom</li>
+        <li><svg class="i" aria-hidden="true"><use href="#bath"/></svg>Bathroom</li>
+        <li><svg class="i" aria-hidden="true"><use href="#armchair"/></svg>Lounge</li>
+        <li><svg class="i" aria-hidden="true"><use href="#sunrise"/></svg>Views</li>
+      </ul>
+      <p class="tip nx-tip rv"><svg class="i" aria-hidden="true"><use href="#home"/></svg>These are stills from your renders. The residence films come next.</p>
+
+      <div class="how rv">
+        <h3>How we work</h3>
+        <ol class="how-steps">
+          <li><span class="b" aria-hidden="true"><svg class="i"><use href="#send"/></svg></span><span class="t">Send renders and plans</span></li>
+          <li><span class="b" aria-hidden="true"><svg class="i"><use href="#layout-board"/></svg></span><span class="t">We plan the shots</span></li>
+          <li><span class="b" aria-hidden="true"><svg class="i"><use href="#thumb-up"/></svg></span><span class="t">You approve</span></li>
+          <li><span class="b" aria-hidden="true"><svg class="i"><use href="#movie"/></svg></span><span class="t">Films delivered</span></li>
+        </ol>
+        <div class="love">
+          <p>We would love to work with you on <em>NALU</em>.</p>
+          <a class="go" href="#talk">Talk to us<svg class="i" aria-hidden="true"><use href="#arrow-down"/></svg></a>
+        </div>
       </div>
     </div>
   </section>
