@@ -372,6 +372,17 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
  .nx:hover{transform:translateY(-5px);box-shadow:0 1px 0 rgba(255,255,255,.85) inset,0 0 0 1px var(--gold),0 36px 60px -34px rgba(92,68,30,.6),0 0 60px -12px rgba(232,200,112,.5)}
 }
 .rm .nx{transition:none;transform:none !important}
+
+/* Inline Warm Glass previews */
+#warmrail{padding-inline:max(20px,calc((100vw - 1160px)/2));scroll-padding-inline:max(20px,calc((100vw - 1160px)/2));cursor:auto}
+#warmrail .shot{flex:0 0 min(76vw,310px);min-width:0;scroll-snap-align:start;cursor:pointer}
+#warmrail .shot:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+#warmrail .ph{width:100%;border:4px solid var(--ink)}
+#warmrail video{object-fit:contain;background:var(--ink)}
+.warm-play{position:absolute;z-index:3;bottom:8px;right:8px;border-radius:999px;padding:7px 11px;background:var(--ivory);color:var(--ink);font:600 15px/1.2 "Inter Tight",sans-serif}
+.warm-nav{justify-content:flex-end}
+.warm-nav .arrows{display:flex}
+@media(max-width:375px){.dock a{padding-inline:7px;font-size:15px}}
 </style>
 </head>
 <body>
@@ -388,7 +399,7 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
     <span class="ind" aria-hidden="true"></span>
     <a href="#film">Film</a>
     <a href="#shots">Shots</a>
-    <a href="#more">What else</a>
+    <a href="#next">Warm Glass</a>
     <a href="#work">Our work</a>
     <a href="#talk">Talk</a>
     <span class="bar" aria-hidden="true"></span>
@@ -402,29 +413,29 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
         <p class="ey rv">For NALU</p>
         <h1 class="split">NALU, <em>shot by shot.</em></h1>
       </div>
-      <p class="lead rv" style="--i:3">The sample film first. Then twelve shots, one at a time.</p>
+      <p class="lead rv" style="--i:3">The original sample film and six new residence scenes.</p>
     </div>
     <div class="rv" style="--i:2">
       <div class="film-label"><p class="ey">Step 1 of 4</p><h2 id="h-film">The film, <em>in full</em></h2></div>
       <div class="frame">
         <div class="screen">
-          <video id="nalu-film" muted loop playsinline preload="metadata" poster="media/nalu-film-poster.webp" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-label="The NALU sample film"><source src="media/nalu-film-1080.mp4" type="video/mp4"><source src="media/nalu-film-720.mp4" type="video/mp4"></video>
+          <video id="nalu-film" muted loop playsinline preload="metadata" poster="media/nalu-film-poster.webp" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-label="The NALU sample film"><source src="media/nalu-original-no-hand.mp4" type="video/mp4"></video>
           <div class="shield" role="button" tabindex="0" aria-label="Pause the film"></div>
           <button class="pp" type="button" id="fpp" aria-label="Pause the film"><svg class="i" aria-hidden="true"><use href="#player-pause"/></svg></button>
         </div>
         <div class="time">
-          <div class="track" id="ftrack" role="slider" tabindex="0" aria-label="Where the film is up to" aria-valuemin="0" aria-valuemax="23" aria-valuenow="0" aria-valuetext="0 seconds"><span class="fill"></span><span class="knob"></span></div>
-          <span class="clock" id="fclock">0:00 / 0:23</span>
+          <div class="track" id="ftrack" role="slider" tabindex="0" aria-label="Where the film is up to" aria-valuemin="0" aria-valuemax="25" aria-valuenow="0" aria-valuetext="0 seconds"><span class="fill"></span><span class="knob"></span></div>
+          <span class="clock" id="fclock">0:00 / 0:25</span>
         </div>
       </div>
-      <p class="note">26 seconds. Tap the film to pause.</p>
+      <p class="note">25 seconds. Tap the film to pause.</p>
     </div>
   </section>
 
   <section class="block" id="shots" aria-labelledby="h-shots">
     <div class="wrap head">
       <p class="ey rv">Step 2 of 4</p>
-      <h2 id="h-shots" class="split">Twelve shots, <em>one by one</em></h2>
+      <h2 id="h-shots" class="split">The original shots, <em>one by one</em></h2>
       <p class="sub rv">Each one plays on a loop. Tap a shot to see it big.</p>
     </div>
     <div class="rail rv" id="rail" tabindex="0" role="region" aria-roledescription="carousel" aria-label="The twelve shots. Use the left and right arrow keys to move.">
@@ -464,10 +475,6 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
         <span class="ph"><video muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-hidden="true" tabindex="-1"  data-poster="media/shot-09.webp" data-src="media/shot-09.mp4"></video><span class="num" aria-hidden="true">09</span><span class="zoom" aria-hidden="true"><svg class="i"><use href="#arrows-maximize"/></svg></span></span>
         <span class="cap"><b>Pool at dusk</b><span>A slow glide over the pool between the curved buildings.</span></span>
       </button>
-      <button class="shot" type="button" data-src="media/shot-10.mp4" data-poster="media/shot-10.webp" data-title="Hand in the water" data-cap="A hand gliding through the pool at sunset. A soft, sensory close." aria-label="Open shot 10, Hand in the water">
-        <span class="ph"><video muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-hidden="true" tabindex="-1"  data-poster="media/shot-10.webp" data-src="media/shot-10.mp4"></video><span class="num" aria-hidden="true">10</span><span class="zoom" aria-hidden="true"><svg class="i"><use href="#arrows-maximize"/></svg></span></span>
-        <span class="cap"><b>Hand in the water</b><span>A hand gliding through the pool at sunset.</span></span>
-      </button>
       <button class="shot" type="button" data-src="media/shot-11.mp4" data-poster="media/shot-11.webp" data-title="At the edge" data-cap="She rests her arms on the pool edge at sunset. The closing lifestyle beat." aria-label="Open shot 11, At the edge">
         <span class="ph"><video muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-hidden="true" tabindex="-1"  data-poster="media/shot-11.webp" data-src="media/shot-11.mp4"></video><span class="num" aria-hidden="true">11</span><span class="zoom" aria-hidden="true"><svg class="i"><use href="#arrows-maximize"/></svg></span></span>
         <span class="cap"><b>At the edge</b><span>She rests her arms on the pool edge at sunset.</span></span>
@@ -479,7 +486,7 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
     </div>
     <div class="wrap">
       <div class="rail-foot">
-        <p class="count" id="rcount" aria-live="polite">1 <i>/ 12</i></p>
+        <p class="count" id="rcount" aria-live="polite">1 <i>/ 11</i></p>
         <div class="dots" id="rdots" aria-hidden="true"></div>
         <div class="arrows">
           <button class="rb" type="button" id="rprev" aria-label="Previous shots"><svg class="i" aria-hidden="true"><use href="#chevron-left"/></svg></button>
@@ -525,35 +532,60 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
 
   <section class="block" id="next" aria-labelledby="h-res">
     <div class="wrap head">
-      <p class="ey rv">Coming next</p>
-      <h2 id="h-res" class="split">The residences, <em>next</em></h2>
-      <p class="sub rv">We can show the residences, and any room not shown yet. We just need the interior renders and floor plans.</p>
+      <h2 id="h-res" class="split">The residences <em>in Warm Glass</em></h2>
+      <p class="sub rv">Six scenes from the Type C residence. Tap a preview to play it.</p>
+    </div>
+    <div class="rail" id="warmrail" role="region" aria-roledescription="carousel" aria-label="Warm Glass scenes" tabindex="0">
+      <button class="shot warm-phone" type="button" aria-pressed="false" aria-label="Play preview: Sunset" data-title="Sunset">
+        <span class="ph">
+          <video muted loop playsinline preload="none" aria-hidden="true" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/warm/S1-sunset-v3.jpg" src="media/warm/S1-sunset-v3.mp4"></video>
+          <span class="warm-play">Play preview</span>
+        </span>
+        <span class="cap"><b>Sunset</b><span>Soft evening light at the balcony.</span></span>
+      </button>
+      <button class="shot warm-phone" type="button" aria-pressed="false" aria-label="Play preview: Kitchen" data-title="Kitchen">
+        <span class="ph">
+          <video muted loop playsinline preload="none" aria-hidden="true" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/warm/S2-kitchen-v2-crop.jpg" src="media/warm/S2-kitchen-v2-crop.mp4"></video>
+          <span class="warm-play">Play preview</span>
+        </span>
+        <span class="cap"><b>Kitchen</b><span>Coffee from the French press.</span></span>
+      </button>
+      <button class="shot warm-phone" type="button" aria-pressed="false" aria-label="Play preview: Living" data-title="Living">
+        <span class="ph">
+          <video muted loop playsinline preload="none" aria-hidden="true" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/warm/S3-living-v2.jpg" src="media/warm/S3-living-v2.mp4"></video>
+          <span class="warm-play">Play preview</span>
+        </span>
+        <span class="cap"><b>Living</b><span>A quiet moment by the open doors.</span></span>
+      </button>
+      <button class="shot warm-phone" type="button" aria-pressed="false" aria-label="Play preview: Bedroom" data-title="Bedroom">
+        <span class="ph">
+          <video muted loop playsinline preload="none" aria-hidden="true" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/warm/S4-bedroom-cut.jpg" src="media/warm/S4-bedroom-cut.mp4"></video>
+          <span class="warm-play">Play preview</span>
+        </span>
+        <span class="cap"><b>Bedroom</b><span>Late light moves over the linen.</span></span>
+      </button>
+      <button class="shot warm-phone" type="button" aria-pressed="false" aria-label="Play preview: Bath" data-title="Bath">
+        <span class="ph">
+          <video muted loop playsinline preload="none" aria-hidden="true" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/warm/S5-bath.jpg" src="media/warm/S5-bath.mp4"></video>
+          <span class="warm-play">Play preview</span>
+        </span>
+        <span class="cap"><b>Bath</b><span>A closer look at the stone bath.</span></span>
+      </button>
+      <button class="shot warm-phone" type="button" aria-pressed="false" aria-label="Play preview: Rooftop" data-title="Rooftop">
+        <span class="ph">
+          <video muted loop playsinline preload="none" aria-hidden="true" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/warm/S6-rooftop-colourlocked.jpg" src="media/warm/S6-rooftop-colourlocked.mp4"></video>
+          <span class="warm-play">Play preview</span>
+        </span>
+        <span class="cap"><b>Rooftop</b><span>A toast under the pergola.</span></span>
+      </button>
     </div>
     <div class="wrap">
-      <div class="nx-grid">
-        <figure class="nx rv" style="--i:0">
-          <div class="ph"><img src="media/next/residences-lounge.webp" alt="Your render of the residences lounge, soft light, a green sofa and a long dining table" draggable="false" loading="lazy"><span class="tag"><i></i>Coming next</span></div>
-          <figcaption><small>Your render</small><b>Residences lounge</b></figcaption>
-        </figure>
-        <figure class="nx rv" style="--i:1">
-          <div class="ph"><img src="media/next/lounge-lookout.webp" alt="Your render looking from the lounge through open doors to the pool and the sea" draggable="false" loading="lazy"><span class="tag"><i></i>Coming next</span></div>
-          <figcaption><small>Your render</small><b>Lounge lookout</b></figcaption>
-        </figure>
-        <figure class="nx rv" style="--i:2">
-          <div class="ph"><img src="media/next/level-5-dusk.webp" alt="Your render of the Level 5 balconies at dusk, with the pool and the sea" draggable="false" loading="lazy" style="--op:30% 50%"><span class="tag"><i></i>Coming next</span></div>
-          <figcaption><small>Your render</small><b>Level 5, dusk</b></figcaption>
-        </figure>
+      <div class="rail-foot warm-nav">
+        <div class="arrows">
+          <button class="rb" id="warm-prev" type="button" aria-label="Previous Warm Glass scenes"><svg class="i" aria-hidden="true"><use href="#chevron-left"/></svg></button>
+          <button class="rb" id="warm-next" type="button" aria-label="Next Warm Glass scenes"><svg class="i" aria-hidden="true"><use href="#chevron-right"/></svg></button>
+        </div>
       </div>
-      <ul class="nx-rooms rv" aria-label="Rooms we can show">
-        <li><svg class="i" aria-hidden="true"><use href="#sofa"/></svg>Living</li>
-        <li><svg class="i" aria-hidden="true"><use href="#tools-kitchen-2"/></svg>Kitchen</li>
-        <li><svg class="i" aria-hidden="true"><use href="#bed"/></svg>Bedroom</li>
-        <li><svg class="i" aria-hidden="true"><use href="#bath"/></svg>Bathroom</li>
-        <li><svg class="i" aria-hidden="true"><use href="#armchair"/></svg>Lounge</li>
-        <li><svg class="i" aria-hidden="true"><use href="#sunrise"/></svg>Views</li>
-      </ul>
-      <p class="tip nx-tip rv"><svg class="i" aria-hidden="true"><use href="#home"/></svg>These are stills from your renders. The residence films come next.</p>
-
       <div class="how rv">
         <h3>How we work</h3>
         <ol class="how-steps">
@@ -649,7 +681,6 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
       <div class="lb-slide"><div class="lb-media"><img alt="" data-src="media/shot-07.webp" draggable="false"><span class="lb-paused" aria-hidden="true"><svg class="i"><use href="#player-play"/></svg></span></div></div>
       <div class="lb-slide"><div class="lb-media"><img alt="" data-src="media/shot-08.webp" draggable="false"><span class="lb-paused" aria-hidden="true"><svg class="i"><use href="#player-play"/></svg></span></div></div>
       <div class="lb-slide"><div class="lb-media"><img alt="" data-src="media/shot-09.webp" draggable="false"><span class="lb-paused" aria-hidden="true"><svg class="i"><use href="#player-play"/></svg></span></div></div>
-      <div class="lb-slide"><div class="lb-media"><img alt="" data-src="media/shot-10.webp" draggable="false"><span class="lb-paused" aria-hidden="true"><svg class="i"><use href="#player-play"/></svg></span></div></div>
       <div class="lb-slide"><div class="lb-media"><img alt="" data-src="media/shot-11.webp" draggable="false"><span class="lb-paused" aria-hidden="true"><svg class="i"><use href="#player-play"/></svg></span></div></div>
       <div class="lb-slide"><div class="lb-media"><img alt="" data-src="media/shot-12.webp" draggable="false"><span class="lb-paused" aria-hidden="true"><svg class="i"><use href="#player-play"/></svg></span></div></div>
     </div>
@@ -991,6 +1022,69 @@ d.addEventListener('visibilitychange',function(){vids2();lsync()});
 setInterval(function(){if(!d.hidden){vids2();lsync()}},2000);
 measure();sync();
 W.__work={goTo:goTo,openIt:openIt,closeIt:closeIt,state:function(){return {act:act,per:per,open:open,playing:vids.filter(function(v){return !v.paused}).length,held:vids.filter(function(v){return v.getAttribute('src')}).length}}};
+})();
+</script>
+
+<script>
+(() => {
+  const rail = document.getElementById('warmrail');
+  const cards = [...rail.querySelectorAll('button')];
+  const previous = document.getElementById('warm-prev');
+  const next = document.getElementById('warm-next');
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  function move(direction) {
+    const gap = parseFloat(getComputedStyle(rail).columnGap);
+    const step = cards[0].offsetWidth + gap;
+    rail.scrollBy({left: direction * step, behavior: reduceMotion.matches ? 'auto' : 'smooth'});
+  }
+  function refresh() {
+    previous.disabled = rail.scrollLeft < 2;
+    next.disabled = rail.scrollWidth - rail.clientWidth - rail.scrollLeft < 2;
+  }
+  let active = null;
+  for (const card of cards) {
+    const video = card.querySelector('video');
+    const label = card.querySelector('.warm-play');
+    function showState(playing) {
+      card.setAttribute('aria-pressed', String(playing));
+      label.textContent = playing ? 'Pause' : 'Play preview';
+      card.setAttribute('aria-label', (playing ? 'Pause preview: ' : 'Play preview: ') + card.dataset.title);
+    }
+    video.addEventListener('play', () => {
+      if (active && active !== video) active.pause();
+      active = video;
+      showState(true);
+    });
+    video.addEventListener('pause', () => showState(false));
+    card.addEventListener('contextmenu', event => event.preventDefault());
+    card.addEventListener('click', async () => {
+      if (!video.paused) {
+        video.pause();
+        return;
+      }
+      try {
+        await video.play();
+      } catch {
+        label.textContent = 'Tap to retry';
+      }
+    });
+  }
+  const observer = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) entry.target.querySelector('video').pause();
+    }
+  }, {threshold: 0.2});
+  cards.forEach(card => observer.observe(card));
+  previous.addEventListener('click', () => move(-1));
+  next.addEventListener('click', () => move(1));
+  rail.addEventListener('keydown', event => {
+    if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+    event.preventDefault();
+    move(event.key === 'ArrowRight' ? 1 : -1);
+  });
+  rail.addEventListener('scroll', refresh, {passive: true});
+  new ResizeObserver(refresh).observe(rail);
+  refresh();
 })();
 </script>
 </body>
