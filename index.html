@@ -76,11 +76,11 @@ em{font-style:italic;font-weight:500;color:var(--gold-text)}
 h1{font:500 clamp(54px,13.4vw,76px)/.98 "Cormorant Garamond",Georgia,serif;letter-spacing:-.015em;color:var(--ink);text-wrap:balance}
 h2{font:500 clamp(42px,5.2vw,68px)/1.02 "Cormorant Garamond",Georgia,serif;letter-spacing:-.015em;text-wrap:balance;color:var(--ink)}
 .sub{margin-top:10px;font-size:19px;color:var(--ink2);max-width:46ch}
-section.block{padding-top:clamp(72px,9vw,128px);scroll-margin-top:64px}
+section.block{padding-top:clamp(72px,9vw,128px);scroll-margin-top:88px}
 .head{margin-bottom:clamp(20px,2.6vw,34px)}
 
 /* 1. the film, title above */
-.film{padding-top:clamp(22px,4vw,44px);scroll-margin-top:64px}
+.film{padding-top:clamp(22px,4vw,44px);scroll-margin-top:88px}
 .film-head{display:grid;gap:14px;margin-bottom:clamp(20px,2.6vw,30px)}
 .lead{max-width:34ch;font-size:clamp(19px,1.5vw,21px);color:var(--ink2)}
 .film-label{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 14px;margin:0 0 10px}
@@ -615,12 +615,12 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
         <span class="ph"><video muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-hidden="true" tabindex="-1"  data-poster="media/shot-09.webp" data-src="media/shot-09.mp4"></video><span class="num" aria-hidden="true">09</span><span class="zoom" aria-hidden="true"><svg class="i"><use href="#arrows-maximize"/></svg></span></span>
         <span class="cap"><b>Pool at dusk</b><span>A slow glide over the pool between the curved buildings.</span></span>
       </button>
-      <button class="shot" type="button" data-src="media/shot-11.mp4" data-poster="media/shot-11.webp" data-title="At the edge" data-cap="She rests her arms on the pool edge at sunset. The closing lifestyle beat." aria-label="Open shot 11, At the edge">
-        <span class="ph"><video muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-hidden="true" tabindex="-1"  data-poster="media/shot-11.webp" data-src="media/shot-11.mp4"></video><span class="num" aria-hidden="true">11</span><span class="zoom" aria-hidden="true"><svg class="i"><use href="#arrows-maximize"/></svg></span></span>
+      <button class="shot" type="button" data-src="media/shot-11.mp4" data-poster="media/shot-11.webp" data-title="At the edge" data-cap="She rests her arms on the pool edge at sunset. The closing lifestyle beat." aria-label="Open shot 10, At the edge">
+        <span class="ph"><video muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-hidden="true" tabindex="-1"  data-poster="media/shot-11.webp" data-src="media/shot-11.mp4"></video><span class="num" aria-hidden="true">10</span><span class="zoom" aria-hidden="true"><svg class="i"><use href="#arrows-maximize"/></svg></span></span>
         <span class="cap"><b>At the edge</b><span>She rests her arms on the pool edge at sunset.</span></span>
       </button>
-      <button class="shot" type="button" data-src="media/shot-12.mp4" data-poster="media/shot-12.webp" data-title="Sunglasses off" data-cap="At the NALU sign she lowers her sunglasses and smiles. The end shot: arrived, at home." aria-label="Open shot 12, Sunglasses off">
-        <span class="ph"><video muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-hidden="true" tabindex="-1"  data-poster="media/shot-12.webp" data-src="media/shot-12.mp4"></video><span class="num" aria-hidden="true">12</span><span class="zoom" aria-hidden="true"><svg class="i"><use href="#arrows-maximize"/></svg></span></span>
+      <button class="shot" type="button" data-src="media/shot-12.mp4" data-poster="media/shot-12.webp" data-title="Sunglasses off" data-cap="At the NALU sign she lowers her sunglasses and smiles. The end shot: arrived, at home." aria-label="Open shot 11, Sunglasses off">
+        <span class="ph"><video muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-hidden="true" tabindex="-1"  data-poster="media/shot-12.webp" data-src="media/shot-12.mp4"></video><span class="num" aria-hidden="true">11</span><span class="zoom" aria-hidden="true"><svg class="i"><use href="#arrows-maximize"/></svg></span></span>
         <span class="cap"><b>Sunglasses off</b><span>At the NALU sign she lowers her sunglasses and smiles.</span></span>
       </button>
     </div>
@@ -719,7 +719,7 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
     </div>
   </div>
   <div class="lb-top" id="lb-top">
-    <p class="lb-count" id="lb-count">Shot 1 of 12</p>
+    <p class="lb-count" id="lb-count">Shot 1 of 11</p>
     <button class="gb" type="button" id="lb-close"><svg class="i" aria-hidden="true"><use href="#x"/></svg>Close</button>
   </div>
   <div class="lb-info" id="lb-info">
@@ -951,7 +951,7 @@ function where(){var y=W.innerHeight*.42,k=-1;secs.forEach(function(s,i){if(s.ge
   if(W.innerHeight+W.scrollY>=de.scrollHeight-4)k=secs.length-1;
   if(k!==on){on=k;links.forEach(function(a,i){a.classList.toggle('on',i===on);if(i===on)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});place()}}
 links.forEach(function(a){a.addEventListener('click',function(e){var t=d.getElementById(a.getAttribute('href').slice(1));if(!t)return;e.preventDefault();
-  var y=t.getBoundingClientRect().top+W.scrollY-(t.id==='film'?80:64);W.scrollTo({top:Math.max(0,y),behavior:reduce?'auto':'smooth'})})});
+  var y=t.getBoundingClientRect().top+W.scrollY-(t.id==='film'?104:88);W.scrollTo({top:Math.max(0,y),behavior:reduce?'auto':'smooth'})})});
 function onScroll(){tick=false;var h=de.scrollHeight-W.innerHeight;bar.style.setProperty('--p',h>0?(W.scrollY/h).toFixed(4):0);where();pinTick()}
 W.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(onScroll)}},{passive:true});
 var rz=0;function onResize(){setStick();measurePer();pinSetup();railMeasure();if(lbOpen)layout();place();onScroll();ftime()}
