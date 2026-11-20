@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>NALU sample film</title>
+<title>NALU by Monaco | A film proposal for Kollosche</title>
 <meta name="description" content="The NALU sample film, then twelve shots one by one. A free sample from Aurian Haus.">
 <meta name="theme-color" content="#F1E9DA">
 <meta name="color-scheme" content="light">
@@ -373,16 +373,24 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
 }
 .rm .nx{transition:none;transform:none !important}
 
-/* Inline Warm Glass previews */
-#warmrail{padding-inline:max(20px,calc((100vw - 1160px)/2));scroll-padding-inline:max(20px,calc((100vw - 1160px)/2));cursor:auto}
-#warmrail .shot{flex:0 0 min(76vw,310px);min-width:0;scroll-snap-align:start;cursor:pointer}
-#warmrail .shot:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-#warmrail .ph{width:100%;border:4px solid var(--ink)}
+/* Warm Glass film studies */
+#warmrail{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(10px,2vw,20px)}
+#warmrail .shot{position:relative;min-width:0;cursor:pointer;padding:5px;border-radius:clamp(15px,2vw,26px)}
+#warmrail .shot:focus-visible,.warm-toggle:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+#warmrail .ph{width:100%;border-radius:clamp(10px,1.6vw,20px);border:2px solid var(--ink)}
 #warmrail video{object-fit:contain;background:var(--ink)}
-.warm-play{position:absolute;z-index:3;bottom:8px;right:8px;border-radius:999px;padding:7px 11px;background:var(--ivory);color:var(--ink);font:600 15px/1.2 "Inter Tight",sans-serif}
-.warm-nav{justify-content:flex-end}
-.warm-nav .arrows{display:flex}
-@media(max-width:375px){.dock a{padding-inline:7px;font-size:15px}}
+#warmrail .shot .cap{padding:9px 6px 6px;gap:3px}
+#warmrail .shot .cap b{font-size:clamp(21px,2.3vw,31px)}
+#warmrail .shot .cap span{font-size:clamp(13px,1.4vw,16px);line-height:1.28;min-height:0;display:block}
+.warm-play{position:absolute;z-index:3;bottom:5px;right:5px;display:grid;place-items:center;width:27px;height:27px;border-radius:50%;background:rgba(26,26,26,.76);color:var(--ivory)}
+.warm-play .i{width:14px;height:14px}
+.warm-play .icon-pause,#warmrail button[aria-pressed="true"] .icon-play{display:none}
+#warmrail button[aria-pressed="true"] .icon-pause{display:block}
+.warm-toggle{min-height:44px;padding:0 15px;margin-top:10px;border:1px solid var(--hair);border-radius:999px;background:var(--ivory);color:var(--ink);font:600 14px "Inter Tight",sans-serif;cursor:pointer}
+.nalu-process .how{margin-top:0}
+@media(min-width:730px){#warmrail{grid-template-columns:repeat(3,minmax(0,1fr))}#warmrail .shot{padding:7px}}
+@media(max-width:420px){.dock a{padding-inline:8px;font-size:15px;min-width:44px;justify-content:center}}
+@media(max-width:350px){.dock a{padding-inline:6px;font-size:14px}}
 </style>
 </head>
 <body>
@@ -391,15 +399,15 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
 
 <div class="wrap top">
   <img src="img/aurian-haus-logo-black.png" alt="Aurian Haus" width="117" height="30" draggable="false">
-  <span class="pill"><svg class="i" aria-hidden="true"><use href="#gift"/></svg>Free sample</span>
+  <span class="pill"><svg class="i" aria-hidden="true"><use href="#gift"/></svg>NALU by Monaco</span>
 </div>
 
 <nav class="dock" aria-label="On this page">
   <div class="dock-in">
     <span class="ind" aria-hidden="true"></span>
     <a href="#film">Film</a>
+    <a href="#next">Residences</a>
     <a href="#shots">Shots</a>
-    <a href="#next">Warm Glass</a>
     <a href="#work">Our work</a>
     <a href="#talk">Talk</a>
     <span class="bar" aria-hidden="true"></span>
@@ -410,13 +418,13 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
   <section class="film wrap" id="film" aria-labelledby="h-film">
     <div class="film-head">
       <div>
-        <p class="ey rv">For NALU</p>
-        <h1 class="split">NALU, <em>shot by shot.</em></h1>
+        <p class="ey rv">For Kollosche New Projects</p>
+        <h1 class="split">Show buyers <em>what life at NALU feels like.</em></h1>
       </div>
-      <p class="lead rv" style="--i:3">The original sample film and six new residence scenes.</p>
+      <p class="lead rv" style="--i:3">Aurian Haus turns Monaco Property Group’s architectural renders into films Kollosche can use to bring buyers through a residence before they can step inside.</p>
     </div>
     <div class="rv" style="--i:2">
-      <div class="film-label"><p class="ey">Step 1 of 4</p><h2 id="h-film">The film, <em>in full</em></h2></div>
+      <div class="film-label"><h2 id="h-film">The film, <em>in full</em></h2></div>
       <div class="frame">
         <div class="screen">
           <video id="nalu-film" muted loop playsinline preload="metadata" poster="media/nalu-film-poster.webp" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-label="The NALU sample film"><source src="media/nalu-original-no-hand.mp4" type="video/mp4"></video>
@@ -432,9 +440,61 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
     </div>
   </section>
 
+  <section class="block" id="next" aria-labelledby="h-res">
+    <div class="wrap head">
+      <h2 id="h-res" class="split">The residences <em>in Warm Glass</em></h2>
+      <p class="sub rv">Six film studies for the Type C residence, based on NALU’s renders.</p>
+      <button class="warm-toggle" id="warm-toggle" type="button" aria-pressed="false">Pause all previews</button>
+    </div>
+    <div class="wrap" id="warmrail">
+      <button class="shot warm-phone" type="button" aria-pressed="false" aria-label="Play preview: Sunset" data-title="Sunset">
+        <span class="ph">
+          <video muted loop playsinline preload="none" aria-hidden="true" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/warm/S1-sunset-v3.jpg" data-src="media/warm/S1-sunset-v3.mp4?v=inline-2"></video>
+          <span class="warm-play" aria-hidden="true"><svg class="i icon-play"><use href="#player-play"/></svg><svg class="i icon-pause"><use href="#player-pause"/></svg></span>
+        </span>
+        <span class="cap"><b>Sunset</b><span>Soft evening light at the balcony.</span></span>
+      </button>
+      <button class="shot warm-phone" type="button" aria-pressed="false" aria-label="Play preview: Kitchen" data-title="Kitchen">
+        <span class="ph">
+          <video muted loop playsinline preload="none" aria-hidden="true" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/warm/S2-kitchen-v2-crop.jpg" data-src="media/warm/S2-kitchen-v2-crop.mp4?v=inline-2"></video>
+          <span class="warm-play" aria-hidden="true"><svg class="i icon-play"><use href="#player-play"/></svg><svg class="i icon-pause"><use href="#player-pause"/></svg></span>
+        </span>
+        <span class="cap"><b>Kitchen</b><span>Coffee from the French press.</span></span>
+      </button>
+      <button class="shot warm-phone" type="button" aria-pressed="false" aria-label="Play preview: Living" data-title="Living">
+        <span class="ph">
+          <video muted loop playsinline preload="none" aria-hidden="true" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/warm/S3-living-v2.jpg" data-src="media/warm/S3-living-v2.mp4?v=inline-2"></video>
+          <span class="warm-play" aria-hidden="true"><svg class="i icon-play"><use href="#player-play"/></svg><svg class="i icon-pause"><use href="#player-pause"/></svg></span>
+        </span>
+        <span class="cap"><b>Living</b><span>A quiet moment by the open doors.</span></span>
+      </button>
+      <button class="shot warm-phone" type="button" aria-pressed="false" aria-label="Play preview: Bedroom" data-title="Bedroom">
+        <span class="ph">
+          <video muted loop playsinline preload="none" aria-hidden="true" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/warm/S4-bedroom-cut.jpg" data-src="media/warm/S4-bedroom-cut.mp4?v=inline-2"></video>
+          <span class="warm-play" aria-hidden="true"><svg class="i icon-play"><use href="#player-play"/></svg><svg class="i icon-pause"><use href="#player-pause"/></svg></span>
+        </span>
+        <span class="cap"><b>Bedroom</b><span>Late light moves over the linen.</span></span>
+      </button>
+      <button class="shot warm-phone" type="button" aria-pressed="false" aria-label="Play preview: Bath" data-title="Bath">
+        <span class="ph">
+          <video muted loop playsinline preload="none" aria-hidden="true" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/warm/S5-bath.jpg" data-src="media/warm/S5-bath.mp4?v=inline-2"></video>
+          <span class="warm-play" aria-hidden="true"><svg class="i icon-play"><use href="#player-play"/></svg><svg class="i icon-pause"><use href="#player-pause"/></svg></span>
+        </span>
+        <span class="cap"><b>Bath</b><span>A closer look at the stone bath.</span></span>
+      </button>
+      <button class="shot warm-phone" type="button" aria-pressed="false" aria-label="Play preview: Rooftop" data-title="Rooftop">
+        <span class="ph">
+          <video muted loop playsinline preload="none" aria-hidden="true" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/warm/S6-rooftop-colourlocked.jpg" data-src="media/warm/S6-rooftop-colourlocked.mp4?v=inline-2"></video>
+          <span class="warm-play" aria-hidden="true"><svg class="i icon-play"><use href="#player-play"/></svg><svg class="i icon-pause"><use href="#player-pause"/></svg></span>
+        </span>
+        <span class="cap"><b>Rooftop</b><span>A toast under the pergola.</span></span>
+      </button>
+    </div>
+  </section>
+
   <section class="block" id="shots" aria-labelledby="h-shots">
     <div class="wrap head">
-      <p class="ey rv">Step 2 of 4</p>
+
       <h2 id="h-shots" class="split">The original shots, <em>one by one</em></h2>
       <p class="sub rv">Each one plays on a loop. Tap a shot to see it big.</p>
     </div>
@@ -501,28 +561,28 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
     <div class="pin-track">
       <div class="pin-stage wrap">
         <div class="head">
-          <p class="ey rv">Step 3 of 4</p>
-          <h2 id="h-more" class="split">What else <em>we can make</em></h2>
-          <p class="sub rv">All from your renders. No waiting for the build.</p>
+
+          <h2 id="h-more" class="split">Films Kollosche <em>can put to work</em></h2>
+          <p class="sub rv">Give buyers a closer look at the residence they’re considering, wherever they are.</p>
         </div>
         <div class="deck">
           <article class="card rv" style="--i:0">
             <div class="pic"><img src="media/shot-02.webp" alt="" draggable="false" loading="lazy" style="--op:60% 50%"></div>
-            <div class="txt"><span class="k"><svg class="i" aria-hidden="true"><use href="#home"/></svg>The residences</span>
-              <h3>See a home before it's built</h3>
-              <p>Made from your plans and interior renders.</p></div>
+            <div class="txt"><span class="k"><svg class="i" aria-hidden="true"><use href="#home"/></svg>Project page and display suite</span>
+              <h3>A hero film for NALU</h3>
+              <p>Take buyers from the beachfront to the residences and wellness spaces in one film.</p></div>
           </article>
           <article class="card rv" style="--i:1">
             <div class="pic"><img src="media/shot-11.webp" alt="" draggable="false" loading="lazy" style="--op:50% 55%"></div>
-            <div class="txt"><span class="k"><svg class="i" aria-hidden="true"><use href="#users-group"/></svg>Every buyer</span>
-              <h3>A film for each kind of buyer</h3>
-              <p>Downsizers, families, and buyers interstate or overseas.</p></div>
+            <div class="txt"><span class="k"><svg class="i" aria-hidden="true"><use href="#users-group"/></svg>Buyer follow-up</span>
+              <h3>A film for each featured residence</h3>
+              <p>Give agents a short film to send after an enquiry, focused on the home that caught the buyer’s eye.</p></div>
           </article>
           <article class="card rv" style="--i:2">
             <div class="pic"><img src="media/shot-08.webp" alt="" draggable="false" loading="lazy" style="--op:50% 50%"></div>
-            <div class="txt"><span class="k"><svg class="i" aria-hidden="true"><use href="#calendar-repeat"/></svg>Launch to sold out</span>
-              <h3>Fresh content every week</h3>
-              <p>Reels for socials, ads and the display suite, until the last home sells.</p></div>
+            <div class="txt"><span class="k"><svg class="i" aria-hidden="true"><use href="#calendar-repeat"/></svg>Social, paid and email</span>
+              <h3>Short edits for the campaign</h3>
+              <p>Use the same scenes to create platform-ready edits as the sales campaign moves forward.</p></div>
           </article>
         </div>
         <div class="steps" aria-hidden="true"><span class="bars"><i></i><i></i><i></i></span><span id="pstep">1 of 3</span></div>
@@ -530,77 +590,21 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
     </div>
   </section>
 
-  <section class="block" id="next" aria-labelledby="h-res">
-    <div class="wrap head">
-      <h2 id="h-res" class="split">The residences <em>in Warm Glass</em></h2>
-      <p class="sub rv">Six scenes from the Type C residence. Tap a preview to play it.</p>
-    </div>
-    <div class="rail" id="warmrail" role="region" aria-roledescription="carousel" aria-label="Warm Glass scenes" tabindex="0">
-      <button class="shot warm-phone" type="button" aria-pressed="false" aria-label="Play preview: Sunset" data-title="Sunset">
-        <span class="ph">
-          <video muted loop playsinline preload="none" aria-hidden="true" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/warm/S1-sunset-v3.jpg" src="media/warm/S1-sunset-v3.mp4"></video>
-          <span class="warm-play">Play preview</span>
-        </span>
-        <span class="cap"><b>Sunset</b><span>Soft evening light at the balcony.</span></span>
-      </button>
-      <button class="shot warm-phone" type="button" aria-pressed="false" aria-label="Play preview: Kitchen" data-title="Kitchen">
-        <span class="ph">
-          <video muted loop playsinline preload="none" aria-hidden="true" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/warm/S2-kitchen-v2-crop.jpg" src="media/warm/S2-kitchen-v2-crop.mp4"></video>
-          <span class="warm-play">Play preview</span>
-        </span>
-        <span class="cap"><b>Kitchen</b><span>Coffee from the French press.</span></span>
-      </button>
-      <button class="shot warm-phone" type="button" aria-pressed="false" aria-label="Play preview: Living" data-title="Living">
-        <span class="ph">
-          <video muted loop playsinline preload="none" aria-hidden="true" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/warm/S3-living-v2.jpg" src="media/warm/S3-living-v2.mp4"></video>
-          <span class="warm-play">Play preview</span>
-        </span>
-        <span class="cap"><b>Living</b><span>A quiet moment by the open doors.</span></span>
-      </button>
-      <button class="shot warm-phone" type="button" aria-pressed="false" aria-label="Play preview: Bedroom" data-title="Bedroom">
-        <span class="ph">
-          <video muted loop playsinline preload="none" aria-hidden="true" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/warm/S4-bedroom-cut.jpg" src="media/warm/S4-bedroom-cut.mp4"></video>
-          <span class="warm-play">Play preview</span>
-        </span>
-        <span class="cap"><b>Bedroom</b><span>Late light moves over the linen.</span></span>
-      </button>
-      <button class="shot warm-phone" type="button" aria-pressed="false" aria-label="Play preview: Bath" data-title="Bath">
-        <span class="ph">
-          <video muted loop playsinline preload="none" aria-hidden="true" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/warm/S5-bath.jpg" src="media/warm/S5-bath.mp4"></video>
-          <span class="warm-play">Play preview</span>
-        </span>
-        <span class="cap"><b>Bath</b><span>A closer look at the stone bath.</span></span>
-      </button>
-      <button class="shot warm-phone" type="button" aria-pressed="false" aria-label="Play preview: Rooftop" data-title="Rooftop">
-        <span class="ph">
-          <video muted loop playsinline preload="none" aria-hidden="true" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/warm/S6-rooftop-colourlocked.jpg" src="media/warm/S6-rooftop-colourlocked.mp4"></video>
-          <span class="warm-play">Play preview</span>
-        </span>
-        <span class="cap"><b>Rooftop</b><span>A toast under the pergola.</span></span>
-      </button>
-    </div>
-    <div class="wrap">
-      <div class="rail-foot warm-nav">
-        <div class="arrows">
-          <button class="rb" id="warm-prev" type="button" aria-label="Previous Warm Glass scenes"><svg class="i" aria-hidden="true"><use href="#chevron-left"/></svg></button>
-          <button class="rb" id="warm-next" type="button" aria-label="Next Warm Glass scenes"><svg class="i" aria-hidden="true"><use href="#chevron-right"/></svg></button>
-        </div>
-      </div>
+  <div class="wrap nalu-process">
       <div class="how rv">
         <h3>How we work</h3>
         <ol class="how-steps">
           <li><span class="b" aria-hidden="true"><svg class="i"><use href="#send"/></svg></span><span class="t">Send renders and plans</span></li>
           <li><span class="b" aria-hidden="true"><svg class="i"><use href="#layout-board"/></svg></span><span class="t">We plan the shots</span></li>
-          <li><span class="b" aria-hidden="true"><svg class="i"><use href="#thumb-up"/></svg></span><span class="t">You approve</span></li>
+          <li><span class="b" aria-hidden="true"><svg class="i"><use href="#thumb-up"/></svg></span><span class="t">Approve the visuals</span></li>
           <li><span class="b" aria-hidden="true"><svg class="i"><use href="#movie"/></svg></span><span class="t">Films delivered</span></li>
         </ol>
         <div class="love">
-          <p>We would love to work with you on <em>NALU</em>.</p>
-          <a class="go" href="#talk">Talk to us<svg class="i" aria-hidden="true"><use href="#arrow-down"/></svg></a>
+          <p>Choose one residence to start.</p>
+          <a class="go" href="#talk">Plan the first films<svg class="i" aria-hidden="true"><use href="#arrow-down"/></svg></a>
         </div>
       </div>
     </div>
-  </section>
 
   <section class="block" id="work" aria-labelledby="h-work">
     <div class="wrap head">
@@ -647,16 +651,16 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
     <div class="talk rv">
       <div class="crest" aria-hidden="true"><i></i></div>
       <div class="crestrule" aria-hidden="true"></div>
-      <p class="ey">Step 4 of 4</p>
-      <h2 id="h-next">Want this for the residences?</h2>
-      <p>Talk to Brandon or Jürgen. Based on the Gold Coast, working anywhere in the world, in person or online. All we need is your renders and a few location shots.</p>
+
+      <h2 id="h-next">Let’s choose the first residence to feature.</h2>
+      <p>Tell us which residence you’d like buyers to see first and what they ask about most. We’ll outline a first set of films for Kollosche and Monaco to review.</p>
       <div class="who">
         <a class="wa" href="https://wa.me/61400357305" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#brand-whatsapp"/></svg><span><b>Brandon</b><small>0400 357 305</small></span></a>
         <a class="wa" href="https://wa.me/61426573420" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#brand-whatsapp"/></svg><span><b>Jürgen</b><small>0426 573 420</small></span></a>
       </div>
       <a class="mailto" href="mailto:hello@aurianhaus.com"><svg class="i" aria-hidden="true"><use href="#mail"/></svg>hello@aurianhaus.com</a>
       <div class="chips"><span><svg class="i" aria-hidden="true"><use href="#bulb"/></svg>Ideas</span><span><svg class="i" aria-hidden="true"><use href="#coin"/></svg>Pricing</span><span><svg class="i" aria-hidden="true"><use href="#target"/></svg>What to make first</span></div>
-      <p class="how"><svg class="i" aria-hidden="true"><use href="#message-circle"/></svg>Message us on WhatsApp and we'll lock in a time.</p>
+      <p class="how"><svg class="i" aria-hidden="true"><use href="#message-circle"/></svg>Message us to set up a short call.</p>
       <a class="go" href="https://aurianhaus.com" target="_blank" rel="noopener">Visit aurianhaus.com<svg class="i" aria-hidden="true"><use href="#arrow-up-right"/></svg></a>
     </div>
   </section>
@@ -664,7 +668,7 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
   <footer class="wrap">
     <img src="img/aurian-haus-ring.png" alt="" draggable="false">
     <p class="who">Aurian Haus</p>
-    <p>A free sample for NALU. View only.</p>
+    <p>Creative proposal for NALU by Monaco. View only.</p>
   </footer>
 </main>
 
@@ -1027,64 +1031,62 @@ W.__work={goTo:goTo,openIt:openIt,closeIt:closeIt,state:function(){return {act:a
 
 <script>
 (() => {
-  const rail = document.getElementById('warmrail');
-  const cards = [...rail.querySelectorAll('button')];
-  const previous = document.getElementById('warm-prev');
-  const next = document.getElementById('warm-next');
-  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
-  function move(direction) {
-    const gap = parseFloat(getComputedStyle(rail).columnGap);
-    const step = cards[0].offsetWidth + gap;
-    rail.scrollBy({left: direction * step, behavior: reduceMotion.matches ? 'auto' : 'smooth'});
+  const cards = [...document.querySelectorAll('#warmrail button')];
+  const toggle = document.getElementById('warm-toggle');
+  const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  let pausedAll = motion.matches;
+  const visible = new Set();
+  const choices = new Map();
+
+  function sync(card) {
+    const video = card.querySelector('video');
+    if (document.hidden || !visible.has(card) || !(choices.get(card) ?? !pausedAll)) {
+      video.pause();
+      return;
+    }
+    if (!video.getAttribute('src')) video.src = video.dataset.src;
+    if (video.paused) video.play().catch(() => {});
   }
-  function refresh() {
-    previous.disabled = rail.scrollLeft < 2;
-    next.disabled = rail.scrollWidth - rail.clientWidth - rail.scrollLeft < 2;
+
+  function setGlobalPause(paused) {
+    pausedAll = paused;
+    choices.clear();
+    toggle.setAttribute('aria-pressed', String(paused));
+    toggle.textContent = paused ? 'Play previews' : 'Pause all previews';
+    cards.forEach(sync);
   }
-  let active = null;
+
   for (const card of cards) {
     const video = card.querySelector('video');
-    const label = card.querySelector('.warm-play');
     function showState(playing) {
       card.setAttribute('aria-pressed', String(playing));
-      label.textContent = playing ? 'Pause' : 'Play preview';
       card.setAttribute('aria-label', (playing ? 'Pause preview: ' : 'Play preview: ') + card.dataset.title);
     }
-    video.addEventListener('play', () => {
-      if (active && active !== video) active.pause();
-      active = video;
-      showState(true);
-    });
+    showState(false);
+    video.addEventListener('play', () => showState(true));
     video.addEventListener('pause', () => showState(false));
     card.addEventListener('contextmenu', event => event.preventDefault());
-    card.addEventListener('click', async () => {
-      if (!video.paused) {
-        video.pause();
-        return;
-      }
-      try {
-        await video.play();
-      } catch {
-        label.textContent = 'Tap to retry';
-      }
+    card.addEventListener('click', () => {
+      choices.set(card, video.paused);
+      sync(card);
     });
   }
+
+  const cardForVideo = new Map(cards.map(card => [card.querySelector('video'), card]));
   const observer = new IntersectionObserver(entries => {
     for (const entry of entries) {
-      if (!entry.isIntersecting) entry.target.querySelector('video').pause();
+      const card = cardForVideo.get(entry.target);
+      if (entry.isIntersecting && 0.35 <= entry.intersectionRatio) visible.add(card);
+      else visible.delete(card);
+      sync(card);
     }
-  }, {threshold: 0.2});
-  cards.forEach(card => observer.observe(card));
-  previous.addEventListener('click', () => move(-1));
-  next.addEventListener('click', () => move(1));
-  rail.addEventListener('keydown', event => {
-    if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
-    event.preventDefault();
-    move(event.key === 'ArrowRight' ? 1 : -1);
-  });
-  rail.addEventListener('scroll', refresh, {passive: true});
-  new ResizeObserver(refresh).observe(rail);
-  refresh();
+  }, {threshold: 0.35});
+  for (const video of cardForVideo.keys()) observer.observe(video);
+
+  toggle.addEventListener('click', () => setGlobalPause(!pausedAll));
+  motion.addEventListener('change', event => setGlobalPause(event.matches));
+  document.addEventListener('visibilitychange', () => cards.forEach(sync));
+  setGlobalPause(pausedAll);
 })();
 </script>
 </body>
