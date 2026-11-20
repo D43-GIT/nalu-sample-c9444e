@@ -434,8 +434,7 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
 <nav class="dock" aria-label="On this page">
   <div class="dock-in">
     <span class="ind" aria-hidden="true"></span>
-    <a href="#film">Reel</a>
-    <a href="#next">Residences</a>
+    <a href="#next">Residences</a> <a href="#reel">Reel</a>
     <a href="#more">Campaign</a>
     <a href="#work">Work</a>
     <a href="#talk">Talk</a>
@@ -452,22 +451,7 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
       </div>
       <p class="lead">We made these sample scenes from your architectural renders. With light, movement and people, buyers can imagine calling NALU home before they can walk through the door. Kollosche are selling NALU, and we already make their listing videos.</p>
     </div>
-    <div>
-      <div class="film-label"><h2 id="h-film">The <em>sample scene</em></h2></div>
-      <div class="frame">
-        <div class="screen">
-          <video id="nalu-film" muted loop playsinline preload="metadata" poster="media/nalu-film-poster.webp" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-label="The NALU sample scene"><source src="media/nalu-original-no-hand.mp4" type="video/mp4"></video>
-          <div class="shield" role="button" tabindex="0" aria-label="Pause"></div>
-          <button class="pp" type="button" id="fpp" aria-label="Pause"><svg class="i" aria-hidden="true"><use href="#player-pause"/></svg></button>
-        </div>
-        <div class="time">
-          <div class="track" id="ftrack" role="slider" tabindex="0" aria-label="Where it is up to" aria-valuemin="0" aria-valuemax="25" aria-valuenow="0" aria-valuetext="0 seconds"><span class="fill"></span><span class="knob"></span></div>
-          <span class="clock" id="fclock">0:00 / 0:25</span>
-        </div>
-      </div>
-      <p class="note">25-second concept piece from your renders.</p>
-    </div>
-  </section>
+    </section>
 
   <section class="block" id="next" aria-labelledby="h-res">
     <div class="wrap head">
@@ -527,6 +511,24 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
       </div>
     </div>
   </section>
+<section class="film wrap" id="reel" aria-labelledby="h-film">
+<div>
+      <div class="film-label"><h2 id="h-film">The <em>sample scene</em></h2></div>
+      <div class="frame">
+        <div class="screen">
+          <video id="nalu-film" muted loop playsinline preload="metadata" poster="media/nalu-film-poster.webp" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-label="The NALU sample scene"><source src="media/nalu-original-no-hand.mp4" type="video/mp4"></video>
+          <div class="shield" role="button" tabindex="0" aria-label="Pause"></div>
+          <button class="pp" type="button" id="fpp" aria-label="Pause"><svg class="i" aria-hidden="true"><use href="#player-pause"/></svg></button>
+        </div>
+        <div class="time">
+          <div class="track" id="ftrack" role="slider" tabindex="0" aria-label="Where it is up to" aria-valuemin="0" aria-valuemax="25" aria-valuenow="0" aria-valuetext="0 seconds"><span class="fill"></span><span class="knob"></span></div>
+          <span class="clock" id="fclock">0:00 / 0:25</span>
+        </div>
+      </div>
+      <p class="note">25-second concept piece from your renders.</p>
+    </div>
+  </section>
+
 
   <section class="block pin" id="more" aria-labelledby="h-more">
     <div class="pin-track">
