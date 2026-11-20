@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>NALU by Monaco | A film proposal for Kollosche</title>
-<meta name="description" content="The NALU sample film, then twelve shots one by one. A free sample from Aurian Haus.">
+<title>Life at NALU | An Aurian Haus proposal for Monaco Property Group</title>
+<meta name="description" content="Sample films made from NALU’s architectural renders. A proposal from Aurian Haus for Monaco Property Group.">
 <meta name="theme-color" content="#F1E9DA">
 <meta name="color-scheme" content="light">
 <meta name="robots" content="noindex,nofollow,noarchive">
-<meta property="og:title" content="NALU, the sample film">
-<meta property="og:description" content="The sample film and its twelve shots. A free sample from Aurian Haus.">
-<meta property="og:image" content="hero/hero-1440.webp">
+<meta property="og:title" content="Life at NALU | A proposal for Monaco Property Group">
+<meta property="og:description" content="See how your renders can take buyers inside NALU before they can walk through the door.">
+<meta property="og:image" content="https://d43-git.github.io/nalu-sample-c9444e/media/warm/S6-rooftop-colourlocked.jpg">
 <link rel="icon" type="image/png" href="img/aurian-haus-ring.png">
 <link rel="apple-touch-icon" href="img/aurian-haus-ring.png">
 <script>document.documentElement.className+=' js'</script>
@@ -27,7 +27,7 @@
  --glass:rgba(255,250,242,.66);--glass-hi:rgba(255,250,242,.9);
  --hair:rgba(201,166,107,.55);--hair-soft:rgba(201,166,107,.32);
  --shadow:0 1px 0 rgba(255,255,255,.7) inset,0 24px 60px -34px rgba(92,68,30,.38),0 2px 8px -4px rgba(92,68,30,.12);
- --gut:clamp(16px,4vw,72px);--maxw:1200px;--e:cubic-bezier(.22,1,.36,1);--e1:cubic-bezier(.2,.7,.2,1);--r:22px;--r-lg:30px;--stick:84px}
+ --gut:clamp(16px,4vw,72px);--maxw:1200px;--e:cubic-bezier(.22,1,.36,1);--e1:cubic-bezier(.2,.7,.2,1);--r:22px;--r-lg:30px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{background:var(--ground);color-scheme:light;-webkit-text-size-adjust:100%}
 body{position:relative;min-height:100vh;background:var(--ground);color:var(--ink);font:400 19px/1.5 "Inter Tight",system-ui,sans-serif;-webkit-font-smoothing:antialiased;font-variant-numeric:lining-nums;overflow-x:clip;overflow-wrap:break-word;-webkit-tap-highlight-color:transparent}
@@ -139,8 +139,7 @@ section.block{padding-top:clamp(72px,9vw,128px);scroll-margin-top:64px}
 .tip{display:flex;align-items:center;gap:10px;margin-top:16px;color:var(--ink2);font-size:17px}
 .tip svg.i{width:20px;height:20px;color:var(--gold-text)}
 
-/* 3. what else: the section locks and the three cards slide in one by one */
-.pin-stage{display:flex;flex-direction:column}
+/* Campaign film options */
 .deck{display:grid;gap:16px}
 .card{display:grid;grid-template-rows:auto 1fr;overflow:hidden;border-radius:var(--r-lg);padding:7px;background:rgba(255,250,242,.94);border:1px solid var(--hair);box-shadow:var(--shadow)}
 .card .pic{position:relative;overflow:hidden;border-radius:calc(var(--r-lg) - 7px);background:var(--beige);aspect-ratio:16/10}
@@ -150,22 +149,6 @@ section.block{padding-top:clamp(72px,9vw,128px);scroll-margin-top:64px}
 .card .k svg.i{width:20px;height:20px}
 .card h3{font:500 clamp(30px,2.6vw,36px)/1.06 "Cormorant Garamond",Georgia,serif;color:var(--ink)}
 .card p{font-size:18px;line-height:1.45;color:var(--ink2)}
-.steps{display:none;align-items:center;gap:12px;margin-top:16px}
-.steps .bars{display:flex;gap:6px}
-.steps .bars i{width:28px;height:3px;border-radius:3px;background:rgba(105,72,22,.25);overflow:hidden;position:relative}
-.steps .bars i::after{content:"";position:absolute;inset:0;background:var(--ink);transform-origin:0 50%;transform:scaleX(var(--f,0))}
-.steps span{font:600 16px "Inter Tight",sans-serif;color:var(--ink2);font-variant-numeric:tabular-nums}
-/* locked mode, switched on by the script when the screen is tall enough and motion is allowed */
-.pinned .pin-track{height:330vh;height:330svh}
-.pinned .pin-stage{position:sticky;top:var(--stick);height:calc(100vh - var(--stick));height:calc(100svh - var(--stick));padding-bottom:max(18px,env(safe-area-inset-bottom))}
-.pinned .head{margin-bottom:16px}
-.pinned .deck{position:relative;flex:1;min-height:0;display:block}
-.pinned .deck{margin-top:22px}
-.pinned .card{position:absolute;inset:0;will-change:transform,opacity;transform-origin:50% 0;background:var(--ivory);transition:none !important;translate:none !important}
-.pinned .card .pic{aspect-ratio:auto;min-height:120px}
-.pinned .card{grid-template-rows:1fr auto}
-.pinned .steps{display:flex}
-
 /* 4. talk */
 .talk{position:relative;isolation:isolate;overflow:hidden;margin:0 auto;max-width:820px;padding:30px 20px 26px;border-radius:var(--r-lg);background:rgba(255,250,242,.86);border:1px solid var(--hair);box-shadow:var(--shadow);text-align:center;display:grid;justify-items:center;gap:10px}
 .talk::before{content:"";position:absolute;left:50%;top:-55%;width:130%;height:100%;transform:translateX(-50%);z-index:-1;background:radial-gradient(closest-side,rgba(232,200,112,.32),rgba(232,200,112,.1) 50%,rgba(232,200,112,0) 85%);filter:blur(24px);pointer-events:none}
@@ -259,13 +242,7 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
  .shot{flex-basis:calc((100% - 40px) / 3)}
  .rail{gap:20px}
  .deck{grid-template-columns:repeat(3,1fr);gap:22px}
- .pinned .deck{display:grid;align-content:start;flex:none;margin-top:0}
  .film.wrap{max-width:calc(clamp(680px,(100vh - 470px) * 16 / 9,var(--maxw)) + 2 * var(--gut))}
- .pinned .card{position:relative;inset:auto;transform-origin:50% 100%}
- .pinned .card .pic{aspect-ratio:4/3}
- .pinned .card{grid-template-rows:auto 1fr}
- .pinned .pin-track{height:250vh}
- .pinned .pin-stage{justify-content:center;padding-bottom:6vh}
  .talk{padding:44px 48px 46px}
  .go{width:auto;min-width:320px}
  .lb-info .in{grid-template-columns:minmax(0,1fr) auto;align-items:end;padding-bottom:calc(max(16px,env(safe-area-inset-bottom)) + 28px)}
@@ -387,7 +364,11 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
 .warm-play .icon-pause,#warmrail button[aria-pressed="true"] .icon-play{display:none}
 #warmrail button[aria-pressed="true"] .icon-pause{display:block}
 .warm-toggle{min-height:44px;padding:0 15px;margin-top:10px;border:1px solid var(--hair);border-radius:999px;background:var(--ivory);color:var(--ink);font:600 14px "Inter Tight",sans-serif;cursor:pointer}
-.nalu-process .how{margin-top:0}
+#more .how p{max-width:52ch;margin:10px auto 0;color:var(--ink2);font-size:clamp(16px,1.5vw,19px)}
+#next .sub{max-width:64ch}
+.proposal-mail{margin:6px 0 4px}
+@media(max-width:360px){.top .pill{white-space:nowrap;font-size:14px;padding-inline:11px}}
+@media(max-width:699px){.film-head h1{font-size:clamp(45px,11.8vw,69px)}}
 @media(min-width:730px){#warmrail{grid-template-columns:repeat(3,minmax(0,1fr))}#warmrail .shot{padding:7px}}
 @media(max-width:420px){.dock a{padding-inline:8px;font-size:15px;min-width:44px;justify-content:center}}
 @media(max-width:350px){.dock a{padding-inline:6px;font-size:14px}}
@@ -399,7 +380,7 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
 
 <div class="wrap top">
   <img src="img/aurian-haus-logo-black.png" alt="Aurian Haus" width="117" height="30" draggable="false">
-  <span class="pill"><svg class="i" aria-hidden="true"><use href="#gift"/></svg>NALU by Monaco</span>
+  <span class="pill">NALU by Monaco</span>
 </div>
 
 <nav class="dock" aria-label="On this page">
@@ -407,8 +388,8 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
     <span class="ind" aria-hidden="true"></span>
     <a href="#film">Film</a>
     <a href="#next">Residences</a>
-    <a href="#shots">Shots</a>
-    <a href="#work">Our work</a>
+    <a href="#more">Campaign</a>
+    <a href="#work">Work</a>
     <a href="#talk">Talk</a>
     <span class="bar" aria-hidden="true"></span>
   </div>
@@ -418,13 +399,13 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
   <section class="film wrap" id="film" aria-labelledby="h-film">
     <div class="film-head">
       <div>
-        <p class="ey rv">For Kollosche New Projects</p>
-        <h1 class="split">Show buyers <em>what life at NALU feels like.</em></h1>
+        <p class="ey">For Monaco Property Group</p>
+        <h1>Let buyers picture <em>their life at NALU.</em></h1>
       </div>
-      <p class="lead rv" style="--i:3">Aurian Haus turns Monaco Property Group’s architectural renders into films Kollosche can use to bring buyers through a residence before they can step inside.</p>
+      <p class="lead">We made these sample films from your architectural renders. With light, movement and people, buyers can imagine calling NALU home before they can walk through the door.</p>
     </div>
-    <div class="rv" style="--i:2">
-      <div class="film-label"><h2 id="h-film">The film, <em>in full</em></h2></div>
+    <div>
+      <div class="film-label"><h2 id="h-film">The <em>sample film</em></h2></div>
       <div class="frame">
         <div class="screen">
           <video id="nalu-film" muted loop playsinline preload="metadata" poster="media/nalu-film-poster.webp" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" aria-label="The NALU sample film"><source src="media/nalu-original-no-hand.mp4" type="video/mp4"></video>
@@ -436,14 +417,14 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
           <span class="clock" id="fclock">0:00 / 0:25</span>
         </div>
       </div>
-      <p class="note">25 seconds. Tap the film to pause.</p>
+      <p class="note">25-second concept film from your renders.</p>
     </div>
   </section>
 
   <section class="block" id="next" aria-labelledby="h-res">
     <div class="wrap head">
-      <h2 id="h-res" class="split">The residences <em>in Warm Glass</em></h2>
-      <p class="sub rv">Six film studies for the Type C residence, based on NALU’s renders.</p>
+      <h2 id="h-res" class="split">A day <em>at NALU</em></h2>
+      <p class="sub rv">Coffee by the open doors. Light moving across stone. A toast on the rooftop. Six sample scenes from your Type C renders.</p>
       <button class="warm-toggle" id="warm-toggle" type="button" aria-pressed="false">Pause all previews</button>
     </div>
     <div class="wrap" id="warmrail">
@@ -452,50 +433,87 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
           <video muted loop playsinline preload="none" aria-hidden="true" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/warm/S1-sunset-v3.jpg" data-src="media/warm/S1-sunset-v3.mp4?v=inline-2"></video>
           <span class="warm-play" aria-hidden="true"><svg class="i icon-play"><use href="#player-play"/></svg><svg class="i icon-pause"><use href="#player-pause"/></svg></span>
         </span>
-        <span class="cap"><b>Sunset</b><span>Soft evening light at the balcony.</span></span>
+        <span class="cap"><b>Sunset</b><span>The last light reaches the balconies.</span></span>
       </button>
       <button class="shot warm-phone" type="button" aria-pressed="false" aria-label="Play preview: Kitchen" data-title="Kitchen">
         <span class="ph">
           <video muted loop playsinline preload="none" aria-hidden="true" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/warm/S2-kitchen-v2-crop.jpg" data-src="media/warm/S2-kitchen-v2-crop.mp4?v=inline-2"></video>
           <span class="warm-play" aria-hidden="true"><svg class="i icon-play"><use href="#player-play"/></svg><svg class="i icon-pause"><use href="#player-pause"/></svg></span>
         </span>
-        <span class="cap"><b>Kitchen</b><span>Coffee from the French press.</span></span>
+        <span class="cap"><b>Kitchen</b><span>The first coffee in the kitchen.</span></span>
       </button>
       <button class="shot warm-phone" type="button" aria-pressed="false" aria-label="Play preview: Living" data-title="Living">
         <span class="ph">
           <video muted loop playsinline preload="none" aria-hidden="true" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/warm/S3-living-v2.jpg" data-src="media/warm/S3-living-v2.mp4?v=inline-2"></video>
           <span class="warm-play" aria-hidden="true"><svg class="i icon-play"><use href="#player-play"/></svg><svg class="i icon-pause"><use href="#player-pause"/></svg></span>
         </span>
-        <span class="cap"><b>Living</b><span>A quiet moment by the open doors.</span></span>
+        <span class="cap"><b>Living</b><span>The living room opens to the coast.</span></span>
       </button>
       <button class="shot warm-phone" type="button" aria-pressed="false" aria-label="Play preview: Bedroom" data-title="Bedroom">
         <span class="ph">
           <video muted loop playsinline preload="none" aria-hidden="true" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/warm/S4-bedroom-cut.jpg" data-src="media/warm/S4-bedroom-cut.mp4?v=inline-2"></video>
           <span class="warm-play" aria-hidden="true"><svg class="i icon-play"><use href="#player-play"/></svg><svg class="i icon-pause"><use href="#player-pause"/></svg></span>
         </span>
-        <span class="cap"><b>Bedroom</b><span>Late light moves over the linen.</span></span>
+        <span class="cap"><b>Bedroom</b><span>Afternoon light falls across the linen.</span></span>
       </button>
       <button class="shot warm-phone" type="button" aria-pressed="false" aria-label="Play preview: Bath" data-title="Bath">
         <span class="ph">
           <video muted loop playsinline preload="none" aria-hidden="true" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/warm/S5-bath.jpg" data-src="media/warm/S5-bath.mp4?v=inline-2"></video>
           <span class="warm-play" aria-hidden="true"><svg class="i icon-play"><use href="#player-play"/></svg><svg class="i icon-pause"><use href="#player-pause"/></svg></span>
         </span>
-        <span class="cap"><b>Bath</b><span>A closer look at the stone bath.</span></span>
+        <span class="cap"><b>Bath</b><span>A quiet moment by the stone bath.</span></span>
       </button>
       <button class="shot warm-phone" type="button" aria-pressed="false" aria-label="Play preview: Rooftop" data-title="Rooftop">
         <span class="ph">
           <video muted loop playsinline preload="none" aria-hidden="true" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" poster="media/warm/S6-rooftop-colourlocked.jpg" data-src="media/warm/S6-rooftop-colourlocked.mp4?v=inline-2"></video>
           <span class="warm-play" aria-hidden="true"><svg class="i icon-play"><use href="#player-play"/></svg><svg class="i icon-pause"><use href="#player-pause"/></svg></span>
         </span>
-        <span class="cap"><b>Rooftop</b><span>A toast under the pergola.</span></span>
+        <span class="cap"><b>Rooftop</b><span>Friends gather on the rooftop terrace.</span></span>
       </button>
+    </div>
+  </section>
+
+  <section class="block wrap" id="more" aria-labelledby="h-more">
+    <div class="head">
+      <h2 id="h-more" class="split">The films we could make <em>for NALU.</em></h2>
+      <p class="sub rv">We can build on these samples to tell the story of any residence, space or moment you want buyers to experience.</p>
+    </div>
+    <div class="deck">
+      <article class="card rv" style="--i:0">
+        <div class="pic"><img src="media/shot-02.webp" alt="" draggable="false" loading="lazy" style="--op:60% 50%"></div>
+        <div class="txt">
+          <span class="k">Project film</span>
+          <h3>From the beachfront to home</h3>
+          <p>Take buyers from Miami Beach through the homes and private wellness spaces, including the pool, bathhouse and residents’ lounge. Use the film on the project page and in private presentations.</p>
+        </div>
+      </article>
+      <article class="card rv" style="--i:1">
+        <div class="pic"><img src="media/warm/S6-rooftop-colourlocked.jpg" alt="" draggable="false" loading="lazy"></div>
+        <div class="txt">
+          <span class="k">Private buyer follow-up</span>
+          <h3>The home they’re considering</h3>
+          <p>Give Kollosche a short film to send after an appointment so buyers can revisit the layout, the finishes and the places they’d spend time.</p>
+        </div>
+      </article>
+      <article class="card rv" style="--i:2">
+        <div class="pic"><img src="media/warm/S2-kitchen-v2-crop.jpg" alt="" draggable="false" loading="lazy"></div>
+        <div class="txt">
+          <span class="k">Campaign edits</span>
+          <h3>More stories to share</h3>
+          <p>Turn approved scenes into vertical films, stills and short edits for your website, ads, social channels and buyer emails.</p>
+        </div>
+      </article>
+    </div>
+    <div class="how rv">
+      <h3>From your renders to the campaign</h3>
+      <p>We storyboard from your renders and plans. You approve the layouts, materials and views before we finish the films.</p>
     </div>
   </section>
 
   <section class="block" id="shots" aria-labelledby="h-shots">
     <div class="wrap head">
 
-      <h2 id="h-shots" class="split">The original shots, <em>one by one</em></h2>
+      <h2 id="h-shots" class="split">Explore the <em>sample shots</em></h2>
       <p class="sub rv">Each one plays on a loop. Tap a shot to see it big.</p>
     </div>
     <div class="rail rv" id="rail" tabindex="0" role="region" aria-roledescription="carousel" aria-label="The twelve shots. Use the left and right arrow keys to move.">
@@ -557,60 +575,11 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
     </div>
   </section>
 
-  <section class="block pin" id="more" aria-labelledby="h-more">
-    <div class="pin-track">
-      <div class="pin-stage wrap">
-        <div class="head">
-
-          <h2 id="h-more" class="split">Films Kollosche <em>can put to work</em></h2>
-          <p class="sub rv">Give buyers a closer look at the residence they’re considering, wherever they are.</p>
-        </div>
-        <div class="deck">
-          <article class="card rv" style="--i:0">
-            <div class="pic"><img src="media/shot-02.webp" alt="" draggable="false" loading="lazy" style="--op:60% 50%"></div>
-            <div class="txt"><span class="k"><svg class="i" aria-hidden="true"><use href="#home"/></svg>Project page and display suite</span>
-              <h3>A hero film for NALU</h3>
-              <p>Take buyers from the beachfront to the residences and wellness spaces in one film.</p></div>
-          </article>
-          <article class="card rv" style="--i:1">
-            <div class="pic"><img src="media/shot-11.webp" alt="" draggable="false" loading="lazy" style="--op:50% 55%"></div>
-            <div class="txt"><span class="k"><svg class="i" aria-hidden="true"><use href="#users-group"/></svg>Buyer follow-up</span>
-              <h3>A film for each featured residence</h3>
-              <p>Give agents a short film to send after an enquiry, focused on the home that caught the buyer’s eye.</p></div>
-          </article>
-          <article class="card rv" style="--i:2">
-            <div class="pic"><img src="media/shot-08.webp" alt="" draggable="false" loading="lazy" style="--op:50% 50%"></div>
-            <div class="txt"><span class="k"><svg class="i" aria-hidden="true"><use href="#calendar-repeat"/></svg>Social, paid and email</span>
-              <h3>Short edits for the campaign</h3>
-              <p>Use the same scenes to create platform-ready edits as the sales campaign moves forward.</p></div>
-          </article>
-        </div>
-        <div class="steps" aria-hidden="true"><span class="bars"><i></i><i></i><i></i></span><span id="pstep">1 of 3</span></div>
-      </div>
-    </div>
-  </section>
-
-  <div class="wrap nalu-process">
-      <div class="how rv">
-        <h3>How we work</h3>
-        <ol class="how-steps">
-          <li><span class="b" aria-hidden="true"><svg class="i"><use href="#send"/></svg></span><span class="t">Send renders and plans</span></li>
-          <li><span class="b" aria-hidden="true"><svg class="i"><use href="#layout-board"/></svg></span><span class="t">We plan the shots</span></li>
-          <li><span class="b" aria-hidden="true"><svg class="i"><use href="#thumb-up"/></svg></span><span class="t">Approve the visuals</span></li>
-          <li><span class="b" aria-hidden="true"><svg class="i"><use href="#movie"/></svg></span><span class="t">Films delivered</span></li>
-        </ol>
-        <div class="love">
-          <p>Choose one residence to start.</p>
-          <a class="go" href="#talk">Plan the first films<svg class="i" aria-hidden="true"><use href="#arrow-down"/></svg></a>
-        </div>
-      </div>
-    </div>
-
   <section class="block" id="work" aria-labelledby="h-work">
     <div class="wrap head">
       <p class="ey rv">Our work</p>
-      <h2 id="h-work" class="split">Finished films, <em>playing now</em></h2>
-      <p class="sub rv">A few we have made for other brands. Swipe along. Tap one to see it big.</p>
+      <h2 id="h-work" class="split">More of our <em>property films</em></h2>
+      <p class="sub rv">See how we’ve told the story of other properties. Swipe for more.</p>
     </div>
     <div class="wk-rail rv" id="wkrail" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Our finished work. Use the left and right arrow keys to move.">
       <button class="wk wide" type="button" data-src="media/portfolio/86-hedges-film.mp4" data-poster="media/portfolio/86-hedges-film.webp" data-ratio="16/9" data-title="86 Hedges Avenue" data-cap="Our film for Kollosche. Sunrise, surf and the home at Mermaid Beach, in one slow story." aria-label="Open 86 Hedges Avenue, the film">
@@ -652,23 +621,21 @@ footer p{font-size:16px;color:var(--ink2);max-width:52ch}
       <div class="crest" aria-hidden="true"><i></i></div>
       <div class="crestrule" aria-hidden="true"></div>
 
-      <h2 id="h-next">Let’s choose the first residence to feature.</h2>
-      <p>Tell us which residence you’d like buyers to see first and what they ask about most. We’ll outline a first set of films for Kollosche and Monaco to review.</p>
+      <h2 id="h-next">Let’s choose what buyers see first.</h2>
+      <p>Tell us which residence or part of NALU you want to lead with. We’ll bring back a storyboard and a list of films and stills for your campaign.</p>
+      <a class="go proposal-mail" href="mailto:hello@aurianhaus.com?subject=NALU%20film%20proposal">Discuss the first film<svg class="i" aria-hidden="true"><use href="#mail"/></svg></a>
       <div class="who">
         <a class="wa" href="https://wa.me/61400357305" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#brand-whatsapp"/></svg><span><b>Brandon</b><small>0400 357 305</small></span></a>
         <a class="wa" href="https://wa.me/61426573420" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#brand-whatsapp"/></svg><span><b>Jürgen</b><small>0426 573 420</small></span></a>
       </div>
-      <a class="mailto" href="mailto:hello@aurianhaus.com"><svg class="i" aria-hidden="true"><use href="#mail"/></svg>hello@aurianhaus.com</a>
-      <div class="chips"><span><svg class="i" aria-hidden="true"><use href="#bulb"/></svg>Ideas</span><span><svg class="i" aria-hidden="true"><use href="#coin"/></svg>Pricing</span><span><svg class="i" aria-hidden="true"><use href="#target"/></svg>What to make first</span></div>
-      <p class="how"><svg class="i" aria-hidden="true"><use href="#message-circle"/></svg>Message us to set up a short call.</p>
-      <a class="go" href="https://aurianhaus.com" target="_blank" rel="noopener">Visit aurianhaus.com<svg class="i" aria-hidden="true"><use href="#arrow-up-right"/></svg></a>
+
     </div>
   </section>
 
   <footer class="wrap">
     <img src="img/aurian-haus-ring.png" alt="" draggable="false">
     <p class="who">Aurian Haus</p>
-    <p>Creative proposal for NALU by Monaco. View only.</p>
+    <p>Prepared for Monaco Property Group. The films are artist impressions.</p>
   </footer>
 </main>
 
@@ -724,7 +691,6 @@ if(reduce)de.classList.add('rm');
 var mqFine=W.matchMedia('(hover:hover) and (pointer:fine)');
 var $=function(s,r){return (r||d).querySelector(s)},$$=function(s,r){return [].slice.call((r||d).querySelectorAll(s))};
 var clamp=function(v,a,b){return v<a?a:v>b?b:v};
-var easeOut=function(t){return 1-Math.pow(1-t,3)};
 var E='cubic-bezier(.22,1,.36,1)';
 function play(v){var p=v.play();if(p&&p.catch)p.catch(function(){})}
 function anim(el,f,o){if(el&&el.animate){try{return el.animate(f,o)}catch(_){}}return null}
@@ -819,26 +785,6 @@ if('IntersectionObserver' in W){
   new IntersectionObserver(function(es){if(es[0].isIntersecting){railNear=true;railVids()}},{rootMargin:'600px 0px'}).observe(rail);
 }else{railVis=railNear=true;cards.forEach(function(c){c._r=1})}
 
-/* ---------- 3. what else: lock the section, slide the three cards in one by one ---------- */
-var pin=$('.pin'),ptrack=$('.pin-track',pin),pstage=$('.pin-stage',pin),pcards=$$('.card',pin),pbars=$$('.steps .bars i',pin),pstep=$('#pstep'),pinned=false,stackMode=false;
-function pinWanted(){return !mqRM.matches&&W.innerHeight>=600&&W.innerWidth>=320}
-function setStick(){var db=$('.dock-in').getBoundingClientRect();var top=parseFloat(getComputedStyle($('.dock')).top)||8;de.style.setProperty('--stick',Math.round(top+8+db.height+10)+'px')}
-function pinSetup(){var want=pinWanted();stackMode=W.innerWidth<900;
-  if(want!==pinned){pinned=want;pin.classList.toggle('pinned',want);
-    if(!want)pcards.forEach(function(c){c.style.transform='';c.style.opacity=''})}
-  if(pinned)pcards.forEach(function(c){c.classList.add('in')});pinTick()}
-var WIN_S=[[0,.2],[.3,.56],[.64,.9]],WIN_R=[[0,.24],[.3,.54],[.6,.84]];
-function pinTick(){if(!pinned)return;var r=ptrack.getBoundingClientRect(),vh=W.innerHeight;
-  if(r.bottom<-80||r.top>vh+80)return;
-  var sh=pstage.offsetHeight,range=Math.max(1,r.height-sh),p=clamp((vh*.5-r.top)/(range+vh*.5),0,1),win=stackMode?WIN_S:WIN_R;
-  var e=win.map(function(w){return easeOut(clamp((p-w[0])/(w[1]-w[0]),0,1))});
-  if(stackMode){var H=pcards[0].offsetHeight||400;
-    pcards.forEach(function(c,k){var above=0;for(var j=k+1;j<e.length;j++)above+=e[j];
-      var ty=(1-e[k])*(H+60)-11*above,s=1-.05*above;
-      c.style.transform='translate3d(0,'+ty.toFixed(1)+'px,0) scale('+s.toFixed(4)+')';c.style.opacity=(e[k]<=0?0:1-.22*above).toFixed(3);c.style.zIndex=k+1})}
-  else{pcards.forEach(function(c,k){c.style.transform='translate3d(0,'+((1-e[k])*90).toFixed(1)+'px,0) scale('+(.96+.04*e[k]).toFixed(4)+')';c.style.opacity=e[k].toFixed(3)})}
-  var n=0;e.forEach(function(x,k){pbars[k].style.setProperty('--f',x.toFixed(3));if(x>.5)n=k+1});pstep.textContent=Math.max(1,n)+' of 3'}
-
 /* ---------- the big view (Photos style) ---------- */
 var lb=$('#lb'),lbg=$('#lb-bg'),view=$('#lb-view'),ltrack=$('#lb-track'),slides=$$('.lb-slide',ltrack),medias=slides.map(function(s){return $('.lb-media',s)}),
     ltop=$('#lb-top'),linfo=$('#lb-info'),lct=$('#lb-count'),ltl=$('#lb-title'),lcp=$('#lb-cap'),lprev=$('#lb-prev'),lnext=$('#lb-next'),lclose=$('#lb-close'),
@@ -922,20 +868,20 @@ function where(){var y=W.innerHeight*.42,k=-1;secs.forEach(function(s,i){if(s.ge
   if(W.innerHeight+W.scrollY>=de.scrollHeight-4)k=secs.length-1;
   if(k!==on){on=k;links.forEach(function(a,i){a.classList.toggle('on',i===on);if(i===on)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});place()}}
 links.forEach(function(a){a.addEventListener('click',function(e){var t=d.getElementById(a.getAttribute('href').slice(1));if(!t)return;e.preventDefault();
-  var y=t.getBoundingClientRect().top+W.scrollY-(t.id==='film'?80:(t.id==='more'&&pinned?0:64));W.scrollTo({top:Math.max(0,y),behavior:reduce?'auto':'smooth'})})});
-function onScroll(){tick=false;var h=de.scrollHeight-W.innerHeight;bar.style.setProperty('--p',h>0?(W.scrollY/h).toFixed(4):0);where();pinTick()}
+  var y=t.getBoundingClientRect().top+W.scrollY-(t.id==='film'?80:64);W.scrollTo({top:Math.max(0,y),behavior:reduce?'auto':'smooth'})})});
+function onScroll(){tick=false;var h=de.scrollHeight-W.innerHeight;bar.style.setProperty('--p',h>0?(W.scrollY/h).toFixed(4):0);where()}
 W.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(onScroll)}},{passive:true});
-var rz=0;function onResize(){setStick();measurePer();pinSetup();railMeasure();if(lbOpen)layout();place();onScroll();ftime()}
+var rz=0;function onResize(){measurePer();railMeasure();if(lbOpen)layout();place();onScroll();ftime()}
 W.addEventListener('resize',function(){clearTimeout(rz);rz=setTimeout(onResize,80)});
-if(mqRM.addEventListener)mqRM.addEventListener('change',function(){reduce=mqRM.matches;de.classList.toggle('rm',reduce);pinSetup()});
+if(mqRM.addEventListener)mqRM.addEventListener('change',function(){reduce=mqRM.matches;de.classList.toggle('rm',reduce)});
 d.addEventListener('visibilitychange',function(){railVids();fsync();lsync()});
-if(d.fonts&&d.fonts.ready)d.fonts.ready.then(function(){place();setStick();pinTick()});
-setStick();measurePer();pinSetup();railMeasure();onScroll();
+if(d.fonts&&d.fonts.ready)d.fonts.ready.then(function(){place()});
+measurePer();railMeasure();onScroll();
 /* Low Power Mode can refuse autoplay until the first touch: try again then */
 ['touchstart','pointerdown','keydown'].forEach(function(n){W.addEventListener(n,function(){railVids();fsync()},{passive:true,once:true})});
 /* phone browsers sometimes pause muted films, so nudge them back */
 setInterval(function(){if(!d.hidden){railVids();fsync();lsync()}},2000);
-W.__nalu={goTo:goTo,openLb:openLb,closeLb:closeLb,go:go,state:function(){return {act:act,perView:perView,cur:cur,lbOpen:lbOpen,pinned:pinned,stack:stackMode,playing:vids.filter(function(v){return !v.paused}).length,held:vids.filter(function(v){return v.getAttribute('src')}).length}}};
+W.__nalu={goTo:goTo,openLb:openLb,closeLb:closeLb,go:go,state:function(){return {act:act,perView:perView,cur:cur,lbOpen:lbOpen,playing:vids.filter(function(v){return !v.paused}).length,held:vids.filter(function(v){return v.getAttribute('src')}).length}}};
 })();
 </script>
 <script>
