@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Life at NALU | Aurian Haus × Kollosche</title>
-<meta name="description" content="NALU, brought to life from its own renders. Aurian Haus for Kollosche.">
+<meta name="description" content="Show buyers life at NALU before it is built, using scenes made from the project’s own renders.">
 <meta name="theme-color" content="#F1E9DA">
 <meta name="color-scheme" content="light">
 <meta name="robots" content="noindex,nofollow,noarchive">
@@ -140,9 +140,9 @@ footer .duo{justify-content:center;margin-bottom:14px}
 </header>
 
 <section class="hero" id="top">
-  <div class="k">For Kollosche · NALU, Miami</div>
+  <div class="k">NALU · Miami, Gold Coast</div>
   <h1>Life at <i>NALU</i>,<br>before it's built.</h1>
-  <p>You sell NALU. We make buyers feel they already live there.</p>
+  <p>Give buyers a feel for life at NALU before they can walk through it.</p>
   <div class="fan" aria-hidden="true">
     <div class="ph l"><video muted loop playsinline autoplay preload="auto" poster="media/warm/S2-kitchen-v2-crop.jpg" src="media/warm/S2-kitchen-v2-crop.mp4?v=inline-3"></video></div>
     <div class="ph c"><video muted loop playsinline autoplay preload="auto" poster="media/warm/S1-sunset-v3.jpg" src="media/warm/S1-sunset-v3.mp4?v=inline-3"></video></div>
@@ -171,7 +171,7 @@ footer .duo{justify-content:center;margin-bottom:14px}
   <div class="wrap reveal"><div class="k">What we'd make</div><h2>Built to <i>sell.</i></h2>
     <div class="offers">
       <div class="offer" style="background-image:url(media/shot-02.webp)"><div><div class="k">Project piece</div><b>Beach to front door</b><p>For the project page and private presentations.</p></div></div>
-      <div class="offer" style="background-image:url(media/warm/S6-rooftop-colourlocked.jpg)"><div><div class="k">After each appointment</div><b>The home they're weighing up</b><p>A short piece your team sends so buyers relive it.</p></div></div>
+      <div class="offer" style="background-image:url(media/warm/S6-rooftop-colourlocked.jpg)"><div><div class="k">After each appointment</div><b>The home they're weighing up</b><p>A short piece Kollosche can share after each buyer appointment.</p></div></div>
       <div class="offer" style="background-image:url(media/warm/S2-kitchen-v2-crop.jpg)"><div><div class="k">Campaign</div><b>Reels, stills, ads</b><p>Every scene cut tall for social and buyer emails.</p></div></div>
     </div>
   </div>
@@ -184,7 +184,7 @@ footer .duo{justify-content:center;margin-bottom:14px}
 </section>
 
 <section id="work">
-  <div class="wrap reveal"><div class="k">Already working with Kollosche</div><h2>Our <i>work.</i></h2><p class="lede">We already make your listing videos.</p></div>
+  <div class="wrap reveal"><div class="k">Already working with Kollosche</div><h2>Our <i>work.</i></h2><p class="lede">A selection of our work for Kollosche and private clients.</p></div>
   <div class="rail" data-rail="work"></div>
   <div class="count"><div class="dots" data-dots="work"></div></div>
 </section>
@@ -231,7 +231,7 @@ Object.keys(R).forEach(function(k){
  var rail=document.querySelector('[data-rail="'+k+'"]'),dots=document.querySelector('[data-dots="'+k+'"]');
  rail.innerHTML=R[k].join("");dots.innerHTML=R[k].map(function(){return "<i></i>"}).join("");
  var cards=[].slice.call(rail.children),ds=[].slice.call(dots.children);
- cards.forEach(function(c,i){LB[k].push({src:c.querySelector("video").dataset.src,poster:c.querySelector("video").poster,t:c.querySelector("b").textContent});c.addEventListener("click",function(){var ci=Math.round(rail.scrollLeft/(cards[1].offsetLeft-cards[0].offsetLeft));if(i!==ci&&Math.abs(i-ci)>=1){rail.scrollTo({left:c.offsetLeft-(rail.clientWidth-c.offsetWidth)/2,behavior:"smooth"});return}openLB(k,i)})});
+ cards.forEach(function(c,i){LB[k].push({src:c.querySelector("video").dataset.src,poster:c.querySelector("video").poster,t:c.querySelector("b").textContent});c.addEventListener("click",function(){openLB(k,i)})});
  var raf=0;function tilt(){raf=0;var mid=rail.scrollLeft+rail.clientWidth/2,best=0,bd=1e9;
   cards.forEach(function(c,i){var cm=c.offsetLeft+c.offsetWidth/2,d=(cm-mid)/c.offsetWidth,a=Math.min(Math.abs(d),1.4);
    c.style.setProperty("--s",(1-a*.1).toFixed(3));c.style.setProperty("--ry",(d>0?-1:1)*Math.min(a,1)*14+"deg");c.style.setProperty("--sat",(1-a*.25).toFixed(2));c.style.setProperty("--br",(1-a*.06).toFixed(2));
