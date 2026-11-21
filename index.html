@@ -154,13 +154,24 @@ footer .duo{justify-content:center;margin-bottom:14px}
 .lb .x{top:max(16px,env(safe-area-inset-top));right:16px}.lb .pv{left:14px;top:50%}.lb .nx{right:14px;top:50%}
 .lb .t{position:absolute;bottom:max(24px,env(safe-area-inset-bottom));left:0;right:0;text-align:center;color:#fff;font:400 26px "Cormorant Garamond",serif}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+
+#packages .package-wrap{max-width:850px}
+#packages summary{display:inline-flex;align-items:center;gap:1.25rem;cursor:pointer;list-style:none;padding:.75rem 1.4rem;border:1px solid var(--gold-text);border-radius:2rem;color:var(--gold-text);font-weight:600;margin:1.25rem 0 .5rem}
+#packages summary::-webkit-details-marker{display:none}
+#packages summary::after{content:"+";font-size:1.2em}
+#packages details[open] summary::after{content:"−"}
+#packages summary:focus-visible{outline:2px solid var(--gold-text);outline-offset:4px}
+#packages .package-item{padding:1.45rem 0;border-top:1px solid var(--gold)}
+#packages .package-item h3{font:500 clamp(1.7rem,4vw,2.35rem)/1.15 "Cormorant Garamond",Georgia,serif}
+#packages .package-price{color:var(--gold-text);font-weight:600;margin:.35rem 0}
+#packages .package-terms{color:var(--ink2);margin:.7rem 0 1.2rem}
 </style>
 </head>
 <body>
 
 <header class="bar" id="bar">
   <div class="duo"><img class="ah" src="img/aurian-haus-logo-black.png" alt="Aurian Haus"><span>×</span><img class="ko" src="img/kollosche-ink.png" alt="Kollosche"></div>
-  <nav class="nav" id="nav"><a href="#scenes">Scenes</a><a href="#piece">Piece</a><a href="#shots">Shots</a><a href="#work">Work</a><a href="#talk">Start</a></nav>
+  <nav class="nav" id="nav"><a href="#scenes">Scenes</a><a href="#piece">Piece</a><a href="#shots">Shots</a><a href="#work">Work</a><a href="#packages">Packages</a><a href="#talk">Start</a></nav>
 </header>
 
 <section class="hero" id="top">
@@ -213,11 +224,36 @@ footer .duo{justify-content:center;margin-bottom:14px}
   <div class="count"><div class="dots" data-dots="work"></div></div>
 </section>
 
+<section id="packages" aria-labelledby="packages-title">
+  <div class="wrap package-wrap">
+    <h2 id="packages-title">Production <i>packages.</i></h2>
+    <details>
+      <summary>View packages</summary>
+      <p class="package-terms">All prices are in AUD, including GST. Each film is made from your supplied renders.</p>
+      <article class="package-item">
+        <h3>Apartment walkthrough</h3>
+        <p class="package-price">From A$3,750 per floor plan</p>
+        <p>A 45 to 60-second walkthrough of one residence, plus a shorter vertical edit for buyer follow-ups. For Type C, follow the living spaces out onto the rooftop terrace. Includes one round of changes.</p>
+      </article>
+      <article class="package-item">
+        <h3>Wellness and lifestyle</h3>
+        <p class="package-price">From A$6,950</p>
+        <p>A 60-second film that opens over the ocean, travels up the façade and across the rooftops, then follows a day in the shared wellness spaces. Includes three short reels cut from the film and one round of changes.</p>
+      </article>
+      <article class="package-item">
+        <h3>Complete wellness</h3>
+        <p class="package-price">A$8,950</p>
+        <p>A 90-second wellness and lifestyle film with the ocean-to-rooftop opening. Includes four short reels, square and vertical versions, and two rounds of changes.</p>
+      </article>
+      <p class="package-terms">Apartment walkthroughs are priced separately from both wellness packages.</p>
+    </details>
+  </div>
+</section>
+
 <section id="talk">
   <div class="wrap"><div class="talk reveal">
     <div class="k">Start with one residence</div>
     <h2>Pick one. <i>We'll bring it to life.</i></h2>
-    <div class="steps"><span>6 scenes</span><span>3 tall edits</span><span>Ready in 10 days</span></div>
     <p class="lede" style="margin:14px auto 0">You approve the storyboard before anything is made.</p>
     <a class="cta" href="mailto:hello@aurianhaus.com?subject=NALU%20first%20residence">Start with one residence →</a>
     <div class="wa">
