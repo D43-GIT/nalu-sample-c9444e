@@ -265,7 +265,14 @@ footer .duo{justify-content:center;margin-bottom:14px}
 .pk.star .pk-stats b{color:var(--ivory)}
 .pk.star .pk-idea{border-top-color:rgba(201,166,107,.3)}
 .pk.star::after{background:radial-gradient(420px circle at var(--mx) var(--my),rgba(217,188,134,.2),transparent 60%)}
-.pk-dots{display:none;justify-content:center;gap:8px;margin-top:14px}
+.pk-clone{display:none}
+.pk-nav{display:none;align-items:center;justify-content:center;gap:18px;margin-top:14px}
+.pk-arw{display:grid;place-items:center;width:44px;height:44px;padding:0;border-radius:50%;border:1px solid var(--beige);background:var(--glass);color:var(--ink);cursor:pointer;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);-webkit-tap-highlight-color:transparent;transition:transform .24s var(--e),border-color .24s var(--e)}
+.pk-arw svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.pk-arw:hover{border-color:var(--gold)}
+.pk-arw:active{transform:scale(.92)}
+.pk-arw:focus-visible{outline:2px solid var(--gold-text);outline-offset:2px}
+.pk-dots{display:flex;justify-content:center;gap:8px}
 .pk-dots i{width:6px;height:6px;border-radius:99px;background:var(--beige);transition:width 1s var(--e),background 1s var(--e)}
 .pk-dots i.on{width:22px;background:var(--gold-text)}
 .pk-notes{margin-top:22px}
@@ -273,11 +280,13 @@ footer .duo{justify-content:center;margin-bottom:14px}
  .pk-switch{display:grid;margin-top:18px}
  .pk-grid{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain;margin:0 calc(-1 * var(--gut));padding:0 var(--gut) 6px;scroll-padding:0 var(--gut);perspective:none}
  .pk-grid::-webkit-scrollbar{display:none}
- .pk{flex:0 0 86%;scroll-snap-align:start;transform:none}
+ .pk-grid{position:relative}
+ .pk{flex:0 0 86%;scroll-snap-align:start;scroll-snap-stop:always;transform:none}
+ .pk.pk-clone{display:flex}
  .pk-body{padding:0 18px 20px}
- .pk-dots{display:flex}
+ .pk-nav{display:flex}
 }
-@media (prefers-reduced-motion:reduce){.pk,.pk-media img,.pk-pill{transition:none}.pk.star::before{animation:none}}
+@media (prefers-reduced-motion:reduce){.pk,.pk-media img,.pk-pill,.pk-arw{transition:none}.pk.star::before{animation:none}}
 </style>
   <div class="wrap package-wrap">
     <h2 id="packages-title">Production <i>packages.</i></h2>
@@ -285,25 +294,25 @@ footer .duo{justify-content:center;margin-bottom:14px}
     <p class="package-terms">AUD, including GST. Made from your renders. Every room is kept faithful to your approved renders.</p>
     <div class="pk-switch" role="tablist" aria-label="Packages">
       <span class="pk-pill" aria-hidden="true"></span>
-      <button type="button" role="tab" aria-selected="true">Walkthrough</button>
+      <button type="button" role="tab" aria-selected="true">Complete</button>
       <button type="button" role="tab" aria-selected="false">Wellness</button>
-      <button type="button" role="tab" aria-selected="false">Complete</button>
+      <button type="button" role="tab" aria-selected="false">Walkthrough</button>
     </div>
     <div class="pk-grid" role="region" aria-label="Production package cards" tabindex="0">
-      <article class="pk">
-        <div class="pk-media"><img loading="lazy" decoding="async" src="media/warm/S3-living-v2.jpg" alt=""><span class="pk-tag">Per floor plan</span></div>
+      <article class="pk star">
+        <div class="pk-media"><img loading="lazy" decoding="async" src="media/warm/S6-rooftop-colourlocked.jpg" alt=""><span class="pk-tag">Most complete</span></div>
         <div class="pk-body">
-          <h3>Apartment walkthrough</h3>
-          <p class="pk-price"><span class="pk-from">From</span><span class="pk-amt" data-n="3750"><sup>A$</sup>3,750</span></p>
-          <p class="pk-unit">per floor plan</p>
-          <p class="pk-concepts">1 original concept proposed</p>
+          <h3>Complete wellness</h3>
+          <p class="pk-price"><span class="pk-from">Fixed price</span><span class="pk-amt" data-n="8950"><sup>A$</sup>8,950</span></p>
+          <p class="pk-unit">the main piece, every short edit and every carousel, in the formats listed</p>
+          <p class="pk-concepts">3 original concepts</p>
           <ul class="pk-stats">
-            <li><b>45–60s</b><span>walkthrough of one residence</span></li>
-            <li><b>2</b><span>short vertical edits</span></li>
-            <li><b>1</b><span>carousel of 5 to 8 slides</span></li>
-            <li><b>1</b><span>round of changes</span></li>
+            <li><b>90s</b><span>piece with the ocean-to-rooftop opening</span></li>
+            <li><b>5</b><span>short edits, each supplied square and vertical</span></li>
+            <li><b>4</b><span>carousels, 5 to 8 slides each</span></li>
+            <li><b>2</b><span>rounds of changes</span></li>
           </ul>
-          <p class="pk-idea"><small>Example caption</small>“Start with coffee in the kitchen. Take breakfast out on the terrace.”</p>
+          <p class="pk-idea"><small>Example caption</small>“Come in over the ocean and see NALU from the rooftops.”</p>
         </div>
       </article>
       <article class="pk">
@@ -322,24 +331,28 @@ footer .duo{justify-content:center;margin-bottom:14px}
           <p class="pk-idea"><small>Example caption</small>“A morning swim, then a quiet moment on the rooftop.”</p>
         </div>
       </article>
-      <article class="pk star">
-        <div class="pk-media"><img loading="lazy" decoding="async" src="media/warm/S6-rooftop-colourlocked.jpg" alt=""><span class="pk-tag">Most complete</span></div>
+      <article class="pk">
+        <div class="pk-media"><img loading="lazy" decoding="async" src="media/warm/S3-living-v2.jpg" alt=""><span class="pk-tag">Per floor plan</span></div>
         <div class="pk-body">
-          <h3>Complete wellness</h3>
-          <p class="pk-price"><span class="pk-from">Fixed price</span><span class="pk-amt" data-n="8950"><sup>A$</sup>8,950</span></p>
-          <p class="pk-unit">the main piece, every short edit and every carousel, in the formats listed</p>
-          <p class="pk-concepts">3 original concepts</p>
+          <h3>Apartment walkthrough</h3>
+          <p class="pk-price"><span class="pk-from">From</span><span class="pk-amt" data-n="3750"><sup>A$</sup>3,750</span></p>
+          <p class="pk-unit">per floor plan</p>
+          <p class="pk-concepts">1 original concept proposed</p>
           <ul class="pk-stats">
-            <li><b>90s</b><span>piece with the ocean-to-rooftop opening</span></li>
-            <li><b>5</b><span>short edits, each supplied square and vertical</span></li>
-            <li><b>4</b><span>carousels, 5 to 8 slides each</span></li>
-            <li><b>2</b><span>rounds of changes</span></li>
+            <li><b>45–60s</b><span>walkthrough of one residence</span></li>
+            <li><b>2</b><span>short vertical edits</span></li>
+            <li><b>1</b><span>carousel of 5 to 8 slides</span></li>
+            <li><b>1</b><span>round of changes</span></li>
           </ul>
-          <p class="pk-idea"><small>Example caption</small>“Come in over the ocean and see NALU from the rooftops.”</p>
+          <p class="pk-idea"><small>Example caption</small>“Start with coffee in the kitchen. Take breakfast out on the terrace.”</p>
         </div>
       </article>
     </div>
-    <div class="pk-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+    <div class="pk-nav">
+      <button type="button" class="pk-arw" data-d="-1" aria-label="Previous package"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6 8.5 12l6 6"/></svg></button>
+      <div class="pk-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+      <button type="button" class="pk-arw" data-d="1" aria-label="Next package"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6l6 6-6 6"/></svg></button>
+    </div>
     <div class="pk-notes">
       <p class="package-terms">Every short edit is in addition to the main piece.</p>
       <p class="package-terms">Each carousel has 5 to 8 slides made from your approved material, arranged in posting order. We can supply branded or clean versions.</p>
@@ -353,10 +366,41 @@ footer .duo{justify-content:center;margin-bottom:14px}
       tabs=[].slice.call(s.querySelectorAll('.pk-switch button')), pill=s.querySelector('.pk-pill'),
       dots=[].slice.call(s.querySelectorAll('.pk-dots i')),
       still=window.matchMedia('(prefers-reduced-motion: reduce)').matches, fine=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
-  function mark(i){tabs.forEach(function(t,k){t.setAttribute('aria-selected',k===i)});dots.forEach(function(d,k){d.classList.toggle('on',k===i)});pill.style.transform='translateX('+(i*100)+'%)'}
-  function go(i){var c=cards[i];grid.scrollTo({left:c.offsetLeft-parseFloat(getComputedStyle(grid).paddingLeft),behavior:still?'auto':'smooth'});mark(i)}
-  tabs.forEach(function(t,i){t.addEventListener('click',function(){go(i)})});
-  var tm;grid.addEventListener('scroll',function(){clearTimeout(tm);tm=setTimeout(function(){var best=0,d=1e9;cards.forEach(function(c,i){var x=Math.abs(c.getBoundingClientRect().left-grid.getBoundingClientRect().left);if(x<d){d=x;best=i}});mark(best)},80)},{passive:true});
+  // Phone carousel that loops both ways. Copies of the end cards sit either side of the real ones;
+  // once a swipe has fully settled on a copy, the scroll is moved to the identical real card (no visible jump).
+  // Works for any number of cards, in whatever order they are written above.
+  var n=cards.length, E=Math.min(2,n), shown=-1, aim=null, touching=false, pos=[];
+  function copy(c){var k=c.cloneNode(true);k.classList.add('pk-clone');k.setAttribute('aria-hidden','true');k.setAttribute('inert','');return k}
+  for(var k=0;k<E;k++){grid.insertBefore(copy(cards[n-1-k]),grid.firstChild);grid.appendChild(copy(cards[k]))}
+  var all=[].slice.call(grid.children);
+  function real(j){return ((j-E)%n+n)%n}
+  function looping(){return grid.scrollWidth>grid.clientWidth+4}
+  function measure(){var pl=parseFloat(getComputedStyle(grid).scrollPaddingLeft)||parseFloat(getComputedStyle(grid).paddingLeft)||0;var g=grid.getBoundingClientRect().left+grid.clientLeft-grid.scrollLeft+pl;pos=all.map(function(c){return c.getBoundingClientRect().left-g})}
+  function near(){var x=grid.scrollLeft,b=0,d=1e9;for(var j=0;j<pos.length;j++){var q=Math.abs(pos[j]-x);if(q<d){d=q;b=j}}return b}
+  function mark(i){if(i===shown)return;shown=i;tabs.forEach(function(t,k){t.setAttribute('aria-selected',k===i)});dots.forEach(function(d,k){d.classList.toggle('on',k===i)});pill.style.transform='translateX('+(i*100)+'%)'}
+  function to(j,smooth){aim=smooth&&Math.abs(pos[j]-grid.scrollLeft)>1?j:null;grid.scrollTo({left:pos[j],behavior:smooth&&!still?'smooth':'auto'});mark(real(j))}
+  function settle(){ if(touching||!looping()) return; var j=near(); if(Math.abs(grid.scrollLeft-pos[j])>3) return; aim=null;
+    var r=real(j)+E; if(r!==j) grid.scrollLeft=pos[r]; mark(real(j)) }
+  // from j, the copy of card i that is the shortest trip away (so a tap can rotate either way)
+  function closest(i,from){var b=i+E,d=1e9;for(var j=i+E-n;j<=i+E+n;j+=n){if(j<0||j>=all.length)continue;var q=Math.abs(j-from);if(q<d){d=q;b=j}}return b}
+  function base(){var j=aim!=null?aim:near(); if(aim==null&&j!==real(j)+E){grid.scrollLeft+=pos[real(j)+E]-pos[j];j=real(j)+E} return j}
+  tabs.forEach(function(t,i){t.addEventListener('click',function(){ if(!looping()){mark(i);return} to(closest(i,base()),true)})});
+  [].forEach.call(s.querySelectorAll('.pk-arw'),function(b){b.addEventListener('click',function(){ if(!looping()) return;
+    var j=base()+(+b.dataset.d); if(j<0||j>=all.length){ grid.scrollLeft+=pos[real(j-(+b.dataset.d))+E]-grid.scrollLeft; j=real(j-(+b.dataset.d))+E+(+b.dataset.d) } to(j,true)})});
+  function start(){ measure(); if(looping()) to(E,false); else mark(0) }
+  start();
+  var raf=0,tm;
+  grid.addEventListener('scroll',function(){ if(!raf) raf=requestAnimationFrame(function(){raf=0;if(aim==null)mark(real(near()))});
+    clearTimeout(tm); tm=setTimeout(settle,120)},{passive:true});
+  if('onscrollend' in window) grid.addEventListener('scrollend',settle);
+  grid.addEventListener('touchstart',function(){touching=true;aim=null},{passive:true});
+  grid.addEventListener('touchend',function(){touching=false;clearTimeout(tm);tm=setTimeout(settle,120)},{passive:true});
+  grid.addEventListener('touchcancel',function(){touching=false},{passive:true});
+  var lw=window.innerWidth; window.addEventListener('resize',function(){ if(window.innerWidth===lw) return; lw=window.innerWidth;
+    var i=shown<0?0:shown; measure(); if(looping()) to(i+E,false) });
+  // images and fonts can shift layout after first paint; re-seat on the opening card if nobody has touched it yet
+  var moved=false; grid.addEventListener('pointerdown',function(){moved=true},{passive:true});
+  window.addEventListener('load',function(){ if(!moved&&aim==null&&near()===E){measure(); if(looping()) grid.scrollLeft=pos[E]} });
   // pointer glow + small tilt on desktop
   if(fine&&!still) cards.forEach(function(c){
     c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
@@ -371,7 +415,9 @@ footer .duo{justify-content:center;margin-bottom:14px}
       requestAnimationFrame(f)})}
   if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){count();io.disconnect()}},{threshold:.35});io.observe(grid);
     // only spin the gold border while the packages are on screen
-    new IntersectionObserver(function(es){s.classList.toggle('inview',es[0].isIntersecting)},{rootMargin:'200px 0px'}).observe(s)}
+    new IntersectionObserver(function(es){s.classList.toggle('inview',es[0].isIntersecting);
+      // once the packages are close, load all three pictures (about 230 KB) so the loop never lands on a blank card
+      if(es[0].isIntersecting) s.querySelectorAll('.pk-media img[loading="lazy"]').forEach(function(m){m.loading='eager'})},{rootMargin:'200px 0px'}).observe(s)}
   else s.classList.add('inview');
 })();
 </script>
