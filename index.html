@@ -155,39 +155,6 @@ footer .duo{justify-content:center;margin-bottom:14px}
 .lb .t{position:absolute;bottom:max(24px,env(safe-area-inset-bottom));left:0;right:0;text-align:center;color:#fff;font:400 26px "Cormorant Garamond",serif}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
 
-#packages .package-wrap{max-width:850px}
-#packages summary{display:inline-flex;align-items:center;gap:1.25rem;cursor:pointer;list-style:none;padding:.75rem 1.4rem;border:1px solid var(--gold-text);border-radius:2rem;color:var(--gold-text);font-weight:600;margin:1.25rem 0 .5rem}
-#packages summary::-webkit-details-marker{display:none}
-#packages summary::after{content:"+";font-size:1.2em}
-#packages details[open] summary::after{content:"−"}
-#packages summary:focus-visible{outline:2px solid var(--gold-text);outline-offset:4px}
-#packages .package-wrap{max-width:960px}
-#packages .package-terms{color:var(--ink2);margin:.65rem 0 1rem}
-.package-track{position:relative;display:flex;gap:14px;touch-action:pan-y pinch-zoom;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:18px;cursor:grab}
-.package-track::-webkit-scrollbar{display:none}
-.package-track:focus-visible{outline:2px solid var(--gold-text);outline-offset:3px}
-.package-track.dragging{cursor:grabbing;scroll-snap-type:none;user-select:none}
-.package-item{flex:0 0 59%;min-width:0;overflow:hidden;scroll-snap-align:start;background:var(--ivory);border:1px solid var(--beige);border-radius:18px}
-.package-item img{width:100%;height:clamp(100px,14vw,148px);display:block;object-fit:cover;pointer-events:none}
-.package-copy{padding:clamp(16px,3vw,28px)}
-.package-item h3{font:500 clamp(1.7rem,3.6vw,2.25rem)/1.05 "Cormorant Garamond",Georgia,serif}
-.package-price{color:var(--gold-text);font-weight:600;margin:.45rem 0 .8rem}
-.package-item ul{padding-left:1.1em;line-height:1.4;color:var(--ink2)}
-.package-item li+li{margin-top:.3em}
-.package-idea{margin:.9rem 0 0;border-top:1px solid var(--beige);padding-top:.65rem;color:var(--ink2)}
-.package-controls{display:flex;align-items:center;justify-content:flex-end;gap:12px;margin-top:12px}
-.package-controls[hidden]{display:none}
-.package-controls button{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;border:1px solid var(--gold);background:var(--glass);color:var(--gold-text);font-size:22px;cursor:pointer}
-.package-controls button:disabled{opacity:.35;cursor:default}
-.package-controls output{font-variant-numeric:tabular-nums;color:var(--ink2);font-size:14px}
-.package-concepts{color:var(--ink2);margin:-.35rem 0 .8rem;font-size:15px}
-#packages .package-lede{max-width:46ch}
-.price-list{list-style:none;margin:1.4rem 0 .4rem;padding:0;border-top:1px solid var(--beige)}
-.price-list li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:.9rem 0;border-bottom:1px solid var(--beige)}
-.price-list span{color:var(--ink)}
-.price-list b{color:var(--gold-text);font-weight:600;text-align:right;white-space:nowrap}
-.price-list small{display:block;font-weight:400;color:var(--ink2);font-size:13px}
-@media(max-width:640px){.package-item{flex-basis:88%}.package-copy{padding:16px}.package-controls{justify-content:center}}
 </style>
 </head>
 <body>
@@ -248,59 +215,160 @@ footer .duo{justify-content:center;margin-bottom:14px}
 </section>
 
 <section id="packages" aria-labelledby="packages-title">
+<style>
+#packages .package-wrap{max-width:1180px}
+#packages .package-terms{color:var(--ink2);margin:.65rem 0 1rem}
+#packages .pk-lede{max-width:60ch;margin:12px 0 6px}
+.pk-switch{position:relative;display:none;grid-template-columns:repeat(3,1fr);margin:6px 0 16px;padding:4px;border-radius:999px;background:var(--glass);border:1px solid var(--beige);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.pk-switch button{position:relative;z-index:1;border:0;background:none;padding:10px 4px;font:600 13px/1 "Inter Tight",system-ui,sans-serif;color:var(--ink2);cursor:pointer;transition:color 1s var(--e)}
+.pk-switch button[aria-selected="true"]{color:var(--ivory)}
+.pk-pill{position:absolute;z-index:0;top:4px;bottom:4px;left:4px;width:calc((100% - 8px)/3);border-radius:999px;background:var(--ink);transition:transform 1s var(--e)}
+.pk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch;perspective:1400px;margin-top:22px}
+.pk{--mx:50%;--my:30%;--rx:0deg;--ry:0deg;position:relative;display:flex;flex-direction:column;min-width:0;border-radius:22px;background:var(--ivory);border:1px solid var(--beige);overflow:hidden;transform:rotateX(var(--rx)) rotateY(var(--ry));transform-style:preserve-3d;transition:transform 1s var(--e),box-shadow 1s var(--e);box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 18px 40px -28px rgba(60,40,10,.35)}
+.pk::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:radial-gradient(420px circle at var(--mx) var(--my),rgba(201,166,107,.26),transparent 60%);opacity:0;transition:opacity 1s var(--e)}
+.pk:hover::after{opacity:1}
+.pk:hover{box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 34px 60px -30px rgba(60,40,10,.45)}
+.pk-media{position:relative;aspect-ratio:16/10;overflow:hidden}
+.pk-media img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.02);transition:transform 1.2s var(--e);pointer-events:none}
+.pk:hover .pk-media img{transform:scale(1.08)}
+.pk-media::after{content:"";position:absolute;inset:auto 0 0 0;height:55%;background:linear-gradient(to bottom,transparent,var(--ivory))}
+.pk-tag{position:absolute;z-index:1;top:14px;left:14px;padding:7px 12px;border-radius:999px;font:600 11px/1 "Inter Tight",system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);background:rgba(255,250,242,.72);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.6)}
+.pk-body{position:relative;z-index:1;display:flex;flex-direction:column;flex:1;padding:0 24px 24px;margin-top:-34px}
+.pk h3{font:500 clamp(1.6rem,2.6vw,2rem)/1.05 "Cormorant Garamond",Georgia,serif;margin:0}
+.pk-price{margin:16px 0 4px}
+.pk-from{display:block;margin:0 0 6px;font:600 11px/1 "Inter Tight",system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
+.pk-amt{font:600 clamp(3.2rem,5.4vw,4.4rem)/.9 "Cormorant Garamond",Georgia,serif;letter-spacing:-.01em;color:var(--gold-text);font-variant-numeric:lining-nums tabular-nums}
+.pk-amt sup{font-size:.42em;vertical-align:.95em;margin-right:2px;letter-spacing:0}
+.pk-unit{font:500 13px/1.3 "Inter Tight",system-ui,sans-serif;color:var(--ink2);margin:0 0 10px}
+.pk-concepts{display:inline-flex;align-self:flex-start;align-items:center;gap:8px;margin:0 0 16px;padding:7px 12px;border-radius:999px;font:600 12.5px/1.2 "Inter Tight",system-ui,sans-serif;color:var(--gold-text);background:rgba(201,166,107,.14);border:1px solid rgba(201,166,107,.45)}
+.pk-concepts::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;flex:none}
+.pk-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 18px;padding:0;list-style:none}
+.pk-stats li{padding:12px 12px 11px;border-radius:14px;background:rgba(229,218,194,.38);border:1px solid rgba(229,218,194,.9)}
+.pk-stats b{display:block;font:600 1.55rem/1 "Inter Tight",system-ui,sans-serif;letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums}
+.pk-stats span{display:block;margin-top:5px;font:500 12.5px/1.3 "Inter Tight",system-ui,sans-serif;color:var(--ink2)}
+.pk-idea{margin:auto 0 0;padding-top:14px;border-top:1px solid var(--beige);font:italic 400 1.05rem/1.35 "Cormorant Garamond",Georgia,serif;color:var(--ink2)}
+.pk-idea small{display:block;margin:0 0 6px;font:600 11px/1 "Inter Tight",system-ui,sans-serif;font-style:normal;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
+/* the hero card */
+.pk.star{background:var(--ink);border-color:transparent;color:var(--ivory)}
+.pk.star::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--ang,0deg),rgba(201,166,107,.15),#C9A66B,rgba(255,250,242,.9),#C9A66B,rgba(201,166,107,.15));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:pk-spin 9s linear infinite;pointer-events:none;z-index:2}
+@property --ang{syntax:"<angle>";inherits:false;initial-value:0deg}
+@keyframes pk-spin{to{--ang:360deg}}
+.pk.star .pk-media::after{background:linear-gradient(to bottom,transparent,var(--ink))}
+.pk.star .pk-tag{background:#C9A66B;color:var(--ink);border-color:transparent}
+.pk.star .pk-amt{color:#D9BC86}
+.pk.star .pk-from,.pk.star .pk-unit,.pk.star .pk-stats span,.pk.star .pk-idea,.pk.star .pk-idea small{color:rgba(255,250,242,.78)}
+.pk.star .pk-concepts{color:#E3C892;background:rgba(201,166,107,.12);border-color:rgba(201,166,107,.45)}
+.pk.star .pk-stats li{background:rgba(255,250,242,.06);border-color:rgba(201,166,107,.35)}
+.pk.star .pk-stats b{color:var(--ivory)}
+.pk.star .pk-idea{border-top-color:rgba(201,166,107,.3)}
+.pk.star::after{background:radial-gradient(420px circle at var(--mx) var(--my),rgba(217,188,134,.2),transparent 60%)}
+.pk-dots{display:none;justify-content:center;gap:8px;margin-top:14px}
+.pk-dots i{width:6px;height:6px;border-radius:99px;background:var(--beige);transition:width 1s var(--e),background 1s var(--e)}
+.pk-dots i.on{width:22px;background:var(--gold-text)}
+.pk-notes{margin-top:22px}
+@media (max-width:899px){
+ .pk-switch{display:grid;margin-top:18px}
+ .pk-grid{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain;margin:0 calc(-1 * var(--gut));padding:0 var(--gut) 6px;scroll-padding:0 var(--gut);perspective:none}
+ .pk-grid::-webkit-scrollbar{display:none}
+ .pk{flex:0 0 86%;scroll-snap-align:start;transform:none}
+ .pk-body{padding:0 18px 20px}
+ .pk-dots{display:flex}
+}
+@media (prefers-reduced-motion:reduce){.pk,.pk-media img,.pk-pill{transition:none}.pk.star::before{animation:none}}
+</style>
   <div class="wrap package-wrap">
     <h2 id="packages-title">Production <i>packages.</i></h2>
-    <p class="lede package-lede">Every package now includes one more short edit (counted below). You keep every clean generated clip to reuse.</p>
-    <ul class="price-list" aria-label="Package prices">
-      <li><span>Apartment walkthrough</span><b>From A$3,750<small>per floor plan</small></b></li>
-      <li><span>Wellness and lifestyle</span><b>From A$6,950</b></li>
-      <li><span>Complete wellness</span><b>A$8,950</b></li>
-    </ul>
-    <p class="package-terms">AUD, including GST. Made from your renders.</p>
-    <details open>
-      <summary>What's included</summary>
-      <div class="package-track" role="region" aria-label="Production package cards" tabindex="0">
-        <article class="package-item">
-          <img loading="lazy" decoding="async" src="media/warm/S3-living-v2.jpg" alt="">
-          <div class="package-copy">
-            <h3>Apartment walkthrough</h3>
-            <p class="package-price">From A$3,750 per floor plan</p>
-            <p class="package-concepts">One original concept, proposed in your storyboard</p>
-            <ul><li>45 to 60-second walkthrough of one residence</li><li>2 short edits in total: vertical cuts to send after a viewing</li><li>One ready-to-post carousel of 5 to 8 slides</li><li>One round of changes</li></ul>
-            <p class="package-idea">Example caption: “Start with coffee in the kitchen. Take breakfast out on the terrace.”</p>
-          </div>
-        </article>
-        <article class="package-item">
-          <img loading="lazy" decoding="async" src="media/shot-08.webp" alt="">
-          <div class="package-copy">
-            <h3>Wellness and lifestyle</h3>
-            <p class="package-price">From A$6,950</p>
-            <p class="package-concepts">Two original concepts, proposed in your storyboard</p>
-            <ul><li>60-second film, from the ocean up to the rooftop</li><li>4 short edits in total: reels cut from the film</li><li>Four ready-to-post carousels of 5 to 8 slides each</li><li>One round of changes</li></ul>
-            <p class="package-idea">Example caption: “A morning swim, then a quiet moment on the rooftop.”</p>
-          </div>
-        </article>
-        <article class="package-item">
-          <img loading="lazy" decoding="async" src="media/warm/S6-rooftop-colourlocked.jpg" alt="">
-          <div class="package-copy">
-            <h3>Complete wellness</h3>
-            <p class="package-price">A$8,950</p>
-            <p class="package-concepts">Three original concepts</p>
-            <ul><li>90-second film with the ocean-to-rooftop opening</li><li>5 short edits in total: reels in square and vertical versions</li><li>Four ready-to-post carousels of 5 to 8 slides each</li><li>Two rounds of changes</li></ul>
-            <p class="package-idea">Example caption: “Come in over the ocean and see NALU from the rooftops.”</p>
-          </div>
-        </article>
-      </div>
-      <div class="package-controls" hidden>
-        <button type="button" aria-label="Previous package">←</button>
-        <output aria-label="Current package">1 / 3</output>
-        <button type="button" aria-label="Next package">→</button>
-      </div>
-      <p class="package-terms">Every short cut is in addition to the main film.</p>
+    <p class="lede pk-lede">Every package now includes one more short edit (counted in each card). You keep every clean generated clip to reuse.</p>
+    <p class="package-terms">AUD, including GST. Made from your renders. Every room is kept faithful to your approved renders.</p>
+    <div class="pk-switch" role="tablist" aria-label="Packages">
+      <span class="pk-pill" aria-hidden="true"></span>
+      <button type="button" role="tab" aria-selected="true">Walkthrough</button>
+      <button type="button" role="tab" aria-selected="false">Wellness</button>
+      <button type="button" role="tab" aria-selected="false">Complete</button>
+    </div>
+    <div class="pk-grid" role="region" aria-label="Production package cards" tabindex="0">
+      <article class="pk">
+        <div class="pk-media"><img loading="lazy" decoding="async" src="media/warm/S3-living-v2.jpg" alt=""><span class="pk-tag">Per floor plan</span></div>
+        <div class="pk-body">
+          <h3>Apartment walkthrough</h3>
+          <p class="pk-price"><span class="pk-from">From</span><span class="pk-amt" data-n="3750"><sup>A$</sup>3,750</span></p>
+          <p class="pk-unit">per floor plan</p>
+          <p class="pk-concepts">1 original concept proposed</p>
+          <ul class="pk-stats">
+            <li><b>45–60s</b><span>walkthrough of one residence</span></li>
+            <li><b>2</b><span>short vertical edits</span></li>
+            <li><b>1</b><span>carousel of 5 to 8 slides</span></li>
+            <li><b>1</b><span>round of changes</span></li>
+          </ul>
+          <p class="pk-idea"><small>Example caption</small>“Start with coffee in the kitchen. Take breakfast out on the terrace.”</p>
+        </div>
+      </article>
+      <article class="pk">
+        <div class="pk-media"><img loading="lazy" decoding="async" src="media/shot-08.webp" alt=""><span class="pk-tag">Wellness</span></div>
+        <div class="pk-body">
+          <h3>Wellness and lifestyle</h3>
+          <p class="pk-price"><span class="pk-from">From</span><span class="pk-amt" data-n="6950"><sup>A$</sup>6,950</span></p>
+          <p class="pk-unit">the whole building, ocean to rooftop</p>
+          <p class="pk-concepts">2 original concepts proposed</p>
+          <ul class="pk-stats">
+            <li><b>60s</b><span>piece from the ocean to the rooftop</span></li>
+            <li><b>4</b><span>short edits</span></li>
+            <li><b>4</b><span>carousels, 5 to 8 slides each</span></li>
+            <li><b>1</b><span>round of changes</span></li>
+          </ul>
+          <p class="pk-idea"><small>Example caption</small>“A morning swim, then a quiet moment on the rooftop.”</p>
+        </div>
+      </article>
+      <article class="pk star">
+        <div class="pk-media"><img loading="lazy" decoding="async" src="media/warm/S6-rooftop-colourlocked.jpg" alt=""><span class="pk-tag">Most complete</span></div>
+        <div class="pk-body">
+          <h3>Complete wellness</h3>
+          <p class="pk-price"><span class="pk-from">Fixed price</span><span class="pk-amt" data-n="8950"><sup>A$</sup>8,950</span></p>
+          <p class="pk-unit">everything, in every format</p>
+          <p class="pk-concepts">3 original concepts</p>
+          <ul class="pk-stats">
+            <li><b>90s</b><span>piece with the ocean-to-rooftop opening</span></li>
+            <li><b>5</b><span>short edits in square and vertical</span></li>
+            <li><b>4</b><span>carousels, 5 to 8 slides each</span></li>
+            <li><b>2</b><span>rounds of changes</span></li>
+          </ul>
+          <p class="pk-idea"><small>Example caption</small>“Come in over the ocean and see NALU from the rooftops.”</p>
+        </div>
+      </article>
+    </div>
+    <div class="pk-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+    <div class="pk-notes">
+      <p class="package-terms">Every short edit is in addition to the main piece.</p>
       <p class="package-terms">Each postcard is a carousel with 5 to 8 slides made from your approved material, arranged in posting order. We can supply branded or clean versions.</p>
       <p class="package-terms">Apartment walkthroughs are priced per floor plan, separately from both wellness packages.</p>
-    </details>
+    </div>
   </div>
+<script>
+(function(){
+  var s=document.getElementById('packages'); if(!s) return;
+  var grid=s.querySelector('.pk-grid'), cards=[].slice.call(s.querySelectorAll('.pk')),
+      tabs=[].slice.call(s.querySelectorAll('.pk-switch button')), pill=s.querySelector('.pk-pill'),
+      dots=[].slice.call(s.querySelectorAll('.pk-dots i')),
+      still=window.matchMedia('(prefers-reduced-motion: reduce)').matches, fine=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  function mark(i){tabs.forEach(function(t,k){t.setAttribute('aria-selected',k===i)});dots.forEach(function(d,k){d.classList.toggle('on',k===i)});pill.style.transform='translateX('+(i*100)+'%)'}
+  function go(i){var c=cards[i];grid.scrollTo({left:c.offsetLeft-parseFloat(getComputedStyle(grid).paddingLeft),behavior:still?'auto':'smooth'});mark(i)}
+  tabs.forEach(function(t,i){t.addEventListener('click',function(){go(i)})});
+  var tm;grid.addEventListener('scroll',function(){clearTimeout(tm);tm=setTimeout(function(){var best=0,d=1e9;cards.forEach(function(c,i){var x=Math.abs(c.getBoundingClientRect().left-grid.getBoundingClientRect().left);if(x<d){d=x;best=i}});mark(best)},80)},{passive:true});
+  // pointer glow + small tilt on desktop
+  if(fine&&!still) cards.forEach(function(c){
+    c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+      c.style.setProperty('--mx',x*100+'%');c.style.setProperty('--my',y*100+'%');c.style.setProperty('--ry',((x-.5)*6)+'deg');c.style.setProperty('--rx',((.5-y)*5)+'deg')});
+    c.addEventListener('pointerleave',function(){c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg')});
+  });
+  // prices count up when seen (the real number is already in the page)
+  var done=false;
+  function count(){ if(done||still) return; done=true;
+    s.querySelectorAll('.pk-amt').forEach(function(el){var n=+el.dataset.n,sup=el.querySelector('sup').outerHTML,t0=null;
+      function f(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/1100),e=1-Math.pow(1-p,4);el.innerHTML=sup+Math.round(n*e).toLocaleString('en-AU');if(p<1)requestAnimationFrame(f)}
+      requestAnimationFrame(f)})}
+  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){count();io.disconnect()}},{threshold:.35});io.observe(grid)}
+})();
+</script>
 </section>
 
 <section id="talk">
@@ -371,7 +439,7 @@ function enableSwipe(surface, start, move, finish){
   if(swallowClick && event.detail){event.preventDefault();event.stopImmediatePropagation();swallowClick=false}
  },true);
 }
-function setupPackages(){
+function setupPackages(){if(!document.querySelector(".package-track"))return;
  const track=document.querySelector(".package-track"), cards=[...track.children];
  const controls=document.querySelector(".package-controls");
  const [prev,next]=controls.querySelectorAll("button"), position=controls.querySelector("output");
