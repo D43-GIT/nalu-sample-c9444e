@@ -72,7 +72,9 @@ section{padding:84px 0 0}
 
 /* tilt rails */
 .rail{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:30px max(var(--gut),calc((100vw - var(--cw))/2)) 34px;scrollbar-width:none;perspective:1400px;-webkit-overflow-scrolling:touch}
-.rail{position:relative;touch-action:pan-y pinch-zoom;overscroll-behavior-x:contain;user-select:none;-webkit-user-select:none}
+.rail{position:relative;touch-action:pan-x pan-y pinch-zoom;overscroll-behavior-x:contain;user-select:none;-webkit-user-select:none}
+.rail .card{scroll-snap-stop:always}
+.hero.off .ph,.hero.off .cue{animation-play-state:paused}
 .rail.dragging{scroll-snap-type:none;cursor:grabbing}
 .rail .card{cursor:grab}
 .rail.dragging .card{cursor:grabbing}
@@ -147,7 +149,7 @@ footer .duo{justify-content:center;margin-bottom:14px}
 
 /* lightbox */
 .lb{position:fixed;inset:0;z-index:90;background:rgba(18,13,8,.94);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s}
-.lb{visibility:hidden;touch-action:pan-y pinch-zoom;overscroll-behavior:contain;user-select:none;-webkit-user-select:none}
+.lb{visibility:hidden;touch-action:pinch-zoom;overscroll-behavior:contain;user-select:none;-webkit-user-select:none}
 .lb.open{visibility:visible;opacity:1;pointer-events:auto}
 .lb video{width:min(94vw,1200px);height:auto;max-height:80vh;border-radius:18px;object-fit:contain}
 .lb .x,.lb .pv,.lb .nx{position:absolute;color:#fff;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.12);font-size:20px}
@@ -185,7 +187,7 @@ footer .duo{justify-content:center;margin-bottom:14px}
 <section id="piece">
   <div class="wrap reveal"><div class="k">The amenities</div><h2>Twenty-three <i>seconds.</i></h2>
     <div class="piece" style="background-image:url(media/nalu-film-poster.webp)">
-      <video id="pv" muted loop playsinline autoplay preload="metadata" poster="media/nalu-film-poster.webp" src="media/nalu-piece-v3.mp4?v=hard1"></video>
+      <video id="pv" muted loop playsinline preload="none"poster="media/nalu-film-poster.webp" src="media/nalu-piece-v3.mp4?v=hard1"></video>
       <div class="pp"><button id="pb" aria-label="Pause">❚❚</button><span>Arrival to rooftop, from your renders</span></div>
       <div class="bar2"><b id="pbar"></b></div>
     </div>
@@ -253,6 +255,7 @@ footer .duo{justify-content:center;margin-bottom:14px}
 .pk.star::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--ang,0deg),rgba(201,166,107,.15),#C9A66B,rgba(255,250,242,.9),#C9A66B,rgba(201,166,107,.15));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:pk-spin 9s linear infinite;pointer-events:none;z-index:2}
 @property --ang{syntax:"<angle>";inherits:false;initial-value:0deg}
 @keyframes pk-spin{to{--ang:360deg}}
+#packages:not(.inview) .pk.star::before{animation-play-state:paused}
 .pk.star .pk-media::after{background:linear-gradient(to bottom,transparent,var(--ink))}
 .pk.star .pk-tag{background:#C9A66B;color:var(--ink);border-color:transparent}
 .pk.star .pk-amt{color:#D9BC86}
@@ -366,7 +369,10 @@ footer .duo{justify-content:center;margin-bottom:14px}
     s.querySelectorAll('.pk-amt').forEach(function(el){var n=+el.dataset.n,sup=el.querySelector('sup').outerHTML,t0=null;
       function f(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/1100),e=1-Math.pow(1-p,4);el.innerHTML=sup+Math.round(n*e).toLocaleString('en-AU');if(p<1)requestAnimationFrame(f)}
       requestAnimationFrame(f)})}
-  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){count();io.disconnect()}},{threshold:.35});io.observe(grid)}
+  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){count();io.disconnect()}},{threshold:.35});io.observe(grid);
+    // only spin the gold border while the packages are on screen
+    new IntersectionObserver(function(es){s.classList.toggle('inview',es[0].isIntersecting)},{rootMargin:'200px 0px'}).observe(s)}
+  else s.classList.add('inview');
 })();
 </script>
 </section>
@@ -413,6 +419,8 @@ function enableSwipe(surface, start, move, finish){
  let tracking=null, swallowClick=false;
  surface.addEventListener("pointerdown",event=>{
   if(!event.isPrimary || event.button!==0)return;
+  // galleries: fingers use the phone's own smooth scrolling; only mouse and pen are dragged by script
+  if(event.pointerType==="touch" && surface.classList.contains("rail"))return;
   swallowClick=false;
   if(event.target.closest("button"))return;
   tracking={id:event.pointerId,x:event.clientX,y:event.clientY,drag:false};
@@ -528,22 +536,28 @@ Object.keys(R).forEach(function(k){
    e.preventDefault();go(nearest()+(e.key==="ArrowRight"?1:-1));cards[selected].focus({preventScroll:true});
   }
  });
- var raf=0;function tilt(){raf=0;var mid=rail.scrollLeft+rail.clientWidth/2,best=0,bd=1e9;
-  cards.forEach(function(c,i){var cm=c.offsetLeft+c.offsetWidth/2,d=(cm-mid)/c.offsetWidth,a=Math.min(Math.abs(d),1.4);
+ // card positions are measured once (and on resize), so scrolling never forces a layout per card
+ var raf=0,geo=null;function measure(){geo={w:rail.clientWidth,c:cards.map(function(c){return [c.offsetLeft+c.offsetWidth/2,c.offsetWidth]})}}
+ function tilt(){raf=0;if(!geo)measure();var mid=rail.scrollLeft+geo.w/2,best=0,bd=1e9;
+  cards.forEach(function(c,i){var cm=geo.c[i][0],d=(cm-mid)/geo.c[i][1],a=Math.min(Math.abs(d),1.4);
    c.style.setProperty("--s",(1-a*.1).toFixed(3));c.style.setProperty("--ry",(d>0?-1:1)*Math.min(a,1)*14+"deg");c.style.setProperty("--sat",(1-a*.25).toFixed(2));c.style.setProperty("--br",(1-a*.06).toFixed(2));
    if(Math.abs(d)<bd){bd=Math.abs(d);best=i}});
   arrows[0].disabled=best===0;arrows[1].disabled=best===cards.length-1;
   ds.forEach(function(x,i){x.classList.toggle("on",i===best)})}
- rail.addEventListener("scroll",function(){if(!raf)raf=requestAnimationFrame(tilt)},{passive:true});addEventListener("resize",tilt);tilt();
+ rail.addEventListener("scroll",function(){if(!raf)raf=requestAnimationFrame(tilt)},{passive:true});addEventListener("resize",function(){geo=null;tilt()});tilt();
+ if(window.ResizeObserver)new ResizeObserver(function(){geo=null;if(!raf)raf=requestAnimationFrame(tilt)}).observe(rail);
+ rail.__cards=cards;
 });
 const make=document.querySelector("#make"),offers=[...make.querySelectorAll(".offer")];
 const animateOffers=matchMedia("(min-height:540px) and (prefers-reduced-motion:no-preference)");
-let frame=0;
+let frame=0,lastProgress=-1;
 function layoutOffers(){
  frame=0;make.classList.toggle("animated",animateOffers.matches);
- if(!animateOffers.matches)return;
+ if(!animateOffers.matches){lastProgress=-1;return}
  const height=make.querySelector(".offer-stage").offsetHeight;
  const progress=Math.max(0,Math.min(1,-make.getBoundingClientRect().top/(make.offsetHeight-height)));
+ if(progress===lastProgress)return; // nothing moved (section is off screen): skip the style work
+ lastProgress=progress;
  offers.slice(1).forEach((card,index)=>{
   const shown=Math.max(0,Math.min(1,progress*2.4-index-.12));
   card.style.setProperty("--offer-y",(1-shown)*105+"%");
@@ -551,20 +565,29 @@ function layoutOffers(){
  });
 }
 function scheduleOffers(){if(!frame)frame=requestAnimationFrame(layoutOffers)}
-addEventListener("scroll",scheduleOffers,{passive:true});addEventListener("resize",scheduleOffers);
+addEventListener("scroll",scheduleOffers,{passive:true});addEventListener("resize",()=>{lastProgress=-1;scheduleOffers()});
 animateOffers.addEventListener("change",scheduleOffers);layoutOffers();
-/* video loading: load once near view, never unload; play when any part is on screen */
+/* video loading: a gallery film loads once its card is close (in the gallery and on the page), never unloads,
+   and plays only while some of it is on screen. The hero phones also pause when scrolled away. */
 var vids=[].slice.call(document.querySelectorAll("video[data-src]"));
-function load(v){if(!v.getAttribute("src")){v.preload="auto";v.src=v.dataset.src}}
+var heroVids=[].slice.call(document.querySelectorAll(".hero video")),pageVids=vids.concat(heroVids);
+function load(v){if(v.dataset.src&&!v.getAttribute("src")){v.preload="auto";v.src=v.dataset.src}}
 function play(v){var p=v.play();if(p&&p.catch)p.catch(function(){})}
 if("IntersectionObserver" in window){
- var near=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var rail=e.target.closest(".rail");(rail?[].slice.call(rail.querySelectorAll("video[data-src]")):[e.target]).forEach(load)}})},{rootMargin:"900px 0px"});
+ var nearRail=new IntersectionObserver(function(es){es.forEach(function(e){var r=e.target;r.__near=e.isIntersecting;if(r.__near)r.__cards.forEach(function(c){if(c.__hnear)load(c.querySelector("video"))})})},{rootMargin:"900px 0px"});
+ [].slice.call(document.querySelectorAll(".rail")).forEach(function(r){
+  // inside a gallery, only the cards within one gallery-width either side are fetched
+  var h=new IntersectionObserver(function(es){es.forEach(function(e){var c=e.target;c.__hnear=e.isIntersecting;if(c.__hnear&&r.__near)load(c.querySelector("video"))})},{root:r,rootMargin:"0px 100% 0px 100%"});
+  r.__cards.forEach(function(c){h.observe(c)});nearRail.observe(r)});
  var vis=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting&&!document.hidden&&!lbOpen){load(v);play(v)}else if(!v.paused)v.pause()})},{threshold:0.02});
- vids.forEach(function(v){near.observe(v);vis.observe(v)});
+ pageVids.forEach(function(v){vis.observe(v)});
+ var hero=document.querySelector(".hero");new IntersectionObserver(function(es){hero.classList.toggle("off",!es[0].isIntersecting)}).observe(hero);
+ // the 23 second film starts loading when it is near, not at page load
+ new IntersectionObserver(function(es,o){if(es[0].isIntersecting){var p=document.getElementById("pv");p.preload="auto";p.load();o.disconnect()}},{rootMargin:"900px 0px"}).observe(document.getElementById("pv"));
  var rv=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");rv.unobserve(e.target)}})},{rootMargin:"0px 0px -8% 0px"});
  [].slice.call(document.querySelectorAll(".reveal")).forEach(function(el){rv.observe(el)});
 }else{vids.forEach(function(v){load(v);play(v)});[].slice.call(document.querySelectorAll(".reveal")).forEach(function(el){el.classList.add("in")})}
-document.addEventListener("visibilitychange",function(){if(document.hidden)vids.forEach(function(v){v.pause()})});
+document.addEventListener("visibilitychange",function(){if(document.hidden)pageVids.forEach(function(v){v.pause()})});
 /* piece player */
 var pv=document.getElementById("pv"),pb=document.getElementById("pb"),pbar=document.getElementById("pbar"),pUser=false;
 pb.addEventListener("click",function(){pUser=!pv.paused;if(pv.paused){play(pv);pb.textContent="❚❚";pb.setAttribute("aria-label","Pause")}else{pv.pause();pb.textContent="▶";pb.setAttribute("aria-label","Play")}});
@@ -574,16 +597,16 @@ if("IntersectionObserver" in window)new IntersectionObserver(function(es){var e=
 var lb=document.getElementById("lb"),lbv=document.getElementById("lbv"),lbt=document.getElementById("lbt"),lbOpen=false,lk="",li=0;
 function show(){var it=LB[lk][li];lbv.poster=it.poster;lbv.src=it.src;lbt.textContent=it.t;play(lbv)}
 function openLB(k,i){
- lk=k;li=i;lbOpen=true;vids.forEach(v=>v.pause());pv.pause();
+ lk=k;li=i;lbOpen=true;pageVids.forEach(v=>v.pause());pv.pause();
  lb.classList.add("open");lb.setAttribute("aria-hidden","false");document.documentElement.style.overflow="hidden";
  document.getElementById("lbx").focus({preventScroll:true});show();
 }
 function closeLB(){
- lbOpen=false;lb.classList.remove("open");lb.setAttribute("aria-hidden","true");lbv.pause();
+ lbOpen=false;lb.classList.remove("open");lb.setAttribute("aria-hidden","true");lbv.pause();lbv.removeAttribute("src");lbv.load(); // stop it downloading in the background
  document.documentElement.style.overflow="";
  galleries[lk](li,false);
  document.querySelector('[data-rail="'+lk+'"]').children[li].focus({preventScroll:true});
- vids.forEach(v=>{const r=v.getBoundingClientRect();if(r.bottom>0&&r.top<innerHeight&&r.right>0&&r.left<innerWidth&&v.getAttribute("src"))play(v)});
+ pageVids.forEach(v=>{const r=v.getBoundingClientRect();if(r.bottom>0&&r.top<innerHeight&&r.right>0&&r.left<innerWidth&&v.getAttribute("src"))play(v)});
  if(!pUser && pv.getBoundingClientRect().bottom>0 && pv.getBoundingClientRect().top<innerHeight)play(pv);
 }
 function stepLB(direction){li=(li+direction+LB[lk].length)%LB[lk].length;show()}
@@ -605,7 +628,7 @@ horizontalWheel(lb,stepLB);
 /* bar + nav */
 var bar=document.getElementById("bar"),links=[].slice.call(document.querySelectorAll("#nav a"));
 addEventListener("scroll",function(){bar.classList.toggle("solid",scrollY>40)},{passive:true});
-if("IntersectionObserver" in window){var so=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)links.forEach(function(a){a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id)})})},{rootMargin:"-45% 0px -50% 0px"});["scenes","piece","shots","work","talk"].forEach(function(id){so.observe(document.getElementById(id))})}
+if("IntersectionObserver" in window){var so=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)links.forEach(function(a){a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id)})})},{rootMargin:"-45% 0px -50% 0px"});["scenes","piece","shots","work","packages","talk"].forEach(function(id){so.observe(document.getElementById(id))})}
 document.documentElement.style.scrollBehavior="smooth";
 })();
 </script>
