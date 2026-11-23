@@ -221,18 +221,25 @@ footer .duo{justify-content:center;margin-bottom:14px}
 #packages .package-wrap{max-width:1180px}
 #packages .package-terms{color:var(--ink2);margin:.65rem 0 1rem}
 #packages .pk-lede{max-width:60ch;margin:12px 0 6px}
-.pk-switch{position:relative;display:none;grid-template-columns:repeat(3,1fr);margin:6px 0 16px;padding:4px;border-radius:999px;background:var(--glass);border:1px solid var(--beige);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.pk-switch{position:relative;display:grid;grid-template-columns:repeat(3,1fr);max-width:440px;margin:22px auto 0;padding:4px;border-radius:999px;background:var(--glass);border:1px solid var(--beige);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
 .pk-switch button{position:relative;z-index:1;border:0;background:none;padding:10px 4px;font:600 13px/1 "Inter Tight",system-ui,sans-serif;color:var(--ink2);cursor:pointer;transition:color 1s var(--e)}
 .pk-switch button[aria-selected="true"]{color:var(--ivory)}
 .pk-pill{position:absolute;z-index:0;top:4px;bottom:4px;left:4px;width:calc((100% - 8px)/3);border-radius:999px;background:var(--ink);transition:transform 1s var(--e)}
-.pk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch;perspective:1400px;margin-top:22px}
-.pk{--mx:50%;--my:30%;--rx:0deg;--ry:0deg;position:relative;display:flex;flex-direction:column;min-width:0;border-radius:22px;background:var(--ivory);border:1px solid var(--beige);overflow:hidden;transform:rotateX(var(--rx)) rotateY(var(--ry));transform-style:preserve-3d;transition:transform 1s var(--e),box-shadow 1s var(--e);box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 18px 40px -28px rgba(60,40,10,.35)}
+/* layered ring: every card sits in the same grid cell (so the stage is as tall as the tallest card); the script moves them with transform and opacity only */
+.pk-grid{position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(0,1fr);align-items:stretch;margin:2px calc(-1 * var(--gut)) -20px;padding:26px 0 46px;overflow:hidden;touch-action:pan-y pinch-zoom;outline:none}
+.pk-grid:focus-visible{box-shadow:inset 0 0 0 2px var(--gold-text);border-radius:24px}
+.pk-grid.drag{user-select:none;-webkit-user-select:none}
+.pk-grid:not(.cf) .pk~.pk{visibility:hidden}
+.pk{--mx:50%;--my:30%;position:relative;grid-area:1/1;justify-self:center;width:min(420px,36%);display:flex;flex-direction:column;min-width:0;border-radius:22px;background:var(--ivory);border:1px solid var(--beige);overflow:hidden;will-change:transform,opacity;box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 30px 64px -36px rgba(60,40,10,.5),0 10px 22px -18px rgba(60,40,10,.22)}
+.pk:not(.front){cursor:pointer}
+.pk:not(.front)>*{pointer-events:none}
+/* back cards: an opaque card under a soft light veil, so nothing shows through and the front card stays fully crisp */
+.pk-veil{position:absolute;inset:0;z-index:3;border-radius:inherit;background:var(--ground);opacity:0;pointer-events:none;will-change:opacity}
 .pk::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:radial-gradient(420px circle at var(--mx) var(--my),rgba(201,166,107,.26),transparent 60%);opacity:0;transition:opacity 1s var(--e)}
-.pk:hover::after{opacity:1}
-.pk:hover{box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 34px 60px -30px rgba(60,40,10,.45)}
+.pk.front:hover::after{opacity:1}
 .pk-media{position:relative;aspect-ratio:16/10;overflow:hidden}
 .pk-media img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.02);transition:transform 1.2s var(--e);pointer-events:none}
-.pk:hover .pk-media img{transform:scale(1.08)}
+.pk.front:hover .pk-media img{transform:scale(1.08)}
 .pk-media::after{content:"";position:absolute;inset:auto 0 0 0;height:55%;background:linear-gradient(to bottom,transparent,var(--ivory))}
 .pk-tag{position:absolute;z-index:1;top:14px;left:14px;padding:7px 12px;border-radius:999px;font:600 11px/1 "Inter Tight",system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);background:rgba(255,250,242,.72);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.6)}
 .pk-body{position:relative;z-index:1;display:flex;flex-direction:column;flex:1;padding:0 24px 24px;margin-top:-34px}
@@ -265,28 +272,23 @@ footer .duo{justify-content:center;margin-bottom:14px}
 .pk.star .pk-stats b{color:var(--ivory)}
 .pk.star .pk-idea{border-top-color:rgba(201,166,107,.3)}
 .pk.star::after{background:radial-gradient(420px circle at var(--mx) var(--my),rgba(217,188,134,.2),transparent 60%)}
-.pk-clone{display:none}
-.pk-nav{display:none;align-items:center;justify-content:center;gap:18px;margin-top:14px}
+.pk-nav{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:18px;margin-top:14px}
 .pk-arw{display:grid;place-items:center;width:44px;height:44px;padding:0;border-radius:50%;border:1px solid var(--beige);background:var(--glass);color:var(--ink);cursor:pointer;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);-webkit-tap-highlight-color:transparent;transition:transform .24s var(--e),border-color .24s var(--e)}
 .pk-arw svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .pk-arw:hover{border-color:var(--gold)}
 .pk-arw:active{transform:scale(.92)}
 .pk-arw:focus-visible{outline:2px solid var(--gold-text);outline-offset:2px}
 .pk-dots{display:flex;justify-content:center;gap:8px}
-.pk-dots i{width:6px;height:6px;border-radius:99px;background:var(--beige);transition:width 1s var(--e),background 1s var(--e)}
+.pk-dots i{position:relative;cursor:pointer;width:6px;height:6px;border-radius:99px;background:var(--beige);transition:width 1s var(--e),background 1s var(--e)}
 .pk-dots i.on{width:22px;background:var(--gold-text)}
+.pk-dots i::before{content:"";position:absolute;inset:-16px -5px}
 .pk-notes{margin-top:22px}
 @media (max-width:899px){
- .pk-switch{display:grid;margin-top:18px}
- .pk-grid{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain;margin:0 calc(-1 * var(--gut));padding:0 var(--gut) 6px;scroll-padding:0 var(--gut);perspective:none}
- .pk-grid::-webkit-scrollbar{display:none}
- .pk-grid{position:relative}
- .pk{flex:0 0 86%;scroll-snap-align:start;scroll-snap-stop:always;transform:none}
- .pk.pk-clone{display:flex}
+ .pk-switch{max-width:none;margin-top:18px}
+ .pk{width:min(400px,76%)}
  .pk-body{padding:0 18px 20px}
- .pk-nav{display:flex}
 }
-@media (prefers-reduced-motion:reduce){.pk,.pk-media img,.pk-pill,.pk-arw{transition:none}.pk.star::before{animation:none}}
+@media (prefers-reduced-motion:reduce){.pk,.pk-media img,.pk-pill,.pk-arw,.pk-dots i{transition:none}.pk.star::before{animation:none}}
 </style>
   <div class="wrap package-wrap">
     <h2 id="packages-title">Production <i>packages.</i></h2>
@@ -366,46 +368,96 @@ footer .duo{justify-content:center;margin-bottom:14px}
       tabs=[].slice.call(s.querySelectorAll('.pk-switch button')), pill=s.querySelector('.pk-pill'),
       dots=[].slice.call(s.querySelectorAll('.pk-dots i')),
       still=window.matchMedia('(prefers-reduced-motion: reduce)').matches, fine=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
-  // Phone carousel that loops both ways. Copies of the end cards sit either side of the real ones;
-  // once a swipe has fully settled on a copy, the scroll is moved to the identical real card (no visible jump).
-  // Works for any number of cards, in whatever order they are written above.
-  var n=cards.length, E=Math.min(2,n), shown=-1, aim=null, touching=false, pos=[];
-  function copy(c){var k=c.cloneNode(true);k.classList.add('pk-clone');k.setAttribute('aria-hidden','true');k.setAttribute('inert','');return k}
-  for(var k=0;k<E;k++){grid.insertBefore(copy(cards[n-1-k]),grid.firstChild);grid.appendChild(copy(cards[k]))}
-  var all=[].slice.call(grid.children);
-  function real(j){return ((j-E)%n+n)%n}
-  function looping(){return grid.scrollWidth>grid.clientWidth+4}
-  function measure(){var pl=parseFloat(getComputedStyle(grid).scrollPaddingLeft)||parseFloat(getComputedStyle(grid).paddingLeft)||0;var g=grid.getBoundingClientRect().left+grid.clientLeft-grid.scrollLeft+pl;pos=all.map(function(c){return c.getBoundingClientRect().left-g})}
-  function near(){var x=grid.scrollLeft,b=0,d=1e9;for(var j=0;j<pos.length;j++){var q=Math.abs(pos[j]-x);if(q<d){d=q;b=j}}return b}
-  function mark(i){if(i===shown)return;shown=i;tabs.forEach(function(t,k){t.setAttribute('aria-selected',k===i)});dots.forEach(function(d,k){d.classList.toggle('on',k===i)});pill.style.transform='translateX('+(i*100)+'%)'}
-  function to(j,smooth){aim=smooth&&Math.abs(pos[j]-grid.scrollLeft)>1?j:null;grid.scrollTo({left:pos[j],behavior:smooth&&!still?'smooth':'auto'});mark(real(j))}
-  function settle(){ if(touching||!looping()) return; var j=near(); if(Math.abs(grid.scrollLeft-pos[j])>3) return; aim=null;
-    var r=real(j)+E; if(r!==j) grid.scrollLeft=pos[r]; mark(real(j)) }
-  // from j, the copy of card i that is the shortest trip away (so a tap can rotate either way)
-  function closest(i,from){var b=i+E,d=1e9;for(var j=i+E-n;j<=i+E+n;j+=n){if(j<0||j>=all.length)continue;var q=Math.abs(j-from);if(q<d){d=q;b=j}}return b}
-  function base(){var j=aim!=null?aim:near(); if(aim==null&&j!==real(j)+E){grid.scrollLeft+=pos[real(j)+E]-pos[j];j=real(j)+E} return j}
-  tabs.forEach(function(t,i){t.addEventListener('click',function(){ if(!looping()){mark(i);return} to(closest(i,base()),true)})});
-  [].forEach.call(s.querySelectorAll('.pk-arw'),function(b){b.addEventListener('click',function(){ if(!looping()) return;
-    var j=base()+(+b.dataset.d); if(j<0||j>=all.length){ grid.scrollLeft+=pos[real(j-(+b.dataset.d))+E]-grid.scrollLeft; j=real(j-(+b.dataset.d))+E+(+b.dataset.d) } to(j,true)})});
-  function start(){ measure(); if(looping()) to(E,false); else mark(0) }
-  start();
-  var raf=0,tm;
-  grid.addEventListener('scroll',function(){ if(!raf) raf=requestAnimationFrame(function(){raf=0;if(aim==null)mark(real(near()))});
-    clearTimeout(tm); tm=setTimeout(settle,120)},{passive:true});
-  if('onscrollend' in window) grid.addEventListener('scrollend',settle);
-  grid.addEventListener('touchstart',function(){touching=true;aim=null},{passive:true});
-  grid.addEventListener('touchend',function(){touching=false;clearTimeout(tm);tm=setTimeout(settle,120)},{passive:true});
-  grid.addEventListener('touchcancel',function(){touching=false},{passive:true});
-  var lw=window.innerWidth; window.addEventListener('resize',function(){ if(window.innerWidth===lw) return; lw=window.innerWidth;
-    var i=shown<0?0:shown; measure(); if(looping()) to(i+E,false) });
-  // images and fonts can shift layout after first paint; re-seat on the opening card if nobody has touched it yet
-  var moved=false; grid.addEventListener('pointerdown',function(){moved=true},{passive:true});
-  window.addEventListener('load',function(){ if(!moved&&aim==null&&near()===E){measure(); if(looping()) grid.scrollLeft=pos[E]} });
-  // pointer glow + small tilt on desktop
+  // Layered ring of package cards, phone and desktop. The front card is full size; the cards either side sit
+  // a little smaller, behind it, under a soft veil. One number (t) says where the ring is; every control
+  // (swipe, drag, arrows, pill, dots, keys, tapping a back card, the gentle auto-advance) just moves t,
+  // and each card's place is t wrapped round, so it loops forever both ways with no jump.
+  // Moves use transform and opacity only. Works for any number of cards, in the order written above.
+  var n=cards.length, S=.9, VEIL=.5, DUR=1050, EVERY=4500, REST=8000;
+  var t=0, anim=null, raf=0, front=-1, shown=-1, W=0, w=0, off=0, memo=[];
+  var drag=null, swallow=false, hover=false, keyed=false, inview=false, held=0, lastStart=Date.now(), timer=0;
+  var veils=cards.map(function(c){var v=document.createElement('span');v.className='pk-veil';v.setAttribute('aria-hidden','true');c.appendChild(v);return v});
+  function mod(x){return ((x%n)+n)%n}
+  // Brandon's house curve, cubic-bezier(.22,1,.36,1)
+  function ease(x){if(x<=0)return 0;if(x>=1)return 1;var lo=0,hi=1,u=x;
+    for(var i=0;i<22;i++){u=(lo+hi)/2;var bx=3*(1-u)*(1-u)*u*.22+3*(1-u)*u*u*.36+u*u*u;if(bx<x)lo=u;else hi=u}
+    return 3*(1-u)*(1-u)*u+3*(1-u)*u*u+u*u*u}
+  function mark(i){if(i===shown)return;shown=i;tabs.forEach(function(b,k){b.setAttribute('aria-selected',k===i)});dots.forEach(function(d,k){d.classList.toggle('on',k===i)});pill.style.transform='translateX('+(i*100)+'%)'}
+  function measure(){W=grid.clientWidth;w=cards[0].offsetWidth||1;off=Math.min(.8*w,Math.max(.55*w,W/2-S*w/2+.12*w))}
+  function render(){
+    var fi=0,fa=1e9;
+    for(var i=0;i<n;i++){
+      var p=mod(i-t); if(p>=n/2) p-=n; var a=Math.abs(p), sg=p<0?-1:1;
+      var x=sg*(a<=1?a*off:off+(a-1)*off*.7), sc=a<=1?1-(1-S)*a:S-(a-1)*.12, op=a<=1?1:Math.max(0,1-(a-1)/.38), ve=VEIL*Math.min(a,1);
+      if(a<fa){fa=a;fi=i}
+      var tr=a<1e-4?'translate3d(0,0,0)':'translate3d('+x.toFixed(2)+'px,0,0) scale('+sc.toFixed(4)+')',
+          o=op.toFixed(3), z=String(100-Math.round(a*20)), vo=ve.toFixed(3), vis=op<.005?'hidden':'', m=memo[i]||(memo[i]={}), st=cards[i].style;
+      if(m.tr!==tr){st.transform=tr;m.tr=tr}
+      if(m.o!==o){st.opacity=o;m.o=o}
+      if(m.z!==z){st.zIndex=z;m.z=z}
+      if(m.v!==vis){st.visibility=vis;m.v=vis}
+      if(m.vo!==vo){veils[i].style.opacity=vo;m.vo=vo}
+    }
+    if(fi!==front){if(front>=0)cards[front].classList.remove('front');cards[fi].classList.add('front');front=fi;if(!anim)mark(fi)}
+  }
+  function step(now){raf=0;if(!anim)return;var k=Math.max(0,Math.min(1,(now-anim.s)/anim.d));t=anim.a+(anim.b-anim.a)*ease(k);
+    if(k<1){render();raf=requestAnimationFrame(step)}else{t=anim.b;anim=null;land()}}
+  function land(){t=mod(Math.round(t));render();mark(front);plan()}
+  function stop(){if(raf){cancelAnimationFrame(raf);raf=0}anim=null}
+  function go(to,auto){stop();mark(mod(to));if(!auto)hold();else lastStart=Date.now();
+    if(still||Math.abs(to-t)<1e-3){t=to;land();return}
+    anim={a:t,b:to,s:performance.now(),d:DUR};raf=requestAnimationFrame(step)}
+  function aim(){return anim?anim.b:Math.round(t)}
+  function by(d){go(aim()+d)}
+  function toCard(i){var c=aim(),d=mod(i-c);if(d>n/2)d-=n;go(c+d)}
+  // gentle auto-advance: never while a finger or mouse is on it, while hovered, while a key user is in it,
+  // for 8 s after any touch or control, when it is off screen or the tab is hidden, or when the viewer asked for less motion
+  function can(){return !still&&inview&&!document.hidden&&!hover&&!keyed&&!drag&&!anim}
+  function plan(){clearTimeout(timer);if(!can())return;var due=Math.max(lastStart+EVERY,held);
+    timer=setTimeout(function(){if(can()&&Date.now()>=Math.max(lastStart+EVERY,held)-20)go(aim()+1,true);else plan()},Math.max(40,due-Date.now()))}
+  function hold(){held=Date.now()+REST;plan()}
+  // finger and mouse: follow the drag, then settle on the nearest card (one card per flick)
+  grid.addEventListener('pointerdown',function(e){if(e.pointerType==='mouse'&&e.button!==0)return;swallow=false;
+    drag={id:e.pointerId,x:e.clientX,y:e.clientY,t0:t,on:false,at:e.timeStamp,card:e.target.closest('.pk'),lx:e.clientX,lt:e.timeStamp,v:0,mouse:e.pointerType==='mouse'};hold()});
+  grid.addEventListener('pointermove',function(e){if(!drag||e.pointerId!==drag.id)return;var dx=e.clientX-drag.x,dy=e.clientY-drag.y;
+    if(!drag.on){
+      if(Math.abs(dx)>8&&Math.abs(dx)>Math.abs(dy)*1.2){stop();drag.on=true;drag.t0=t;drag.x=e.clientX;dx=0;grid.classList.add('drag');try{grid.setPointerCapture(e.pointerId)}catch(_){}}
+      else{if(Math.abs(dy)>10&&!drag.mouse)drag=null;return}}
+    var dt=e.timeStamp-drag.lt;if(dt>0){drag.v=.7*((e.clientX-drag.lx)/dt)+.3*drag.v;drag.lx=e.clientX;drag.lt=e.timeStamp}
+    t=drag.t0-dx/off;render()});
+  function release(e,cancel){if(!drag||e.pointerId!==drag.id)return;var d=drag;drag=null;grid.classList.remove('drag');
+    // a quick tap on a card peeking out behind brings it to the front
+    if(!d.on){hold();if(!cancel&&d.card&&!d.card.classList.contains('front')&&e.timeStamp-d.at<600&&Math.abs(e.clientX-d.x)<10&&Math.abs(e.clientY-d.y)<10)toCard(cards.indexOf(d.card));return}swallow=true;
+    var base=Math.round(d.t0),v=e.timeStamp-d.lt>90?0:d.v,k=Math.round(t-v*160/off),dx=e.clientX-d.x;
+    if(!cancel&&k===base&&Math.abs(dx)>off*.16)k=base+(dx<0?1:-1);
+    if(cancel)k=Math.round(t);k=Math.max(base-1,Math.min(base+1,k));go(k)}
+  window.addEventListener('pointerup',function(e){release(e,false)});
+  window.addEventListener('pointercancel',function(e){release(e,true)});
+  // after a drag, the click that follows does nothing
+  grid.addEventListener('click',function(e){if(swallow){swallow=false;e.preventDefault();e.stopPropagation()}},true);
+  grid.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){e.preventDefault();by(1)}else if(e.key==='ArrowLeft'){e.preventDefault();by(-1)}});
+  // two-finger sideways swipe on a trackpad: one card per gesture
+  var wsum=0,wlock=0;grid.addEventListener('wheel',function(e){if(Math.abs(e.deltaX)<=Math.abs(e.deltaY))return;e.preventDefault();
+    var now=Date.now();if(now<wlock){wlock=now+260;return}wsum+=e.deltaX;if(Math.abs(wsum)>40){by(wsum>0?1:-1);wsum=0;wlock=now+260}},{passive:false});
+  tabs.forEach(function(b,i){b.addEventListener('click',function(){toCard(i)})});
+  dots.forEach(function(d,i){d.addEventListener('click',function(){toCard(i)})});
+  [].forEach.call(s.querySelectorAll('.pk-arw'),function(b){b.addEventListener('click',function(){by(+b.dataset.d)})});
+  [grid,s.querySelector('.pk-switch'),s.querySelector('.pk-nav')].forEach(function(el){if(!el)return;
+    el.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse'){hover=true;clearTimeout(timer)}});
+    el.addEventListener('pointerleave',function(e){if(e.pointerType==='mouse'){hover=false;hold()}})});
+  // a keyboard user inside the section pauses it (focus from a tap or click does not)
+  var kbd=false;document.addEventListener('keydown',function(e){if(e.key==='Tab'||e.key.indexOf('Arrow')===0)kbd=true},true);document.addEventListener('pointerdown',function(){kbd=false},true);
+  s.addEventListener('focusin',function(){if(kbd){keyed=true;clearTimeout(timer)}});
+  s.addEventListener('focusout',function(e){if(!s.contains(e.relatedTarget)){keyed=false;hold()}});
+  if('IntersectionObserver' in window) new IntersectionObserver(function(es){var was=inview;inview=es[0].isIntersecting;if(inview&&!was)lastStart=Date.now();plan()},{rootMargin:'-15% 0px -15% 0px'}).observe(grid);
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)lastStart=Date.now();plan()});
+  measure();grid.classList.add('cf');render();mark(0);
+  if(window.ResizeObserver) new ResizeObserver(function(){var a=W,b=w;measure();if(a!==W||b!==w){for(var i=0;i<n;i++)memo[i]={};render()}}).observe(grid);
+  else window.addEventListener('resize',function(){measure();memo=[];render()});
+  // soft glow under the mouse on the front card
   if(fine&&!still) cards.forEach(function(c){
-    c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
-      c.style.setProperty('--mx',x*100+'%');c.style.setProperty('--my',y*100+'%');c.style.setProperty('--ry',((x-.5)*6)+'deg');c.style.setProperty('--rx',((.5-y)*5)+'deg')});
-    c.addEventListener('pointerleave',function(){c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg')});
+    c.addEventListener('pointermove',function(e){if(!c.classList.contains('front')||drag&&drag.on)return;var r=c.getBoundingClientRect();
+      c.style.setProperty('--mx',(e.clientX-r.left)/r.width*100+'%');c.style.setProperty('--my',(e.clientY-r.top)/r.height*100+'%')});
   });
   // prices count up when seen (the real number is already in the page)
   var done=false;
