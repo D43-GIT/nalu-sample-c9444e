@@ -218,18 +218,15 @@ footer .duo{justify-content:center;margin-bottom:14px}
   <div class="count"><div class="dots" data-dots="work"></div></div>
 </section>
 
-<section id="packages" aria-labelledby="packages-title">
+<section id="packages" class="px" aria-labelledby="packages-title">
 <style>
-#packages .package-wrap{max-width:1180px}
-#packages .package-terms{color:var(--ink2);margin:.65rem 0 1rem}
-#packages .pk-lede{max-width:60ch;margin:12px 0 6px}
-.pk-switch{position:relative;display:grid;grid-template-columns:repeat(3,1fr);max-width:440px;margin:22px auto 0;padding:4px;border-radius:999px;background:var(--glass);border:1px solid var(--beige);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
-.pk-switch button{position:relative;z-index:1;border:0;background:none;padding:10px 4px;font:600 13px/1 "Inter Tight",system-ui,sans-serif;color:var(--ink2);cursor:pointer;transition:color 1s var(--e)}
-.pk-switch button[aria-selected="true"]{color:var(--ivory)}
-.pk-pill{position:absolute;z-index:0;top:4px;bottom:4px;left:4px;width:calc((100% - 8px)/3);border-radius:999px;background:var(--ink);transition:transform 1s var(--e)}
-/* layered cards, moved by Swiper 11 (vendor/swiper-11.2.10): the front card full size, the cards either side
-   a little smaller and further back under a soft veil. Real 3D depth, so the order of the cards changes smoothly mid-slide. */
-.pk-grid{position:relative;margin:2px calc(-1 * var(--gut)) -20px;padding:26px 0 46px;overflow:hidden;touch-action:pan-y pinch-zoom;outline:none}
+/* pricing: two rows of layered cards, moved by Swiper 11 (vendor/swiper-11.2.10).
+   The front card is full size; the cards either side sit a little smaller and further back under a soft veil. */
+.px .px-wrap{max-width:1180px}
+.px-head{display:flex;flex-direction:column;align-items:flex-start}
+.px-n{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--gold);color:var(--ink);font:600 14px/1 "Inter Tight",system-ui,sans-serif;box-shadow:0 10px 24px -10px rgba(105,72,22,.55)}
+.px-sub{margin-top:10px;color:var(--ink2);font-size:15px}
+.pk-grid{position:relative;margin:2px calc(-1 * var(--gut)) -40px;padding:26px 0 66px;overflow:hidden;touch-action:pan-y pinch-zoom;outline:none}
 .pk-grid:focus-visible{box-shadow:inset 0 0 0 2px var(--gold-text);border-radius:24px}
 .pk-grid .swiper-wrapper{align-items:stretch}
 .pk-grid:not(.swiper-initialized) .swiper-wrapper{justify-content:center}
@@ -237,51 +234,69 @@ footer .duo{justify-content:center;margin-bottom:14px}
 .pk-grid .swiper-slide,.pk-grid .swiper-slide-shadow{transition-timing-function:var(--e)}
 .pk-grid.pk-fallback .swiper-wrapper{overflow-x:auto;scroll-snap-type:x mandatory;justify-content:flex-start;gap:14px;padding:0 12%}
 .pk-grid.pk-fallback .pk{visibility:visible!important;scroll-snap-align:center;flex:none}
-.pk{--mx:50%;--my:30%;position:relative;width:min(420px,36%);height:auto;display:flex;flex-direction:column;min-width:0;border-radius:22px;background:var(--ivory);border:1px solid var(--beige);overflow:hidden;box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 30px 64px -36px rgba(60,40,10,.5),0 10px 22px -18px rgba(60,40,10,.22)}
+.pk{--mx:50%;--my:30%;position:relative;width:min(400px,34%);height:auto;display:flex;flex-direction:column;min-width:0;border-radius:22px;background:var(--ivory);border:1px solid var(--beige);overflow:hidden;box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 30px 64px -36px rgba(60,40,10,.5),0 10px 22px -18px rgba(60,40,10,.22)}
 .pk:not(.swiper-slide-active){cursor:pointer}
 .pk:not(.swiper-slide-active)>*{pointer-events:none}
-/* back cards: an opaque card under a soft light veil, so nothing shows through and the front card stays fully crisp */
-.pk-grid .pk .swiper-slide-shadow{z-index:3;border-radius:inherit;background:rgba(241,233,218,.5)}
-.pk::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:radial-gradient(420px circle at var(--mx) var(--my),rgba(201,166,107,.26),transparent 60%);opacity:0;transition:opacity 1s var(--e)}
+/* back cards: an opaque card under a soft light veil, so nothing shows through and the front card stays crisp */
+.pk-grid .pk .swiper-slide-shadow{z-index:5;border-radius:inherit;background:rgba(241,233,218,.5)}
+.pk::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:radial-gradient(420px circle at var(--mx) var(--my),rgba(201,166,107,.24),transparent 60%);opacity:0;transition:opacity 1s var(--e)}
 .pk.swiper-slide-active:hover::after{opacity:1}
 .pk-media{position:relative;aspect-ratio:16/10;overflow:hidden}
 .pk-media img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.02);transition:transform 1.2s var(--e);pointer-events:none}
-.pk.swiper-slide-active:hover .pk-media img{transform:scale(1.08)}
+.pk.swiper-slide-active:hover .pk-media img{transform:scale(1.07)}
 .pk-media::after{content:"";position:absolute;inset:auto 0 0 0;height:55%;background:linear-gradient(to bottom,transparent,var(--ivory))}
-/* no backdrop blur on the moving cards (it is what makes iPhone Safari stutter); a slightly firmer glass instead */
-.pk-tag{position:absolute;z-index:1;top:14px;left:14px;padding:7px 12px;border-radius:999px;font:600 11px/1 "Inter Tight",system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);background:rgba(255,250,242,.86);border:1px solid rgba(255,255,255,.6)}
-.pk-body{position:relative;z-index:1;display:flex;flex-direction:column;flex:1;padding:0 24px 24px;margin-top:-34px}
-.pk h3{font:500 clamp(1.6rem,2.6vw,2rem)/1.05 "Cormorant Garamond",Georgia,serif;margin:0}
-.pk-price{margin:16px 0 4px}
-.pk-from{display:block;margin:0 0 6px;font:600 11px/1 "Inter Tight",system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
-.pk-amt{font:600 clamp(3.2rem,5.4vw,4.4rem)/.9 "Cormorant Garamond",Georgia,serif;letter-spacing:-.01em;color:var(--gold-text);font-variant-numeric:lining-nums tabular-nums}
+/* no backdrop blur on the moving cards (it is what makes iPhone Safari stutter); a firmer glass instead */
+.pk-tag{position:absolute;z-index:1;top:14px;left:14px;padding:7px 12px;border-radius:999px;font:600 11px/1 "Inter Tight",system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);background:#C9A66B}
+.pk-body{position:relative;z-index:1;display:flex;flex-direction:column;flex:1;padding:0 22px 4px;margin-top:-30px}
+.pk h3{font:500 clamp(1.7rem,2.6vw,2.1rem)/1.05 "Cormorant Garamond",Georgia,serif;margin:0}
+.pk-price{display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 8px;margin:10px 0 2px}
+.pk-from{flex-basis:100%;font:600 11px/1 "Inter Tight",system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
+.pk-amt{font:600 clamp(3rem,5vw,4rem)/.95 "Cormorant Garamond",Georgia,serif;letter-spacing:-.01em;color:var(--gold-text);font-variant-numeric:lining-nums tabular-nums}
 .pk-amt sup{font-size:.42em;vertical-align:.95em;margin-right:2px;letter-spacing:0}
-.pk-unit{font:500 13px/1.3 "Inter Tight",system-ui,sans-serif;color:var(--ink2);margin:0 0 10px}
-.pk-concepts{display:inline-flex;align-self:flex-start;align-items:center;gap:8px;margin:0 0 16px;padding:7px 12px;border-radius:999px;font:600 12.5px/1.2 "Inter Tight",system-ui,sans-serif;color:var(--gold-text);background:rgba(201,166,107,.14);border:1px solid rgba(201,166,107,.45)}
-.pk-concepts::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;flex:none}
-.pk-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 18px;padding:0;list-style:none}
-.pk-stats li{padding:12px 12px 11px;border-radius:14px;background:rgba(229,218,194,.38);border:1px solid rgba(229,218,194,.9)}
-.pk-stats b{display:block;font:600 1.55rem/1 "Inter Tight",system-ui,sans-serif;letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums}
-.pk-ft{display:inline-block;vertical-align:.45em;margin-left:3px;padding:4px 8px 3px;border-radius:999px;font:700 10.5px/1 "Inter Tight",system-ui,sans-serif;font-style:normal;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);background:var(--gold)}
-.pk-free{border-color:rgba(201,166,107,.75)!important}
-.pk-stats span{display:block;margin-top:5px;font:500 12.5px/1.3 "Inter Tight",system-ui,sans-serif;color:var(--ink2)}
-.pk-idea{margin:auto 0 0;padding-top:14px;border-top:1px solid var(--beige);font:italic 400 1.05rem/1.35 "Cormorant Garamond",Georgia,serif;color:var(--ink2)}
-.pk-idea small{display:block;margin:0 0 6px;font:600 11px/1 "Inter Tight",system-ui,sans-serif;font-style:normal;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
-/* the hero card */
+.pk-per{font:500 14px/1.2 "Inter Tight",system-ui,sans-serif;color:var(--ink2)}
+.pk-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0 14px;padding:0;list-style:none}
+.pk-stats li{position:relative;padding:11px 12px 11px;border-radius:14px;background:rgba(229,218,194,.38);border:1px solid rgba(229,218,194,.9)}
+.pk-ic{display:block;width:18px;height:18px;margin-bottom:8px;fill:none;stroke:var(--gold-text);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.pk-stats b{display:block;font:600 1.6rem/1 "Inter Tight",system-ui,sans-serif;letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums}
+.pk-stats span{display:block;margin-top:4px;font:500 12.5px/1.25 "Inter Tight",system-ui,sans-serif;color:var(--ink2)}
+.pk-inc{display:inline-block;padding:4px 8px 3px;border-radius:999px;font:700 10px/1 "Inter Tight",system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-text);background:rgba(201,166,107,.16);border:1px solid rgba(201,166,107,.6);white-space:nowrap;vertical-align:.12em}
+/* tap for details: the button stays put, the details rise up over the card */
+.pk-foot{position:relative;z-index:3;padding:4px 22px 22px;margin-top:auto}
+.pk-tap{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:46px;padding:12px 16px;border-radius:999px;border:1px solid rgba(201,166,107,.65);background:rgba(201,166,107,.12);color:var(--gold-text);font:600 14px/1 "Inter Tight",system-ui,sans-serif;transition:background 1s var(--e),border-color 1s var(--e)}
+.pk-tap:hover{background:rgba(201,166,107,.22)}
+.pk-tap:focus-visible{outline:2px solid var(--gold-text);outline-offset:2px}
+.pk-tap i{position:relative;flex:none;width:14px;height:14px;transition:transform .9s var(--e)}
+.pk-tap i::before,.pk-tap i::after{content:"";position:absolute;left:0;top:6px;width:14px;height:2px;border-radius:2px;background:currentColor}
+.pk-tap i::after{transform:rotate(90deg)}
+.pk.open .pk-tap i{transform:rotate(45deg)}
+.pk-more{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;padding:24px 22px 86px;background:var(--ivory);border-radius:inherit;overflow-y:auto;overscroll-behavior:contain;opacity:0;visibility:hidden;transform:translateY(18px);transition:opacity .9s var(--e),transform .9s var(--e),visibility 0s linear .9s}
+.pk.open .pk-more{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.pk-more h4{font:500 1.7rem/1.05 "Cormorant Garamond",Georgia,serif}
+.pk-more h4 small{display:block;margin-top:6px;font:600 14px/1.2 "Inter Tight",system-ui,sans-serif;color:var(--gold-text)}
+.pk-list{list-style:none;display:grid;gap:9px;margin:16px 0 0;padding:14px 0 0;border-top:1px solid var(--beige)}
+.pk-list li{position:relative;padding-left:18px;font:500 14.5px/1.4 "Inter Tight",system-ui,sans-serif;color:var(--ink)}
+.pk-list li::before{content:"";position:absolute;left:0;top:.5em;width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.pk-list .pk-inc{margin-left:6px}
+.pk-lim{margin-top:14px;font:400 13px/1.45 "Inter Tight",system-ui,sans-serif;color:var(--ink2)}
+/* the top pick */
 .pk.star{background:var(--ink);border-color:transparent;color:var(--ivory)}
-.pk.star::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--ang,0deg),rgba(201,166,107,.15),#C9A66B,rgba(255,250,242,.9),#C9A66B,rgba(201,166,107,.15));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:pk-spin 9s linear infinite;pointer-events:none;z-index:2}
+.pk.star::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--ang,0deg),rgba(201,166,107,.15),#C9A66B,rgba(255,250,242,.9),#C9A66B,rgba(201,166,107,.15));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:pk-spin 9s linear infinite;pointer-events:none;z-index:4}
 @property --ang{syntax:"<angle>";inherits:false;initial-value:0deg}
 @keyframes pk-spin{to{--ang:360deg}}
-#packages:not(.inview) .pk.star::before{animation-play-state:paused}
+.px:not(.inview) .pk.star::before{animation-play-state:paused}
 .pk.star .pk-media::after{background:linear-gradient(to bottom,transparent,var(--ink))}
-.pk.star .pk-tag{background:#C9A66B;color:var(--ink);border-color:transparent}
 .pk.star .pk-amt{color:#D9BC86}
-.pk.star .pk-from,.pk.star .pk-unit,.pk.star .pk-stats span,.pk.star .pk-idea,.pk.star .pk-idea small{color:rgba(255,250,242,.78)}
-.pk.star .pk-concepts{color:#E3C892;background:rgba(201,166,107,.12);border-color:rgba(201,166,107,.45)}
+.pk.star .pk-from,.pk.star .pk-per,.pk.star .pk-stats span,.pk.star .pk-lim{color:rgba(255,250,242,.8)}
 .pk.star .pk-stats li{background:rgba(255,250,242,.06);border-color:rgba(201,166,107,.35)}
-.pk.star .pk-stats b{color:var(--ivory)}
-.pk.star .pk-idea{border-top-color:rgba(201,166,107,.3)}
-.pk.star::after{background:radial-gradient(420px circle at var(--mx) var(--my),rgba(217,188,134,.2),transparent 60%)}
+.pk.star .pk-stats b,.pk.star .pk-list li{color:var(--ivory)}
+.pk.star .pk-ic{stroke:#D9BC86}
+.pk.star .pk-inc{color:#E3C892;background:rgba(201,166,107,.12);border-color:rgba(201,166,107,.5)}
+.pk.star .pk-tap{color:#E3C892;border-color:rgba(201,166,107,.55);background:rgba(201,166,107,.1)}
+.pk.star .pk-tap:hover{background:rgba(201,166,107,.2)}
+.pk.star .pk-more{background:var(--ink)}
+.pk.star .pk-more h4 small{color:#D9BC86}
+.pk.star .pk-list{border-top-color:rgba(201,166,107,.3)}
+.pk.star::after{background:radial-gradient(420px circle at var(--mx) var(--my),rgba(217,188,134,.18),transparent 60%)}
 .pk-nav{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:18px;margin-top:14px}
 .pk-arw{display:grid;place-items:center;width:44px;height:44px;padding:0;border-radius:50%;border:1px solid var(--beige);background:var(--glass);color:var(--ink);cursor:pointer;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);-webkit-tap-highlight-color:transparent;transition:transform .24s var(--e),border-color .24s var(--e)}
 .pk-arw svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
@@ -292,73 +307,94 @@ footer .duo{justify-content:center;margin-bottom:14px}
 .pk-dots i{position:relative;cursor:pointer;width:6px;height:6px;border-radius:99px;background:var(--beige);transition:width 1s var(--e),background 1s var(--e)}
 .pk-dots i.on{width:22px;background:var(--gold-text)}
 .pk-dots i::before{content:"";position:absolute;inset:-16px -5px}
-.pk-notes{margin-top:22px}
 @media (max-width:899px){
- .pk-switch{max-width:none;margin-top:18px}
- .pk{width:min(400px,76%)}
- .pk-body{padding:0 18px 20px}
+ .pk{width:min(360px,78%)}
+ .pk-media{aspect-ratio:16/9}
+ .pk-body{padding:0 18px 4px}.pk-foot{padding:4px 18px 18px}.pk-more{padding:22px 18px 80px}
 }
-@media (prefers-reduced-motion:reduce){.pk-media img,.pk-pill,.pk-arw,.pk-dots i{transition:none}.pk.star::before{animation:none}}
+@media (prefers-reduced-motion:reduce){.pk-media img,.pk-arw,.pk-dots i,.pk-more,.pk-tap i{transition:none}.pk.star::before{animation:none}}
 </style>
-  <div class="wrap package-wrap">
-    <h2 id="packages-title">Production <i>packages.</i></h2>
-    <p class="lede pk-lede">Every package now includes one more short edit (counted in each card). You keep the clean generated clips from your project to reuse in your own marketing.</p>
-    <p class="package-terms">AUD, including GST. Made from your renders. Generated scenes are based on your approved renders.</p>
-    <div class="pk-switch" role="tablist" aria-label="Packages">
-      <span class="pk-pill" aria-hidden="true"></span>
-      <button type="button" role="tab" aria-selected="true">Complete</button>
-      <button type="button" role="tab" aria-selected="false">Wellness</button>
-      <button type="button" role="tab" aria-selected="false">Walkthrough</button>
+  <div class="wrap px-wrap">
+    <div class="px-head reveal">
+      <span class="px-n" aria-hidden="true">1</span>
+      <h2 id="packages-title">Start with a <i>package.</i></h2>
     </div>
-    <div class="pk-grid swiper" role="region" aria-label="Production package cards" tabindex="0">
+    <div class="pk-grid swiper" id="pk-row-1" role="region" aria-label="Packages" tabindex="0">
       <div class="swiper-wrapper">
       <article class="pk star swiper-slide">
-        <div class="pk-media"><img loading="lazy" decoding="async" src="media/warm/S6-rooftop-colourlocked.jpg" alt=""><span class="pk-tag">Most complete</span></div>
+        <div class="pk-media"><img loading="lazy" decoding="async" src="media/warm/S6-rooftop-colourlocked.jpg" alt=""><span class="pk-tag">Top pick</span></div>
         <div class="pk-body">
-          <h3>Complete wellness</h3>
-          <p class="pk-price"><span class="pk-from">Fixed price</span><span class="pk-amt" data-n="8950"><sup>A$</sup>8,950</span></p>
-          <p class="pk-unit">the main piece, every short edit and every carousel, in the formats listed</p>
-          <p class="pk-concepts">3 original concepts</p>
+          <h3>Complete</h3>
+          <p class="pk-price"><span class="pk-amt" data-n="8950"><sup>A$</sup>8,950</span></p>
           <ul class="pk-stats">
-            <li><b>90s</b><span>piece with the ocean-to-rooftop opening</span></li>
-            <li><b>8</b><span>short edits, each supplied square and vertical</span></li>
-            <li><b>6</b><span>carousels, 5 to 8 slides each</span></li>
-            <li class="pk-free"><b>1 <em class="pk-ft">Free</em></b><span> round of changes</span></li>
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 4v16M16 4v16M4 8h4M4 16h4M4 12h16M16 8h4M16 16h4"/></svg><b>90s</b><span>piece</span></li>
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 4.5h2"/></svg><b>8</b><span>short edits</span></li>
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="5" width="10" height="14" rx="1"/><path d="M21 17h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1M3 17h1a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H3"/></svg><b>6</b><span>carousels</span></li>
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16a5 5 0 1 1 6 0 3.5 3.5 0 0 0-1 3 2 2 0 0 1-4 0 3.5 3.5 0 0 0-1-3M9.7 17h4.6"/></svg><b>3</b><span>concepts</span></li>
           </ul>
-          <p class="pk-idea"><small>Example caption</small>“Come in over the ocean and see NALU from the rooftops.”</p>
         </div>
+        <div class="pk-more">
+          <h4>Complete<small>A$8,950</small></h4>
+          <ul class="pk-list">
+            <li>3 original concepts</li>
+            <li>90s piece with the ocean-to-rooftop opening</li>
+            <li>8 short edits, each square and vertical</li>
+            <li>6 carousels, 5 to 8 slides each</li>
+            <li>1 round of changes included</li>
+          </ul>
+          <p class="pk-lim">Short edits are on top of the main piece. Carousels come branded or clean.</p>
+        </div>
+        <div class="pk-foot"><button type="button" class="pk-tap" aria-expanded="false"><span class="pk-tap-t">Tap for details</span><i aria-hidden="true"></i></button></div>
       </article>
       <article class="pk swiper-slide">
-        <div class="pk-media"><img loading="lazy" decoding="async" src="media/shot-08.webp" alt=""><span class="pk-tag">Wellness</span></div>
+        <div class="pk-media"><img loading="lazy" decoding="async" src="media/shot-08.webp" alt=""></div>
         <div class="pk-body">
-          <h3>Wellness and lifestyle</h3>
+          <h3>Wellness</h3>
           <p class="pk-price"><span class="pk-from">From</span><span class="pk-amt" data-n="6950"><sup>A$</sup>6,950</span></p>
-          <p class="pk-unit">the whole building, ocean to rooftop</p>
-          <p class="pk-concepts">2 original concepts proposed</p>
           <ul class="pk-stats">
-            <li><b>60s</b><span>piece from the ocean to the rooftop</span></li>
-            <li><b>5</b><span>short edits, vertical</span></li>
-            <li><b>3</b><span>carousels, 5 to 8 slides each</span></li>
-            <li class="pk-free"><b>1 <em class="pk-ft">Free</em></b><span> round of changes</span></li>
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 4v16M16 4v16M4 8h4M4 16h4M4 12h16M16 8h4M16 16h4"/></svg><b>60s</b><span>piece</span></li>
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 4.5h2"/></svg><b>5</b><span>short edits</span></li>
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="5" width="10" height="14" rx="1"/><path d="M21 17h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1M3 17h1a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H3"/></svg><b>3</b><span>carousels</span></li>
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16a5 5 0 1 1 6 0 3.5 3.5 0 0 0-1 3 2 2 0 0 1-4 0 3.5 3.5 0 0 0-1-3M9.7 17h4.6"/></svg><b>2</b><span>concepts</span></li>
           </ul>
-          <p class="pk-idea"><small>Example caption</small>“A morning swim, then a quiet moment on the rooftop.”</p>
         </div>
+        <div class="pk-more">
+          <h4>Wellness<small>From A$6,950</small></h4>
+          <ul class="pk-list">
+            <li>2 original concepts</li>
+            <li>60s ocean-to-rooftop piece</li>
+            <li>5 short vertical edits</li>
+            <li>3 carousels, 5 to 8 slides each</li>
+            <li>1 round of changes included</li>
+          </ul>
+          <p class="pk-lim">Short edits are on top of the main piece. Carousels come branded or clean.</p>
+        </div>
+        <div class="pk-foot"><button type="button" class="pk-tap" aria-expanded="false"><span class="pk-tap-t">Tap for details</span><i aria-hidden="true"></i></button></div>
       </article>
       <article class="pk swiper-slide">
-        <div class="pk-media"><img loading="lazy" decoding="async" src="media/warm/S3-living-v2.jpg" alt=""><span class="pk-tag">Per floor plan</span></div>
+        <div class="pk-media"><img loading="lazy" decoding="async" src="media/warm/S3-living-v2.jpg" alt=""></div>
         <div class="pk-body">
-          <h3>Apartment walkthrough</h3>
-          <p class="pk-price"><span class="pk-from">From</span><span class="pk-amt" data-n="3750"><sup>A$</sup>3,750</span></p>
-          <p class="pk-unit">per floor plan</p>
-          <p class="pk-concepts">1 original concept proposed</p>
+          <h3>Walkthrough</h3>
+          <p class="pk-price"><span class="pk-from">From</span><span class="pk-amt" data-n="3750"><sup>A$</sup>3,750</span><span class="pk-per">per floor plan</span></p>
           <ul class="pk-stats">
-            <li><b>45–60s</b><span>walkthrough of one residence</span></li>
-            <li><b>2</b><span>short vertical edits</span></li>
-            <li><b>1</b><span>carousel of 5 to 8 slides</span></li>
-            <li class="pk-free"><b>1 <em class="pk-ft">Free</em></b><span> round of changes</span></li>
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 4v16M16 4v16M4 8h4M4 16h4M4 12h16M16 8h4M16 16h4"/></svg><b>45–60s</b><span>walkthrough</span></li>
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 4.5h2"/></svg><b>2</b><span>short edits</span></li>
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="5" width="10" height="14" rx="1"/><path d="M21 17h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1M3 17h1a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H3"/></svg><b>1</b><span>carousel</span></li>
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16a5 5 0 1 1 6 0 3.5 3.5 0 0 0-1 3 2 2 0 0 1-4 0 3.5 3.5 0 0 0-1-3M9.7 17h4.6"/></svg><b>1</b><span>concept</span></li>
           </ul>
-          <p class="pk-idea"><small>Example caption</small>“Start with coffee in the kitchen. Take breakfast out on the terrace.”</p>
         </div>
+        <div class="pk-more">
+          <h4>Walkthrough<small>From A$3,750 per floor plan</small></h4>
+          <ul class="pk-list">
+            <li>1 original concept</li>
+            <li>45–60s walkthrough of one residence</li>
+            <li>2 short vertical edits</li>
+            <li>1 carousel, 5 to 8 slides</li>
+            <li>1 round of changes included</li>
+          </ul>
+          <p class="pk-lim">Priced per floor plan, separate from the wellness packages.</p>
+        </div>
+        <div class="pk-foot"><button type="button" class="pk-tap" aria-expanded="false"><span class="pk-tap-t">Tap for details</span><i aria-hidden="true"></i></button></div>
       </article>
       </div>
     </div>
@@ -367,104 +403,21 @@ footer .duo{justify-content:center;margin-bottom:14px}
       <div class="pk-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
       <button type="button" class="pk-arw" data-d="1" aria-label="Next package"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6l6 6-6 6"/></svg></button>
     </div>
-    <div class="pk-notes">
-      <p class="package-terms">Every short edit is in addition to the main piece. Every package includes 1 free round of changes. One round of changes means one set of notes on the delivered cut, within the agreed scenes.</p>
-      <p class="package-terms">Each carousel has 5 to 8 slides made from your approved material, arranged in posting order. We can supply branded or clean versions.</p>
-      <p class="package-terms">Apartment walkthroughs are priced per floor plan, separately from both wellness packages.</p>
-    </div>
   </div>
-<script>
-(function(){
-  var s=document.getElementById('packages'); if(!s) return;
-  var grid=s.querySelector('.pk-grid'), wrap=grid.querySelector('.swiper-wrapper'),
-      tabs=[].slice.call(s.querySelectorAll('.pk-switch button')), pill=s.querySelector('.pk-pill'),
-      dots=[].slice.call(s.querySelectorAll('.pk-dots i')), arrows=[].slice.call(s.querySelectorAll('.pk-arw')),
-      still=window.matchMedia('(prefers-reduced-motion: reduce)').matches, fine=window.matchMedia('(hover:hover) and (pointer:fine)').matches,
-      wide=window.matchMedia('(min-width:900px)');
-  var real=[].slice.call(wrap.children), n=real.length, shown=-1, sw=null, inview=false;
-  function mod(x){return ((x%n)+n)%n}
-  function mark(i){i=mod(i);if(i===shown)return;shown=i;tabs.forEach(function(b,k){b.setAttribute('aria-selected',k===i)});dots.forEach(function(d,k){d.classList.toggle('on',k===i)});pill.style.transform='translateX('+(i*100)+'%)'}
-  // How far the side cards sit from the front card (a share of one card's width), and how far back they sit.
-  function side(){return wide.matches?'86%':'60%'}
-  function fx(){var x=side();return {limitProgress:2,perspective:true,
-    prev:{shadow:true,translate:['-'+x,0,-100],rotate:[0,0,0],scale:.98,opacity:1},
-    next:{shadow:true,translate:[x,0,-100],rotate:[0,0,0],scale:.98,opacity:1}}}
-  // Cards one step from the front stay fully solid; cards two steps away fade out, so only three ever show.
-  function fade(w){w.slides.forEach(function(el){var a=Math.abs(el.progress),o=a<=1?1:Math.max(0,1-(a-1)/.45);el.style.opacity=o;el.style.pointerEvents=o<.05?'none':''})}
-  function boot(){
-    if(!window.Swiper){grid.classList.add('pk-fallback');return}
-    // Swiper's loop needs more slides than fit on screen, so the three packages are written out three times.
-    // The copies are hidden from screen readers; the pill, dots and arrows always talk in packages (1 to 3).
-    for(var c=0;c<2;c++) real.forEach(function(el){var k=el.cloneNode(true);k.setAttribute('aria-hidden','true');wrap.appendChild(k)});
-    real.forEach(function(el,i){el.setAttribute('aria-label',el.querySelector('h3').textContent+', package '+(i+1)+' of '+n)});
-    sw=new Swiper(grid,{
-      effect:'creative', creativeEffect:fx(), loop:true, centeredSlides:true, slidesPerView:'auto',
-      speed:still?0:1000, grabCursor:true, slideToClickedSlide:true, longSwipesRatio:.2, threshold:6,
-      watchSlidesProgress:true, roundLengths:true,
-      keyboard:{enabled:true,onlyInViewport:true}, mousewheel:{forceToAxis:true,thresholdDelta:12},
-      autoplay:still?false:{delay:4500,disableOnInteraction:false,pauseOnMouseEnter:true},
-      a11y:{enabled:true,slideLabelMessage:'',prevSlideMessage:'Previous package',nextSlideMessage:'Next package',containerMessage:null},
-      on:{
-        init:function(w){mark(w.realIndex);if(w.autoplay&&w.autoplay.running&&!inview)w.autoplay.stop();fade(w)},
-        realIndexChange:function(w){mark(w.realIndex)},
-        progress:fade, setTranslate:fade,
-        resize:function(w){w.params.creativeEffect=Object.assign(w.params.creativeEffect,fx());w.update()}
-      }
-    });
-    // only slide on its own while the packages are on screen, and start from Complete wellness
-    if(!still&&'IntersectionObserver' in window) new IntersectionObserver(function(es){inview=es[0].isIntersecting;
-      if(!sw.autoplay)return;if(inview&&!sw.autoplay.running)sw.autoplay.start();else if(!inview&&sw.autoplay.running)sw.autoplay.stop()},{rootMargin:'-15% 0px -15% 0px'}).observe(grid);
-  }
-  // the pill, the dots and the arrows: always take the short way round (one step left or right)
-  function toCard(i){if(!sw)return;var d=mod(i-sw.realIndex);if(d===0)return;if(d>n/2)d-=n;if(d>0)sw.slideNext();else sw.slidePrev()}
-  tabs.forEach(function(b,i){b.addEventListener('click',function(){toCard(i)})});
-  dots.forEach(function(d,i){d.addEventListener('click',function(){toCard(i)})});
-  arrows.forEach(function(b){b.addEventListener('click',function(){if(!sw)return;if(+b.dataset.d>0)sw.slideNext();else sw.slidePrev()})});
-  mark(0);
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
-  // soft glow under the mouse on the front card
-  if(fine&&!still) grid.addEventListener('pointermove',function(e){var c=e.target.closest&&e.target.closest('.pk.swiper-slide-active');if(!c)return;var r=c.getBoundingClientRect();
-    c.style.setProperty('--mx',(e.clientX-r.left)/r.width*100+'%');c.style.setProperty('--my',(e.clientY-r.top)/r.height*100+'%')});
-  // prices count up when seen (the real number is already in the page)
-  var done=false;
-  function count(){ if(done||still) return; done=true;
-    s.querySelectorAll('.pk-amt').forEach(function(el){var n=+el.dataset.n,sup=el.querySelector('sup').outerHTML,t0=null;
-      function f(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/1100),e=1-Math.pow(1-p,4);el.innerHTML=sup+Math.round(n*e).toLocaleString('en-AU');if(p<1)requestAnimationFrame(f)}
-      requestAnimationFrame(f)})}
-  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){count();io.disconnect()}},{threshold:.35});
-    // start watching only once the copies for the loop exist, so every copy counts up together
-    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){io.observe(grid)});else io.observe(grid);
-    // only spin the gold border while the packages are on screen
-    new IntersectionObserver(function(es){s.classList.toggle('inview',es[0].isIntersecting);
-      // once the packages are close, load all three pictures (about 230 KB) so the loop never lands on a blank card
-      if(es[0].isIntersecting) s.querySelectorAll('.pk-media img[loading="lazy"]').forEach(function(m){m.loading='eager'})},{rootMargin:'200px 0px'}).observe(s)}
-  else s.classList.add('inview');
-})();
-</script>
 </section>
 
-<section id="fresh" aria-labelledby="fresh-title">
+<section id="fresh" class="px" aria-labelledby="fresh-title">
 <style>
 #fresh{position:relative;background:radial-gradient(60% 40% at 88% 18%,rgba(201,166,107,.20),rgba(201,166,107,0) 70%),radial-gradient(50% 36% at 6% 62%,rgba(233,211,174,.55),rgba(233,211,174,0) 70%)}
-#fresh .fr-wrap{max-width:1180px}
-#fresh .fr-lede{max-width:52ch}
-/* why */
-.fr-why{display:grid;gap:18px;margin-top:30px}
-@media(min-width:860px){.fr-why{grid-template-columns:1.05fr 1fr;gap:28px;align-items:stretch}}
-.fr-steps{list-style:none;display:grid;gap:12px;counter-reset:fr}
-.fr-steps li{position:relative;display:flex;gap:16px;align-items:flex-start;padding:18px 20px;border-radius:20px;background:var(--glass);border:1px solid rgba(255,255,255,.75);box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 24px 50px -36px rgba(70,45,10,.45);opacity:0;transform:translateY(18px);transition:opacity 1s var(--e),transform 1s var(--e)}
-.fr-why.in .fr-steps li{opacity:1;transform:none}
-.fr-why.in .fr-steps li:nth-child(2){transition-delay:.15s}
-.fr-why.in .fr-steps li:nth-child(3){transition-delay:.3s}
-.fr-steps li::before{counter-increment:fr;content:counter(fr);flex:none;display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--gold);color:var(--ink);font:600 15px/1 "Inter Tight",system-ui,sans-serif}
-.fr-steps b{display:block;font:500 clamp(1.3rem,2.2vw,1.55rem)/1.15 "Cormorant Garamond",Georgia,serif;color:var(--ink)}
-.fr-steps span{display:block;margin-top:4px;font-size:14.5px;line-height:1.4;color:var(--ink2)}
-.fr-chart{position:relative;display:flex;flex-direction:column;justify-content:center;padding:22px 22px 18px;border-radius:24px;background:linear-gradient(180deg,rgba(255,250,242,.86),rgba(246,235,215,.7));border:1px solid rgba(255,255,255,.8);box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 34px 70px -44px rgba(70,45,10,.55);overflow:hidden}
-.fr-chart::before{content:"";position:absolute;width:70%;height:70%;right:-14%;top:-24%;background:radial-gradient(closest-side,rgba(201,166,107,.28),rgba(201,166,107,0));pointer-events:none}
-.fr-chart .k{position:relative}
-.fr-chart svg{position:relative;display:block;width:100%;height:auto;margin-top:12px;overflow:visible}
+.fr-top{display:grid;gap:22px}
+@media(min-width:860px){.fr-top{grid-template-columns:1fr minmax(0,460px);gap:40px;align-items:center}}
+/* why: the gold chart and one line */
+.fr-why{position:relative;padding:20px 22px 20px;border-radius:24px;background:linear-gradient(180deg,rgba(255,250,242,.86),rgba(246,235,215,.7));border:1px solid rgba(255,255,255,.8);box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 34px 70px -44px rgba(70,45,10,.55);overflow:hidden}
+.fr-why::before{content:"";position:absolute;width:70%;height:70%;right:-14%;top:-24%;background:radial-gradient(closest-side,rgba(201,166,107,.28),rgba(201,166,107,0));pointer-events:none}
+.fr-why .k{position:relative}
+.fr-why svg{position:relative;display:block;width:100%;height:auto;margin-top:10px;overflow:visible}
 .fr-line{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.2s var(--e)}
-.fr-line.old{stroke:#A89A85;stroke-width:3;stroke-dasharray:1;transition-delay:.1s}
+.fr-line.old{stroke:#A89A85;stroke-width:3;transition-delay:.1s}
 .fr-line.new{stroke:var(--gold);stroke-width:4;transition-delay:.45s}
 .fr-why.in .fr-line{stroke-dashoffset:0}
 .fr-dot{fill:var(--ivory);stroke:var(--gold-text);stroke-width:2.5;opacity:0;transform-box:fill-box;transform-origin:center;transform:scale(.4);transition:opacity .9s var(--e),transform .9s var(--e)}
@@ -473,103 +426,35 @@ footer .duo{justify-content:center;margin-bottom:14px}
 .fr-why.in .fr-dot:nth-of-type(3){transition-delay:1s}.fr-why.in .fr-dot:nth-of-type(4){transition-delay:1.15s}
 .fr-glow{fill:url(#frGlow);opacity:0;transition:opacity 1.2s var(--e) .6s}
 .fr-why.in .fr-glow{opacity:1}
-.fr-key{position:relative;display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:14px;font:500 13px/1.3 "Inter Tight",system-ui,sans-serif;color:var(--ink2)}
+.fr-key{position:relative;display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:10px;font:500 13px/1.3 "Inter Tight",system-ui,sans-serif;color:var(--ink2)}
 .fr-key span{display:inline-flex;align-items:center;gap:8px}
 .fr-key i{display:block;width:22px;height:4px;border-radius:4px;background:var(--gold)}
 .fr-key span+span i{background:#A89A85;height:3px}
-/* price board */
-.fr-board{margin-top:34px;border-radius:26px;padding:8px 22px 6px;background:linear-gradient(180deg,rgba(255,250,242,.88),rgba(255,250,242,.66));border:1px solid rgba(255,255,255,.8);box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 40px 80px -50px rgba(70,45,10,.55)}
-.fr-table{width:100%;border-collapse:separate;border-spacing:0;font-size:15px;line-height:1.4}
-.fr-table thead th{padding:16px 14px 10px;text-align:left;font:600 11px/1 "Inter Tight",system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2);border-bottom:1px solid var(--beige)}
-.fr-table .fr-grp th{padding:26px 14px 10px;text-align:left;font-weight:400}
-.fr-grp .k{display:block}
-.fr-grp strong{display:block;margin-top:8px;font:500 clamp(1.5rem,2.4vw,1.85rem)/1.1 "Cormorant Garamond",Georgia,serif;color:var(--ink)}
-.fr-grp small{display:block;margin-top:4px;font:400 14px/1.4 "Inter Tight",system-ui,sans-serif;color:var(--ink2)}
-.fr-table tbody tr:not(.fr-grp)>*{padding:16px 14px;border-bottom:1px solid rgba(229,218,194,.9);vertical-align:top;text-align:left}
-.fr-table tbody tr:last-child>*{border-bottom:0}
-.fr-name{font:500 1.55rem/1.05 "Cormorant Garamond",Georgia,serif;color:var(--ink)}
-.fr-name em{display:block;margin-top:5px;font:500 12.5px/1.3 "Inter Tight",system-ui,sans-serif;font-style:normal;color:var(--ink2)}
-.fr-top-tag{display:inline-block;vertical-align:.3em;margin-left:8px;padding:5px 9px 4px;border-radius:999px;font:700 10.5px/1 "Inter Tight",system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);background:var(--gold)}
-.fr-price{white-space:nowrap}
-.fr-from{display:block;margin-bottom:4px;font:600 10.5px/1 "Inter Tight",system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
-.fr-amt{font:600 2.1rem/1 "Cormorant Garamond",Georgia,serif;color:var(--gold-text);font-variant-numeric:lining-nums tabular-nums}
-.fr-amt sup{font-size:.46em;vertical-align:.8em;margin-right:1px}
-.fr-per{display:block;margin-top:4px;font:500 12.5px/1.3 "Inter Tight",system-ui,sans-serif;color:var(--ink2);white-space:normal}
-.fr-get ul,.fr-free ul{list-style:none;display:grid;gap:6px}
-.fr-get li{position:relative;padding-left:16px;color:var(--ink)}
-.fr-get li::before{content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--gold)}
-.fr-get b,.fr-free b{font-weight:600}
-.fr-free li{color:var(--ink)}
-.fr-free .pk-ft{margin:0 6px 0 0;vertical-align:.1em}
-.fr-table tr.fr-top>*{background:linear-gradient(180deg,rgba(201,166,107,.17),rgba(201,166,107,.10))}
-.fr-table tr.fr-top>:first-child{box-shadow:inset 3px 0 0 var(--gold);border-radius:14px 0 0 14px}
-.fr-table tr.fr-top>:last-child{border-radius:0 14px 14px 0}
-.fr-board tbody tr:not(.fr-grp){opacity:0;transform:translateY(14px);transition:opacity 1s var(--e),transform 1s var(--e)}
-.fr-board.in tbody tr:not(.fr-grp){opacity:1;transform:none}
-.fr-board.in tbody tr:nth-child(3){transition-delay:.12s}.fr-board.in tbody tr:nth-child(4){transition-delay:.24s}
-.fr-board.in tbody+tbody tr:nth-child(2){transition-delay:.1s}.fr-board.in tbody+tbody tr:nth-child(3){transition-delay:.22s}.fr-board.in tbody+tbody tr:nth-child(4){transition-delay:.34s}
-.fr-terms{margin:14px 4px 0;color:var(--ink2);font-size:14px;line-height:1.5}
-.fr-terms b{color:var(--ink);font-weight:600}
-/* phone: every row becomes a small stacked card, nothing scrolls sideways */
-@media(max-width:759px){
- .fr-board{padding:4px 12px 10px;border-radius:22px}
- .fr-table,.fr-table tbody,.fr-table tr,.fr-table th,.fr-table td{display:block;width:auto}
- .fr-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
- .fr-table .fr-grp th{padding:22px 6px 8px}
- .fr-table tbody tr:not(.fr-grp){display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:12px;row-gap:12px;padding:16px 14px;margin:8px 0;border-radius:18px;background:rgba(255,250,242,.72);border:1px solid rgba(229,218,194,.95)}
- .fr-table tbody tr:not(.fr-grp)>*{padding:0;border:0;background:none!important;box-shadow:none!important;border-radius:0!important}
- .fr-table .fr-get,.fr-table .fr-free{grid-column:1/-1}
- .fr-table .fr-free{padding-top:12px!important;border-top:1px solid rgba(229,218,194,.95)!important}
- .fr-price{text-align:right!important}
- .fr-per{max-width:13ch;margin-left:auto}
- .fr-table tr.fr-top{background:linear-gradient(180deg,rgba(201,166,107,.22),rgba(201,166,107,.12))!important;border-color:rgba(201,166,107,.75)!important;box-shadow:inset 3px 0 0 var(--gold)}
- .fr-top-tag{display:table;margin:8px 0 0}
- .fr-name{font-size:1.45rem}
-}
-/* bundle */
-.fr-deal{position:relative;margin-top:26px;border-radius:28px;padding:34px clamp(22px,4vw,48px);background:var(--ink);color:var(--ivory);overflow:hidden;box-shadow:0 50px 90px -50px rgba(70,45,10,.75)}
-.fr-deal::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--ang,0deg),rgba(201,166,107,.15),#C9A66B,rgba(255,250,242,.9),#C9A66B,rgba(201,166,107,.15));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:pk-spin 9s linear infinite;pointer-events:none;z-index:2}
-#fresh:not(.inview) .fr-deal::before{animation-play-state:paused}
-.fr-deal::after{content:"";position:absolute;width:min(720px,110%);aspect-ratio:1;right:-30%;top:-45%;background:radial-gradient(closest-side,rgba(201,166,107,.32),rgba(201,166,107,0));pointer-events:none}
-.fr-deal>*{position:relative;z-index:1}
-.fr-deal-in{display:grid;gap:22px}
-@media(min-width:860px){.fr-deal-in{grid-template-columns:1fr 1.1fr;gap:40px;align-items:center}}
-.fr-deal .pk-tag{position:static;display:inline-block;background:#C9A66B;color:var(--ink);border-color:transparent}
-.fr-deal h3{margin-top:14px;font:400 clamp(2rem,4.4vw,3rem)/1.02 "Cormorant Garamond",Georgia,serif}
-.fr-deal h3 i{color:#D9BC86}
-.fr-deal p{margin-top:10px;color:rgba(255,250,242,.82);font-size:15px;max-width:40ch}
-.fr-perks{list-style:none;display:grid;gap:10px}
-.fr-perks li{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:16px;background:rgba(255,250,242,.06);border:1px solid rgba(201,166,107,.38);font:500 15.5px/1.35 "Inter Tight",system-ui,sans-serif;color:var(--ivory)}
-.fr-perks .pk-ft{flex:none;margin:0;vertical-align:0}
-.fr-lock{flex:none;display:grid;place-items:center;width:44px;height:22px;border-radius:999px;background:var(--gold);color:var(--ink)}
-.fr-lock svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-.fr-deal .fr-fine{margin-top:14px;font-size:13px;color:rgba(255,250,242,.72)}
-.fr-ask{display:inline-flex;align-items:center;gap:10px;margin-top:18px;background:#C9A66B;color:var(--ink);border-radius:40px;padding:14px 22px;font:600 14.5px "Inter Tight",system-ui,sans-serif;transition:transform 1s var(--e),background 1s var(--e)}
-.fr-ask:hover{transform:translateY(-2px);background:#D9BC86}
-.fr-note{margin:18px 4px 0;color:var(--ink2);font-size:14px}
-.fr-terms span{display:block}.fr-terms span+span{margin-top:6px}.fr-legal{margin-top:10px;font-size:13px}
-.fr-deal p.fr-ask{margin-top:18px;color:var(--ink);font-size:14.5px;max-width:none}
-.fr-alex,.cta-alex{cursor:default}.fr-alex:hover,.cta-alex:hover{transform:none}.fr-alex:hover{background:#C9A66B}
+.fr-why figcaption{position:relative;margin-top:14px;padding-top:14px;border-top:1px solid rgba(201,166,107,.35);font:italic 400 clamp(1.25rem,2vw,1.45rem)/1.3 "Cormorant Garamond",Georgia,serif;color:var(--ink)}
+/* bundle: one slim gold strip with a soft moving sheen */
+.fr-deal{position:relative;display:flex;align-items:center;gap:14px;margin-top:30px;padding:16px 20px;border-radius:18px;background:#C9A66B;color:var(--ink);font:500 15px/1.45 "Inter Tight",system-ui,sans-serif;overflow:hidden;box-shadow:0 1px 0 rgba(255,255,255,.45) inset,0 30px 60px -36px rgba(105,72,22,.7)}
+.fr-deal::after{content:"";position:absolute;top:-40%;bottom:-40%;left:0;width:40%;background:linear-gradient(100deg,rgba(255,250,242,0),rgba(255,250,242,.38),rgba(255,250,242,0));transform:translateX(-120%) skewX(-12deg);animation:fr-sheen 6s var(--e) infinite;pointer-events:none}
+@keyframes fr-sheen{0%,55%{transform:translateX(-120%) skewX(-12deg)}100%{transform:translateX(320%) skewX(-12deg)}}
+#fresh:not(.inview) .fr-deal::after{animation-play-state:paused}
+.fr-deal b{font-weight:700}
+.fr-lock{position:relative;flex:none;display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:rgba(26,26,26,.9);color:#E3C892}
+.fr-lock svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.fr-deal span{position:relative}
+.px-fine{margin:16px 4px 0;color:var(--ink2);font-size:12.5px;line-height:1.5;max-width:110ch}
 @media(prefers-reduced-motion:reduce){
- .fr-line{stroke-dashoffset:0}.fr-dot,.fr-glow,.fr-steps li,.fr-board tbody tr:not(.fr-grp){opacity:1;transform:none}
- .fr-deal::before{animation:none}
+ .fr-line{stroke-dashoffset:0}.fr-dot,.fr-glow{opacity:1;transform:none}
+ .fr-deal::after{animation:none;display:none}
 }
 </style>
-  <div class="wrap fr-wrap">
-    <div class="reveal">
-      <div class="k">After launch, every month</div>
-      <h2 id="fresh-title">Keep NALU <i>fresh.</i></h2>
-      <p class="lede fr-lede">Your first package builds every NALU scene, person and look. Each month after, we reuse them to make new videos fast.</p>
-    </div>
-
-    <div class="fr-why reveal">
-      <ol class="fr-steps" aria-label="Why fresh videos matter">
-        <li><div><b>People stop noticing the same ad.</b><span>After a few weeks, many scroll straight past it.</span></div></li>
-        <li><div><b>Fresh videos help stop ads going stale.</b><span>New ads get noticed again, and we aim to keep results strong.</span></div></li>
-        <li><div><b>Keep NALU in front of buyers.</b><span>Right up until the keys are handed over in late 2028.</span></div></li>
-      </ol>
-      <figure class="fr-chart">
-        <figcaption class="k">People watching your ads, an example</figcaption>
+  <div class="wrap px-wrap">
+    <div class="fr-top">
+      <div class="px-head reveal">
+        <span class="px-n" aria-hidden="true">2</span>
+        <h2 id="fresh-title">Then keep it <i>fresh,</i> every month.</h2>
+        <p class="px-sub">3 months minimum, then month to month.</p>
+      </div>
+      <figure class="fr-why reveal">
+        <div class="k">An example</div>
         <svg viewBox="0 0 360 190" role="img" aria-label="An example line chart. The same ad tends to lose viewers over time. A new video each month aims to win attention back.">
           <defs>
             <linearGradient id="frGlow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9A66B" stop-opacity=".30"/><stop offset="1" stop-color="#C9A66B" stop-opacity="0"/></linearGradient>
@@ -581,87 +466,181 @@ footer .duo{justify-content:center;margin-bottom:14px}
           <path class="fr-line new" pathLength="1" d="M20 34 Q54 42 92 66 L92 34 Q126 42 164 66 L164 34 Q198 42 236 66 L236 34 Q270 42 308 66 L308 34 Q326 38 344 46"/>
           <circle class="fr-dot" cx="92" cy="34" r="6"/><circle class="fr-dot" cx="164" cy="34" r="6"/><circle class="fr-dot" cx="236" cy="34" r="6"/><circle class="fr-dot" cx="308" cy="34" r="6"/>
         </svg>
-        <div class="fr-key" aria-hidden="true"><span><i></i>New video each month</span><span><i></i>Same ad, week after week</span></div>
+        <div class="fr-key" aria-hidden="true"><span><i></i>New video each month</span><span><i></i>Same ad</span></div>
+        <figcaption>Fresh videos keep NALU in front of buyers until the keys are handed over in 2028.</figcaption>
       </figure>
     </div>
 
-    <div class="fr-board reveal">
-      <table class="fr-table">
-        <caption class="k" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">NALU prices: start with a package, then keep it fresh every month</caption>
-        <thead><tr><th scope="col">Plan</th><th scope="col">Price</th><th scope="col">What you get</th><th scope="col">Included free</th></tr></thead>
-        <tbody>
-          <tr class="fr-grp"><th colspan="4" scope="colgroup"><span class="k">Step 1</span><strong>Start with a package</strong><small>Builds every NALU scene, person and look we reuse each month.</small></th></tr>
-          <tr class="fr-top">
-            <th scope="row"><div class="fr-name">Complete wellness<span class="fr-top-tag">Top pick</span><em>The whole campaign, in one go</em></div></th>
-            <td class="fr-price"><span class="fr-from">Fixed price</span><span class="fr-amt"><sup>A$</sup>8,950</span></td>
-            <td class="fr-get"><ul><li><b>90s</b> piece, ocean to rooftop</li><li><b>8</b> short edits</li><li><b>6</b> carousels</li></ul></td>
-            <td class="fr-free"><ul><li><em class="pk-ft">Free</em>1 round of changes</li></ul></td>
-          </tr>
-          <tr>
-            <th scope="row"><div class="fr-name">Wellness and lifestyle<em>The whole building</em></div></th>
-            <td class="fr-price"><span class="fr-from">From</span><span class="fr-amt"><sup>A$</sup>6,950</span></td>
-            <td class="fr-get"><ul><li><b>60s</b> piece, ocean to rooftop</li><li><b>5</b> short edits</li><li><b>3</b> carousels</li></ul></td>
-            <td class="fr-free"><ul><li><em class="pk-ft">Free</em>1 round of changes</li></ul></td>
-          </tr>
-          <tr>
-            <th scope="row"><div class="fr-name">Apartment walkthrough<em>One home, room by room</em></div></th>
-            <td class="fr-price"><span class="fr-from">From</span><span class="fr-amt"><sup>A$</sup>3,750</span><span class="fr-per">per floor plan</span></td>
-            <td class="fr-get"><ul><li><b>45–60s</b> walkthrough</li><li><b>2</b> short edits</li><li><b>1</b> carousel</li></ul></td>
-            <td class="fr-free"><ul><li><em class="pk-ft">Free</em>1 round of changes</li></ul></td>
-          </tr>
-        </tbody>
-        <tbody>
-          <tr class="fr-grp"><th colspan="4" scope="colgroup"><span class="k">Step 2</span><strong>Then keep it fresh, every month</strong><small>3 months minimum, then month to month.</small></th></tr>
-          <tr class="fr-top">
-            <th scope="row"><div class="fr-name">Signature<span class="fr-top-tag">Top pick</span><em>Most new videos, every month</em></div></th>
-            <td class="fr-price"><span class="fr-amt"><sup>A$</sup>4,500</span><span class="fr-per">a month</span></td>
-            <td class="fr-get"><ul><li><b>10</b> short edits</li><li><b>4</b> carousels</li><li><b>4</b> new AI scenes</li><li><b>1</b> new 30-second piece</li></ul></td>
-            <td class="fr-free"><ul><li><em class="pk-ft">Free</em>Extra reels</li><li><em class="pk-ft">Free</em>Monthly ad check</li><li><em class="pk-ft">Free</em>1 round of changes</li></ul></td>
-          </tr>
-          <tr>
-            <th scope="row"><div class="fr-name">Growth<em>More videos, plus an ad check</em></div></th>
-            <td class="fr-price"><span class="fr-amt"><sup>A$</sup>2,950</span><span class="fr-per">a month</span></td>
-            <td class="fr-get"><ul><li><b>6</b> short edits</li><li><b>2</b> carousels</li><li><b>2</b> new AI scenes</li></ul></td>
-            <td class="fr-free"><ul><li><em class="pk-ft">Free</em>Monthly ad check</li><li><em class="pk-ft">Free</em>1 round of changes</li></ul></td>
-          </tr>
-          <tr>
-            <th scope="row"><div class="fr-name">Fresh<em>Keep your ads new</em></div></th>
-            <td class="fr-price"><span class="fr-amt"><sup>A$</sup>1,650</span><span class="fr-per">a month</span></td>
-            <td class="fr-get"><ul><li><b>4</b> short edits, from scenes already built</li><li><b>1</b> carousel</li></ul></td>
-            <td class="fr-free"><ul><li><em class="pk-ft">Free</em>1 round of changes</li></ul></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="fr-terms"><span><b>Free extra reels:</b> 2 extra short reels each month, made from scenes already built.</span><span><b>Free monthly ad check:</b> once a month, with view access to your ad results, we show which videos worked best and make the next ones more like the winners.</span><span><b>Price lock:</b> your monthly price stays the same for 12 months while your plan continues.</span></p>
-    <p class="fr-terms fr-legal">Supplied by Aurian Haus (The Trustee for House of Hansen Trust). Prices in AUD including GST.</p>
-
-    <div class="fr-deal reveal">
-      <div class="fr-deal-in">
-        <div>
-          <span class="pk-tag">Best value</span>
-          <h3>Complete <i>+ any <span style="white-space:nowrap">3-month plan</span></i></h3>
-          <p>Start with Complete, keep NALU fresh for 3 months or more, and you get all of this.</p>
-          <p class="fr-ask fr-alex">Ask Alex at Kollosche about this</p>
-        </div>
-        <div>
-          <ul class="fr-perks">
-            <li><em class="pk-ft">Free</em>Extra reels every month</li>
-            <li><em class="pk-ft">Free</em>Monthly ad check, to find your winners</li>
-            <li><span class="fr-lock" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>Your monthly price, locked for 12 months</li>
+    <div class="pk-grid swiper" id="pk-row-2" role="region" aria-label="Monthly plans" tabindex="0">
+      <div class="swiper-wrapper">
+      <article class="pk star swiper-slide">
+        <div class="pk-media"><img loading="lazy" decoding="async" src="media/shot-09.webp" alt=""><span class="pk-tag">Top pick</span></div>
+        <div class="pk-body">
+          <h3>Signature</h3>
+          <p class="pk-price"><span class="pk-amt" data-n="4500"><sup>A$</sup>4,500</span><span class="pk-per">/mo</span></p>
+          <ul class="pk-stats">
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 4.5h2"/></svg><b>10</b><span>short edits</span></li>
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="5" width="10" height="14" rx="1"/><path d="M21 17h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1M3 17h1a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H3"/></svg><b>4</b><span>carousels</span></li>
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 18a2 2 0 0 1 2 2 2 2 0 0 1 2-2 2 2 0 0 1-2-2 2 2 0 0 1-2 2zm0-12a2 2 0 0 1 2 2 2 2 0 0 1 2-2 2 2 0 0 1-2-2 2 2 0 0 1-2 2zM9 18a6 6 0 0 1 6-6 6 6 0 0 1-6-6 6 6 0 0 1-6 6 6 6 0 0 1 6 6z"/></svg><b>4</b><span>new scenes</span></li>
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 4v16M16 4v16M4 8h4M4 16h4M4 12h16M16 8h4M16 16h4"/></svg><b>30s</b><span>new piece</span></li>
           </ul>
-          <p class="fr-fine">On Signature, the reels and ad check are already free, so you get the 12-month price lock.</p>
         </div>
+        <div class="pk-more">
+          <h4>Signature<small>A$4,500 a month</small></h4>
+          <ul class="pk-list">
+            <li>10 short edits</li>
+            <li>4 carousels</li>
+            <li>4 new AI scenes</li>
+            <li>A new 30-second piece</li>
+            <li>2 extra reels each month <span class="pk-inc">Included</span></li>
+            <li>Monthly ad check <span class="pk-inc">Included</span></li>
+            <li>1 round of changes included</li>
+          </ul>
+          <p class="pk-lim">3 months minimum, then month to month. Extra reels are made from scenes already built.</p>
+        </div>
+        <div class="pk-foot"><button type="button" class="pk-tap" aria-expanded="false"><span class="pk-tap-t">Tap for details</span><i aria-hidden="true"></i></button></div>
+      </article>
+      <article class="pk swiper-slide">
+        <div class="pk-media"><img loading="lazy" decoding="async" src="media/shot-03.webp" alt=""></div>
+        <div class="pk-body">
+          <h3>Growth</h3>
+          <p class="pk-price"><span class="pk-amt" data-n="2950"><sup>A$</sup>2,950</span><span class="pk-per">/mo</span></p>
+          <ul class="pk-stats">
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 4.5h2"/></svg><b>6</b><span>short edits</span></li>
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="5" width="10" height="14" rx="1"/><path d="M21 17h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1M3 17h1a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H3"/></svg><b>2</b><span>carousels</span></li>
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 18a2 2 0 0 1 2 2 2 2 0 0 1 2-2 2 2 0 0 1-2-2 2 2 0 0 1-2 2zm0-12a2 2 0 0 1 2 2 2 2 0 0 1 2-2 2 2 0 0 1-2-2 2 2 0 0 1-2 2zM9 18a6 6 0 0 1 6-6 6 6 0 0 1-6-6 6 6 0 0 1-6 6 6 6 0 0 1 6 6z"/></svg><b>2</b><span>new scenes</span></li>
+          </ul>
+        </div>
+        <div class="pk-more">
+          <h4>Growth<small>A$2,950 a month</small></h4>
+          <ul class="pk-list">
+            <li>6 short edits</li>
+            <li>2 carousels</li>
+            <li>2 new AI scenes</li>
+            <li>Monthly ad check <span class="pk-inc">Included</span></li>
+            <li>1 round of changes included</li>
+          </ul>
+          <p class="pk-lim">3 months minimum, then month to month. The ad check uses view access to your ad results: we show what worked best and make more like it.</p>
+        </div>
+        <div class="pk-foot"><button type="button" class="pk-tap" aria-expanded="false"><span class="pk-tap-t">Tap for details</span><i aria-hidden="true"></i></button></div>
+      </article>
+      <article class="pk swiper-slide">
+        <div class="pk-media"><img loading="lazy" decoding="async" src="media/warm/S1-sunset-v3.jpg" alt=""></div>
+        <div class="pk-body">
+          <h3>Fresh</h3>
+          <p class="pk-price"><span class="pk-amt" data-n="1650"><sup>A$</sup>1,650</span><span class="pk-per">/mo</span></p>
+          <ul class="pk-stats">
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 4.5h2"/></svg><b>4</b><span>short edits</span></li>
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="5" width="10" height="14" rx="1"/><path d="M21 17h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1M3 17h1a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H3"/></svg><b>1</b><span>carousel</span></li>
+          </ul>
+        </div>
+        <div class="pk-more">
+          <h4>Fresh<small>A$1,650 a month</small></h4>
+          <ul class="pk-list">
+            <li>4 short edits from scenes already built</li>
+            <li>1 carousel</li>
+            <li>1 round of changes included</li>
+          </ul>
+          <p class="pk-lim">3 months minimum, then month to month.</p>
+        </div>
+        <div class="pk-foot"><button type="button" class="pk-tap" aria-expanded="false"><span class="pk-tap-t">Tap for details</span><i aria-hidden="true"></i></button></div>
+      </article>
       </div>
     </div>
-    <p class="fr-note">Generated scenes are based on your approved renders. You keep the clean clips from your project.</p>
+    <div class="pk-nav">
+      <button type="button" class="pk-arw" data-d="-1" aria-label="Previous plan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6 8.5 12l6 6"/></svg></button>
+      <div class="pk-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+      <button type="button" class="pk-arw" data-d="1" aria-label="Next plan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6l6 6-6 6"/></svg></button>
+    </div>
+
+    <p class="fr-deal reveal"><span class="fr-lock" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><span><b>Complete + any 3-month plan:</b> 2 extra reels a month and the ad check included, and your monthly price locked for 12 months.</span></p>
+    <p class="px-fine">Prices in AUD including GST. Generated scenes are based on your approved renders; you keep the clean clips from your project. One round of changes = one set of notes on the delivered cut. Supplied by Aurian Haus (The Trustee for House of Hansen Trust).</p>
   </div>
 <script>
 (function(){
-  var s=document.getElementById('fresh');if(!s)return;
-  // only spin the gold border while this section is on screen
-  if('IntersectionObserver' in window) new IntersectionObserver(function(es){s.classList.toggle('inview',es[0].isIntersecting)},{rootMargin:'100px 0px'}).observe(s);
-  else s.classList.add('inview');
+  // the two rows of price cards: packages, then monthly plans. Same Swiper setup for both.
+  var still=window.matchMedia('(prefers-reduced-motion: reduce)').matches, fine=window.matchMedia('(hover:hover) and (pointer:fine)').matches,
+      wide=window.matchMedia('(min-width:900px)');
+  function row(s){
+    var grid=s&&s.querySelector('.pk-grid'); if(!grid) return;
+    var wrap=grid.querySelector('.swiper-wrapper'), dots=[].slice.call(s.querySelectorAll('.pk-dots i')), arrows=[].slice.call(s.querySelectorAll('.pk-arw'));
+    var real=[].slice.call(wrap.children), n=real.length, shown=-1, sw=null, inview=false, openCard=null;
+    function mod(x){return ((x%n)+n)%n}
+    function mark(i){i=mod(i);if(i===shown)return;shown=i;dots.forEach(function(d,k){d.classList.toggle('on',k===i)})}
+    // how far the side cards sit from the front card (a share of one card's width), and how far back they sit
+    // Kept flat (no 3D depth): iPhone Safari cannot reliably tap a button on a card that sits in 3D space.
+    function side(){return wide.matches?'80%':'56%'}
+    function fx(){var x=side();return {limitProgress:2,perspective:false,
+      prev:{shadow:true,translate:['-'+x,0,0],rotate:[0,0,0],scale:.9,opacity:1},
+      next:{shadow:true,translate:[x,0,0],rotate:[0,0,0],scale:.9,opacity:1}}}
+    // cards one step from the front stay solid; cards two steps away fade out, so only three ever show
+    function fade(w){w.slides.forEach(function(el){var a=Math.abs(el.progress),o=a<=1?1:Math.max(0,1-(a-1)/.45);el.style.opacity=o;el.style.pointerEvents=o<.05?'none':''})}
+    function play(){if(sw&&sw.autoplay&&!still&&inview&&!openCard&&!sw.autoplay.running)sw.autoplay.start()}
+    function pause(){if(sw&&sw.autoplay&&sw.autoplay.running)sw.autoplay.stop()}
+    // only the front card is read out and reachable by Tab; the side cards are a tap away
+    function focusable(){[].forEach.call(wrap.children,function(el){var on=el.classList.contains('swiper-slide-active');
+      el.setAttribute('aria-hidden',on?'false':'true');el.querySelector('.pk-tap').tabIndex=on?0:-1})}
+    function setOpen(card,on){var b=card.querySelector('.pk-tap'),p=card.querySelector('.pk-more');
+      card.classList.toggle('open',on);b.setAttribute('aria-expanded',on?'true':'false');
+      b.querySelector('.pk-tap-t').textContent=on?'Close details':'Tap for details';
+      p.inert=!on;p.setAttribute('aria-hidden',on?'false':'true');
+      if(on){openCard=card;pause()}else if(openCard===card){openCard=null;play()}}
+    function closeAll(){[].forEach.call(wrap.querySelectorAll('.pk.open'),function(c){setOpen(c,false)})}
+    real.forEach(function(el){var p=el.querySelector('.pk-more');p.inert=true;p.setAttribute('aria-hidden','true')});
+    function boot(){
+      if(!window.Swiper){grid.classList.add('pk-fallback');return}
+      // Swiper's loop needs more slides than fit on screen, so the three cards are written out three times
+      for(var c=0;c<2;c++) real.forEach(function(el){var k=el.cloneNode(true);k.setAttribute('data-copy','');wrap.appendChild(k)});
+      [].forEach.call(wrap.children,function(el,i){var p=el.querySelector('.pk-more'),b=el.querySelector('.pk-tap');p.id=grid.id+'-d'+i;b.setAttribute('aria-controls',p.id);p.inert=true;
+        el.setAttribute('aria-label',el.querySelector('h3').textContent+', '+(i%n+1)+' of '+n)});
+      sw=new Swiper(grid,{
+        effect:'creative', creativeEffect:fx(), loop:true, centeredSlides:true, slidesPerView:'auto',
+        speed:still?0:1000, grabCursor:true, slideToClickedSlide:true, longSwipesRatio:.2, threshold:6,
+        watchSlidesProgress:true, roundLengths:true, mousewheel:{forceToAxis:true,thresholdDelta:12},
+        autoplay:still?false:{delay:4500,disableOnInteraction:false,pauseOnMouseEnter:true},
+        a11y:{enabled:true,slideLabelMessage:'',prevSlideMessage:'Previous',nextSlideMessage:'Next',containerMessage:null},
+        on:{
+          init:function(w){mark(w.realIndex);if(w.autoplay&&w.autoplay.running&&!inview)w.autoplay.stop();fade(w);focusable()},
+          realIndexChange:function(w){mark(w.realIndex)},
+          slideChange:function(){closeAll()},
+          slideChangeTransitionEnd:focusable,
+          progress:fade, setTranslate:fade,
+          resize:function(w){w.params.creativeEffect=Object.assign(w.params.creativeEffect,fx());w.update()}
+        }
+      });
+      // only slide on its own while this row is on screen; it always starts on the top pick
+      if(!still&&'IntersectionObserver' in window) new IntersectionObserver(function(es){inview=es[0].isIntersecting;
+        if(!sw.autoplay)return;if(inview)play();else pause()},{rootMargin:'-15% 0px -15% 0px'}).observe(grid);
+    }
+    // tap for details, on the front card only (a tap on a side card brings it to the front)
+    grid.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.pk-tap');if(!b)return;var c=b.closest('.pk');
+      if(sw&&!c.classList.contains('swiper-slide-active'))return;setOpen(c,!c.classList.contains('open'))});
+    grid.addEventListener('keydown',function(e){
+      if(e.key==='Escape'&&openCard){var b=openCard.querySelector('.pk-tap');setOpen(openCard,false);b.focus();return}
+      if(sw&&e.target===grid&&(e.key==='ArrowLeft'||e.key==='ArrowRight')){e.preventDefault();if(e.key==='ArrowRight')sw.slideNext();else sw.slidePrev()}});
+    // the dots and the arrows: always take the short way round (one step left or right)
+    function toCard(i){if(!sw)return;var d=mod(i-sw.realIndex);if(d===0)return;if(d>n/2)d-=n;if(d>0)sw.slideNext();else sw.slidePrev()}
+    dots.forEach(function(d,i){d.addEventListener('click',function(){toCard(i)})});
+    arrows.forEach(function(b){b.addEventListener('click',function(){if(!sw)return;if(+b.dataset.d>0)sw.slideNext();else sw.slidePrev()})});
+    mark(0);
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
+    // soft glow under the mouse on the front card
+    if(fine&&!still) grid.addEventListener('pointermove',function(e){var c=e.target.closest&&e.target.closest('.pk.swiper-slide-active');if(!c)return;var r=c.getBoundingClientRect();
+      c.style.setProperty('--mx',(e.clientX-r.left)/r.width*100+'%');c.style.setProperty('--my',(e.clientY-r.top)/r.height*100+'%')});
+    // prices count up when seen (the real number is already in the page)
+    var done=false;
+    function count(){if(done||still)return;done=true;
+      grid.querySelectorAll('.pk-amt').forEach(function(el){var v=+el.dataset.n,sup=el.querySelector('sup').outerHTML,t0=null;
+        function f(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/1100),e=1-Math.pow(1-p,4);el.innerHTML=sup+Math.round(v*e).toLocaleString('en-AU');if(p<1)requestAnimationFrame(f)}
+        requestAnimationFrame(f)})}
+    if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){count();io.disconnect()}},{threshold:.35});
+      if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){io.observe(grid)});else io.observe(grid);
+      // spin the gold border and run the sheen only while on screen; load the pictures once close so the loop never lands on a blank card
+      new IntersectionObserver(function(es){s.classList.toggle('inview',es[0].isIntersecting);
+        if(es[0].isIntersecting) s.querySelectorAll('.pk-media img[loading="lazy"]').forEach(function(m){m.loading='eager'})},{rootMargin:'200px 0px'}).observe(s)}
+    else s.classList.add('inview');
+  }
+  row(document.getElementById('packages'));row(document.getElementById('fresh'));
 })();
 </script>
 </section>
@@ -850,12 +829,12 @@ if("IntersectionObserver" in window)new IntersectionObserver(function(es){var e=
 var lb=document.getElementById("lb"),lbv=document.getElementById("lbv"),lbt=document.getElementById("lbt"),lbOpen=false,lk="",li=0;
 function show(){var it=LB[lk][li];lbv.poster=it.poster;lbv.src=it.src;lbt.textContent=it.t;play(lbv)}
 function openLB(k,i){
- lk=k;li=i;lbOpen=true;var pk=document.querySelector(".pk-grid");if(pk&&pk.swiper)pk.swiper.keyboard.disable();pageVids.forEach(v=>v.pause());pv.pause();
+ lk=k;li=i;lbOpen=true;pageVids.forEach(v=>v.pause());pv.pause();
  lb.classList.add("open");lb.setAttribute("aria-hidden","false");document.documentElement.style.overflow="hidden";
  document.getElementById("lbx").focus({preventScroll:true});show();
 }
 function closeLB(){
- lbOpen=false;var pk=document.querySelector(".pk-grid");if(pk&&pk.swiper)pk.swiper.keyboard.enable();lb.classList.remove("open");lb.setAttribute("aria-hidden","true");lbv.pause();lbv.removeAttribute("src");lbv.load(); // stop it downloading in the background
+ lbOpen=false;lb.classList.remove("open");lb.setAttribute("aria-hidden","true");lbv.pause();lbv.removeAttribute("src");lbv.load(); // stop it downloading in the background
  document.documentElement.style.overflow="";
  galleries[lk](li,false);
  document.querySelector('[data-rail="'+lk+'"]').children[li].focus({preventScroll:true});
