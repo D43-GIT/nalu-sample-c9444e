@@ -311,6 +311,16 @@ footer .duo{justify-content:center;margin-bottom:14px}
 .pk-dots i{position:relative;cursor:pointer;width:6px;height:6px;border-radius:99px;background:var(--beige);transition:width 1s var(--e),background 1s var(--e)}
 .pk-dots i.on{width:22px;background:var(--gold-text)}
 .pk-dots i::before{content:"";position:absolute;inset:-16px -5px}
+/* one quiet line under each row: every price at a glance; tap a name to bring that card to the front */
+.pk-strip{position:relative;z-index:1;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0 2px;margin:8px auto 0;max-width:760px;text-align:center}
+.pk-strip>span{color:var(--ink2);font:400 16px/1 "Inter Tight",system-ui,sans-serif}
+.pk-strip button{min-height:40px;padding:8px 8px;border:0;border-radius:999px;background:none;color:var(--ink2);font:400 16px/1.25 "Inter Tight",system-ui,sans-serif;white-space:nowrap;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:color .6s var(--e),background .6s var(--e)}
+.pk-strip button b{font-weight:600;color:var(--ink)}
+@media (hover:hover){.pk-strip button:hover{background:rgba(201,166,107,.14)}}
+.pk-strip button.on,.pk-strip button.on b{color:var(--gold-text)}
+.pk-strip button:focus-visible{outline:2px solid var(--gold-text);outline-offset:2px}
+/* phones: one price per line, no dots, so nothing is left dangling when it wraps */
+@media (max-width:599px){.pk-strip{flex-direction:column;gap:0}.pk-strip>span{display:none}}
 @media (max-width:899px){
  .pk{width:min(360px,78%)}
  .pk-media{aspect-ratio:16/9}
@@ -407,6 +417,7 @@ footer .duo{justify-content:center;margin-bottom:14px}
       <div class="pk-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
       <button type="button" class="pk-arw" data-d="1" aria-label="Next package"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6l6 6-6 6"/></svg></button>
     </div>
+    <p class="pk-strip" role="group" aria-label="All packages at a glance"><button type="button" data-i="0" aria-label="Show Complete, A$8,950"><b>Complete</b> A$8,950</button><span aria-hidden="true">·</span><button type="button" data-i="1" aria-label="Show Wellness, from A$6,950"><b>Wellness</b> from A$6,950</button><span aria-hidden="true">·</span><button type="button" data-i="2" aria-label="Show Walkthrough, from A$3,750"><b>Walkthrough</b> from A$3,750</button></p>
   </div>
 </section>
 
@@ -556,6 +567,7 @@ footer .duo{justify-content:center;margin-bottom:14px}
       <div class="pk-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
       <button type="button" class="pk-arw" data-d="1" aria-label="Next plan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6l6 6-6 6"/></svg></button>
     </div>
+    <p class="pk-strip" role="group" aria-label="All monthly plans at a glance"><button type="button" data-i="0" aria-label="Show Signature, A$4,500"><b>Signature</b> A$4,500</button><span aria-hidden="true">·</span><button type="button" data-i="1" aria-label="Show Growth, A$2,950"><b>Growth</b> A$2,950</button><span aria-hidden="true">·</span><button type="button" data-i="2" aria-label="Show Fresh, A$1,650 a month"><b>Fresh</b> A$1,650 a month</button></p>
 
     <p class="fr-deal reveal"><span class="fr-lock" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><span><b>Complete + any 3-month plan:</b> 2 extra reels a month and the ad check included, and your monthly price locked for 12 months.</span></p>
     <p class="px-fine">Prices in AUD incl. GST. Scenes are based on your approved renders. You keep the clean clips. 1 round of changes per cut.</p>
@@ -567,10 +579,10 @@ footer .duo{justify-content:center;margin-bottom:14px}
       wide=window.matchMedia('(min-width:900px)');
   function row(s){
     var grid=s&&s.querySelector('.pk-grid'); if(!grid) return;
-    var wrap=grid.querySelector('.swiper-wrapper'), dots=[].slice.call(s.querySelectorAll('.pk-dots i')), arrows=[].slice.call(s.querySelectorAll('.pk-arw'));
+    var wrap=grid.querySelector('.swiper-wrapper'), dots=[].slice.call(s.querySelectorAll('.pk-dots i')), arrows=[].slice.call(s.querySelectorAll('.pk-arw')), names=[].slice.call(s.querySelectorAll('.pk-strip button'));
     var real=[].slice.call(wrap.children), n=real.length, shown=-1, sw=null, inview=false, openCard=null;
     function mod(x){return ((x%n)+n)%n}
-    function mark(i){i=mod(i);if(i===shown)return;shown=i;dots.forEach(function(d,k){d.classList.toggle('on',k===i)})}
+    function mark(i){i=mod(i);if(i===shown)return;shown=i;dots.forEach(function(d,k){d.classList.toggle('on',k===i)});names.forEach(function(b,k){b.classList.toggle('on',k===i);b.setAttribute('aria-pressed',k===i?'true':'false')})}
     // how far the side cards sit from the front card (a share of one card's width), and how far back they sit
     // Kept flat (no 3D depth): iPhone Safari cannot reliably tap a button on a card that sits in 3D space.
     function side(){return wide.matches?'80%':'56%'}
@@ -628,6 +640,7 @@ footer .duo{justify-content:center;margin-bottom:14px}
     // the dots and the arrows: always take the short way round (one step left or right)
     function toCard(i){if(!sw)return;var d=mod(i-sw.realIndex);if(d===0)return;if(d>n/2)d-=n;if(d>0)sw.slideNext();else sw.slidePrev()}
     dots.forEach(function(d,i){d.addEventListener('click',function(){toCard(i)})});
+    names.forEach(function(b,i){b.addEventListener('click',function(){toCard(i)})});
     arrows.forEach(function(b){b.addEventListener('click',function(){if(!sw)return;if(+b.dataset.d>0)sw.slideNext();else sw.slidePrev()})});
     mark(0);
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
