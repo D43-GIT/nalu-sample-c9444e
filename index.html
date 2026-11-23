@@ -547,6 +547,9 @@ footer .duo{justify-content:center;margin-bottom:14px}
 .fr-ask{display:inline-flex;align-items:center;gap:10px;margin-top:18px;background:#C9A66B;color:var(--ink);border-radius:40px;padding:14px 22px;font:600 14.5px "Inter Tight",system-ui,sans-serif;transition:transform 1s var(--e),background 1s var(--e)}
 .fr-ask:hover{transform:translateY(-2px);background:#D9BC86}
 .fr-note{margin:18px 4px 0;color:var(--ink2);font-size:14px}
+.fr-terms span{display:block}.fr-terms span+span{margin-top:6px}.fr-legal{margin-top:10px;font-size:13px}
+.fr-deal p.fr-ask{margin-top:18px;color:var(--ink);font-size:14.5px;max-width:none}
+.fr-alex,.cta-alex{cursor:default}.fr-alex:hover,.cta-alex:hover{transform:none}.fr-alex:hover{background:#C9A66B}
 @media(prefers-reduced-motion:reduce){
  .fr-line{stroke-dashoffset:0}.fr-dot,.fr-glow,.fr-steps li,.fr-board tbody tr:not(.fr-grp){opacity:1;transform:none}
  .fr-deal::before{animation:none}
@@ -561,13 +564,13 @@ footer .duo{justify-content:center;margin-bottom:14px}
 
     <div class="fr-why reveal">
       <ol class="fr-steps" aria-label="Why fresh videos matter">
-        <li><div><b>People stop noticing the same ad.</b><span>After a few weeks, they scroll straight past it.</span></div></li>
-        <li><div><b>New videos keep your ads working.</b><span>Fresh ads get noticed again, so each enquiry costs less.</span></div></li>
-        <li><div><b>Buyers keep seeing NALU everywhere.</b><span>Right up until the keys are handed over in late 2028.</span></div></li>
+        <li><div><b>People stop noticing the same ad.</b><span>After a few weeks, many scroll straight past it.</span></div></li>
+        <li><div><b>Fresh videos help stop ads going stale.</b><span>New ads get noticed again, and we aim to keep results strong.</span></div></li>
+        <li><div><b>Keep NALU in front of buyers.</b><span>Right up until the keys are handed over in late 2028.</span></div></li>
       </ol>
       <figure class="fr-chart">
-        <figcaption class="k">People watching your ads</figcaption>
-        <svg viewBox="0 0 360 190" role="img" aria-label="A line chart. The same ad loses viewers week after week. With a new video each month, viewers come back every time.">
+        <figcaption class="k">People watching your ads, an example</figcaption>
+        <svg viewBox="0 0 360 190" role="img" aria-label="An example line chart. The same ad tends to lose viewers over time. A new video each month aims to win attention back.">
           <defs>
             <linearGradient id="frGlow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9A66B" stop-opacity=".30"/><stop offset="1" stop-color="#C9A66B" stop-opacity="0"/></linearGradient>
           </defs>
@@ -616,7 +619,7 @@ footer .duo{justify-content:center;margin-bottom:14px}
             <td class="fr-free"><ul><li><em class="pk-ft">Free</em>Extra reels</li><li><em class="pk-ft">Free</em>Monthly ad check</li><li><em class="pk-ft">Free</em>1 round of changes</li></ul></td>
           </tr>
           <tr>
-            <th scope="row"><div class="fr-name">Growth<em>More videos, smarter ads</em></div></th>
+            <th scope="row"><div class="fr-name">Growth<em>More videos, plus an ad check</em></div></th>
             <td class="fr-price"><span class="fr-amt"><sup>A$</sup>2,950</span><span class="fr-per">a month</span></td>
             <td class="fr-get"><ul><li><b>6</b> short edits</li><li><b>2</b> carousels</li><li><b>2</b> new AI scenes</li></ul></td>
             <td class="fr-free"><ul><li><em class="pk-ft">Free</em>Monthly ad check</li><li><em class="pk-ft">Free</em>1 round of changes</li></ul></td>
@@ -630,7 +633,8 @@ footer .duo{justify-content:center;margin-bottom:14px}
         </tbody>
       </table>
     </div>
-    <p class="fr-terms"><b>Monthly ad check:</b> we look at which videos worked best, then make more like the winners. All prices AUD, including GST.</p>
+    <p class="fr-terms"><span><b>Free extra reels:</b> 2 extra short reels each month, made from scenes already built.</span><span><b>Free monthly ad check:</b> once a month, with view access to your ad results, we show which videos worked best and make the next ones more like the winners.</span><span><b>Price lock:</b> your monthly price stays the same for 12 months while your plan continues.</span></p>
+    <p class="fr-terms fr-legal">Supplied by Aurian Haus (The Trustee for House of Hansen Trust). Prices in AUD including GST.</p>
 
     <div class="fr-deal reveal">
       <div class="fr-deal-in">
@@ -638,7 +642,7 @@ footer .duo{justify-content:center;margin-bottom:14px}
           <span class="pk-tag">Best value</span>
           <h3>Complete <i>+ any <span style="white-space:nowrap">3-month plan</span></i></h3>
           <p>Start with Complete, keep NALU fresh for 3 months or more, and you get all of this.</p>
-          <a class="fr-ask" href="mailto:hello@aurianhaus.com?subject=NALU%20Complete%20%2B%203-month%20plan">Ask about this →</a>
+          <p class="fr-ask fr-alex">Ask Alex at Kollosche about this</p>
         </div>
         <div>
           <ul class="fr-perks">
@@ -667,7 +671,7 @@ footer .duo{justify-content:center;margin-bottom:14px}
     <div class="k">Start with one residence</div>
     <h2>Pick one. <i>We'll bring it to life.</i></h2>
     <p class="lede" style="margin:14px auto 0">You approve the storyboard before anything is made.</p>
-    <a class="cta" href="mailto:hello@aurianhaus.com?subject=NALU%20first%20residence">Start with one residence →</a>
+    <p class="cta cta-alex">Ask Alex at Kollosche about this</p>
     <div class="wa">
       <a href="https://wa.me/61400357305"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.6-.1 1z"/></svg><span>Brandon<small>0400 357 305</small></span></a>
       <a href="https://wa.me/61426573420"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.6-.1 1z"/></svg><span>Jürgen<small>0426 573 420</small></span></a>
