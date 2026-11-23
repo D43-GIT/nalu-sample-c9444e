@@ -254,8 +254,8 @@ footer .duo{justify-content:center;margin-bottom:14px}
 .pk-amt{font:600 clamp(3rem,5vw,4rem)/.95 "Cormorant Garamond",Georgia,serif;letter-spacing:-.01em;color:var(--gold-text);font-variant-numeric:lining-nums tabular-nums}
 .pk-amt sup{font-size:.42em;vertical-align:.95em;margin-right:2px;letter-spacing:0}
 .pk-per{font:500 14px/1.2 "Inter Tight",system-ui,sans-serif;color:var(--ink2)}
-.pk-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0 14px;padding:0;list-style:none}
-.pk-stats li{position:relative;padding:11px 12px 11px;border-radius:14px;background:rgba(229,218,194,.38);border:1px solid rgba(229,218,194,.9)}
+.pk-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0 14px;padding:0;list-style:none}
+.pk-stats li{position:relative;min-width:0;padding:11px 10px 11px;border-radius:14px;background:rgba(229,218,194,.38);border:1px solid rgba(229,218,194,.9)}
 .pk-ic{display:block;width:18px;height:18px;margin-bottom:8px;fill:none;stroke:var(--gold-text);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .pk-stats b{display:block;font:600 1.6rem/1 "Inter Tight",system-ui,sans-serif;letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums}
 .pk-stats span{display:block;margin-top:4px;font:500 12.5px/1.25 "Inter Tight",system-ui,sans-serif;color:var(--ink2)}
@@ -264,6 +264,8 @@ footer .duo{justify-content:center;margin-bottom:14px}
 .pk-foot{position:relative;z-index:3;padding:4px 22px 22px;margin-top:auto}
 .pk-tap{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:46px;padding:12px 16px;border-radius:999px;border:1px solid rgba(201,166,107,.65);background:rgba(201,166,107,.12);color:var(--gold-text);font:600 14px/1 "Inter Tight",system-ui,sans-serif;transition:background 1s var(--e),border-color 1s var(--e)}
 .pk-tap:hover{background:rgba(201,166,107,.22)}
+/* taps always land on the button itself: Swiper blocks the tap on a span inside it, so iPhone Safari would drop the click */
+.pk-tap>*{pointer-events:none}
 .pk-tap:focus-visible{outline:2px solid var(--gold-text);outline-offset:2px}
 .pk-tap i{position:relative;flex:none;width:14px;height:14px;transition:transform .9s var(--e)}
 .pk-tap i::before,.pk-tap i::after{content:"";position:absolute;left:0;top:6px;width:14px;height:2px;border-radius:2px;background:currentColor}
@@ -319,6 +321,21 @@ footer .duo{justify-content:center;margin-bottom:14px}
 @media (hover:hover){.pk-strip button:hover{background:rgba(201,166,107,.14)}}
 .pk-strip button.on,.pk-strip button.on b{color:var(--gold-text)}
 .pk-strip button:focus-visible{outline:2px solid var(--gold-text);outline-offset:2px}
+/* the one line: a hero video splitting into short cuts (draws in once when seen) */
+.px-rule{display:flex;align-items:center;gap:16px;margin:18px 0 0;max-width:780px;font:500 16px/1.45 "Inter Tight",system-ui,sans-serif;color:var(--ink)}
+.px-split{flex:none;width:96px;height:auto;overflow:visible}
+.ps-hero,.ps-cut{fill:var(--gold);transform-box:fill-box;transform-origin:left center;transform:scaleX(0);transition:transform 1s var(--e)}
+.ps-cut{opacity:0;transition:transform 1s var(--e),opacity 1s var(--e)}
+.ps-link{fill:none;stroke:var(--gold);stroke-width:1.6;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1s var(--e) .45s}
+.ps-cut:nth-of-type(2){transition-delay:.9s}.ps-cut:nth-of-type(3){transition-delay:1.05s}.ps-cut:nth-of-type(4){transition-delay:1.2s}
+.px-rule.in .ps-hero,.px-rule.in .ps-cut{transform:none;opacity:1}
+.px-rule.in .ps-link{stroke-dashoffset:0}
+@media (max-width:599px){.px-rule{flex-direction:column;align-items:flex-start;gap:10px}.px-split{width:84px}}
+@media (prefers-reduced-motion:reduce){.ps-hero,.ps-cut{transform:none;opacity:1;transition:none}.ps-link{stroke-dashoffset:0;transition:none}}
+.pk-tot{flex-basis:100%;margin-top:6px;font:500 13px/1.2 "Inter Tight",system-ui,sans-serif;color:var(--ink2)}
+.pk-add{margin:-4px 0 12px;font:500 13.5px/1.3 "Inter Tight",system-ui,sans-serif;color:var(--ink)}
+.pk.star .pk-tot{color:rgba(255,250,242,.8)}
+.pk.star .pk-add{color:var(--ivory)}
 /* phones: one price per line, no dots, so nothing is left dangling when it wraps */
 @media (max-width:599px){.pk-strip{flex-direction:column;gap:0}.pk-strip>span{display:none}}
 @media (max-width:899px){
@@ -333,6 +350,7 @@ footer .duo{justify-content:center;margin-bottom:14px}
       <span class="px-n" aria-hidden="true">1</span>
       <h2 id="packages-title">Start with a <i>package.</i></h2>
     </div>
+    <p class="px-rule reveal"><svg class="px-split" viewBox="0 0 120 44" aria-hidden="true"><rect class="ps-hero" x="2" y="17" width="50" height="10" rx="5"/><path class="ps-link" pathLength="1" d="M52 22C64 22 66 8 78 8"/><path class="ps-link" pathLength="1" d="M52 22H78"/><path class="ps-link" pathLength="1" d="M52 22C64 22 66 36 78 36"/><rect class="ps-cut" x="80" y="4" width="22" height="8" rx="4"/><rect class="ps-cut" x="80" y="18" width="22" height="8" rx="4"/><rect class="ps-cut" x="80" y="32" width="22" height="8" rx="4"/></svg><span>Every idea = 1 hero video (30–40 s) + short cuts (10–15 s) for ads and socials.</span></p>
     <div class="pk-grid swiper" id="pk-row-1" role="region" aria-label="Packages" tabindex="0">
       <div class="swiper-wrapper">
       <article class="pk star swiper-slide">
@@ -341,22 +359,19 @@ footer .duo{justify-content:center;margin-bottom:14px}
           <h3>Complete</h3>
           <p class="pk-price"><span class="pk-amt" data-n="8950"><sup>A$</sup>8,950</span></p>
           <ul class="pk-stats">
-            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 4v16M16 4v16M4 8h4M4 16h4M4 12h16M16 8h4M16 16h4"/></svg><b>90s</b><span>piece</span></li>
-            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 4.5h2"/></svg><b>8</b><span>short edits</span></li>
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 4v16M16 4v16M4 8h4M4 16h4M4 12h16M16 8h4M16 16h4"/></svg><b>3</b><span>hero videos</span></li>
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 4.5h2"/></svg><b>8</b><span>short cuts</span></li>
             <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="5" width="10" height="14" rx="1"/><path d="M21 17h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1M3 17h1a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H3"/></svg><b>6</b><span>carousels</span></li>
-            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16a5 5 0 1 1 6 0 3.5 3.5 0 0 0-1 3 2 2 0 0 1-4 0 3.5 3.5 0 0 0-1-3M9.7 17h4.6"/></svg><b>3</b><span>concepts</span></li>
           </ul>
         </div>
         <div class="pk-more">
           <h4>Complete<small>A$8,950</small></h4>
           <ul class="pk-list">
-            <li>3 original concepts</li>
-            <li>90s piece with the ocean-to-rooftop opening</li>
-            <li>8 short edits, each square and vertical</li>
-            <li>6 carousels, 5 to 8 slides each</li>
+            <li>3 hero videos (30–40 s)</li>
+            <li>8 short cuts (10–15 s)</li>
+            <li>6 carousels, 5 to 8 slides, branded or clean</li>
             <li>1 round of changes included</li>
           </ul>
-          <p class="pk-lim">Short edits are on top of the main piece. Carousels come branded or clean.</p>
         </div>
         <div class="pk-foot"><button type="button" class="pk-tap" aria-expanded="false"><span class="pk-tap-t">Tap for details</span><i aria-hidden="true"></i></button></div>
       </article>
@@ -366,22 +381,19 @@ footer .duo{justify-content:center;margin-bottom:14px}
           <h3>Wellness</h3>
           <p class="pk-price"><span class="pk-from">From</span><span class="pk-amt" data-n="6950"><sup>A$</sup>6,950</span></p>
           <ul class="pk-stats">
-            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 4v16M16 4v16M4 8h4M4 16h4M4 12h16M16 8h4M16 16h4"/></svg><b>60s</b><span>piece</span></li>
-            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 4.5h2"/></svg><b>5</b><span>short edits</span></li>
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 4v16M16 4v16M4 8h4M4 16h4M4 12h16M16 8h4M16 16h4"/></svg><b>2</b><span>hero videos</span></li>
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 4.5h2"/></svg><b>5</b><span>short cuts</span></li>
             <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="5" width="10" height="14" rx="1"/><path d="M21 17h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1M3 17h1a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H3"/></svg><b>3</b><span>carousels</span></li>
-            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16a5 5 0 1 1 6 0 3.5 3.5 0 0 0-1 3 2 2 0 0 1-4 0 3.5 3.5 0 0 0-1-3M9.7 17h4.6"/></svg><b>2</b><span>concepts</span></li>
           </ul>
         </div>
         <div class="pk-more">
           <h4>Wellness<small>From A$6,950</small></h4>
           <ul class="pk-list">
-            <li>2 original concepts</li>
-            <li>60s ocean-to-rooftop piece</li>
-            <li>5 short vertical edits</li>
-            <li>3 carousels, 5 to 8 slides each</li>
+            <li>2 hero videos (30–40 s)</li>
+            <li>5 short cuts (10–15 s)</li>
+            <li>3 carousels, 5 to 8 slides, branded or clean</li>
             <li>1 round of changes included</li>
           </ul>
-          <p class="pk-lim">Short edits are on top of the main piece. Carousels come branded or clean.</p>
         </div>
         <div class="pk-foot"><button type="button" class="pk-tap" aria-expanded="false"><span class="pk-tap-t">Tap for details</span><i aria-hidden="true"></i></button></div>
       </article>
@@ -391,22 +403,19 @@ footer .duo{justify-content:center;margin-bottom:14px}
           <h3>Walkthrough</h3>
           <p class="pk-price"><span class="pk-from">From</span><span class="pk-amt" data-n="3750"><sup>A$</sup>3,750</span><span class="pk-per">per floor plan</span></p>
           <ul class="pk-stats">
-            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 4v16M16 4v16M4 8h4M4 16h4M4 12h16M16 8h4M16 16h4"/></svg><b>45–60s</b><span>walkthrough</span></li>
-            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 4.5h2"/></svg><b>2</b><span>short edits</span></li>
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 4v16M16 4v16M4 8h4M4 16h4M4 12h16M16 8h4M16 16h4"/></svg><b>1</b><span>hero video</span></li>
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 4.5h2"/></svg><b>2</b><span>short cuts</span></li>
             <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="5" width="10" height="14" rx="1"/><path d="M21 17h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1M3 17h1a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H3"/></svg><b>1</b><span>carousel</span></li>
-            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16a5 5 0 1 1 6 0 3.5 3.5 0 0 0-1 3 2 2 0 0 1-4 0 3.5 3.5 0 0 0-1-3M9.7 17h4.6"/></svg><b>1</b><span>concept</span></li>
           </ul>
         </div>
         <div class="pk-more">
           <h4>Walkthrough<small>From A$3,750 per floor plan</small></h4>
           <ul class="pk-list">
-            <li>1 original concept</li>
-            <li>45–60s walkthrough of one residence</li>
-            <li>2 short vertical edits</li>
-            <li>1 carousel, 5 to 8 slides</li>
+            <li>1 hero video (30–40 s)</li>
+            <li>2 short cuts (10–15 s)</li>
+            <li>1 carousel, 5 to 8 slides, branded or clean</li>
             <li>1 round of changes included</li>
           </ul>
-          <p class="pk-lim">Priced per floor plan, separate from the wellness packages.</p>
         </div>
         <div class="pk-foot"><button type="button" class="pk-tap" aria-expanded="false"><span class="pk-tap-t">Tap for details</span><i aria-hidden="true"></i></button></div>
       </article>
@@ -492,26 +501,23 @@ footer .duo{justify-content:center;margin-bottom:14px}
         <div class="pk-media"><img loading="lazy" decoding="async" src="media/shot-09.webp" alt=""><span class="pk-tag">Top pick</span></div>
         <div class="pk-body">
           <h3>Signature</h3>
-          <p class="pk-price"><span class="pk-amt" data-n="4500"><sup>A$</sup>4,500</span><span class="pk-per">/mo</span></p>
+          <p class="pk-price"><span class="pk-amt" data-n="4500"><sup>A$</sup>4,500</span><span class="pk-per">/mo</span><span class="pk-tot">10 videos</span></p>
           <ul class="pk-stats">
-            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 4.5h2"/></svg><b>10</b><span>short edits</span></li>
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 4v16M16 4v16M4 8h4M4 16h4M4 12h16M16 8h4M16 16h4"/></svg><b>2</b><span>hero videos</span></li>
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 4.5h2"/></svg><b>8</b><span>short cuts</span></li>
             <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="5" width="10" height="14" rx="1"/><path d="M21 17h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1M3 17h1a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H3"/></svg><b>4</b><span>carousels</span></li>
-            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 18a2 2 0 0 1 2 2 2 2 0 0 1 2-2 2 2 0 0 1-2-2 2 2 0 0 1-2 2zm0-12a2 2 0 0 1 2 2 2 2 0 0 1 2-2 2 2 0 0 1-2-2 2 2 0 0 1-2 2zM9 18a6 6 0 0 1 6-6 6 6 0 0 1-6-6 6 6 0 0 1-6 6 6 6 0 0 1 6 6z"/></svg><b>4</b><span>new scenes</span></li>
-            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 4v16M16 4v16M4 8h4M4 16h4M4 12h16M16 8h4M16 16h4"/></svg><b>30s</b><span>new piece</span></li>
           </ul>
+          <p class="pk-add">Ad check <span class="pk-inc">Included</span></p>
         </div>
         <div class="pk-more">
           <h4>Signature<small>A$4,500 a month</small></h4>
           <ul class="pk-list">
-            <li>10 short edits</li>
+            <li>2 hero videos (30–40 s)</li>
+            <li>8 short cuts (10–15 s)</li>
             <li>4 carousels</li>
-            <li>4 new AI scenes</li>
-            <li>A new 30-second piece</li>
-            <li>2 extra reels each month <span class="pk-inc">Included</span></li>
             <li>Monthly ad check <span class="pk-inc">Included</span></li>
             <li>1 round of changes included</li>
           </ul>
-          <p class="pk-lim">3 months minimum, then month to month. Extra reels are made from scenes already built.</p>
         </div>
         <div class="pk-foot"><button type="button" class="pk-tap" aria-expanded="false"><span class="pk-tap-t">Tap for details</span><i aria-hidden="true"></i></button></div>
       </article>
@@ -519,23 +525,24 @@ footer .duo{justify-content:center;margin-bottom:14px}
         <div class="pk-media"><img loading="lazy" decoding="async" src="media/shot-03.webp" alt=""></div>
         <div class="pk-body">
           <h3>Growth</h3>
-          <p class="pk-price"><span class="pk-amt" data-n="2950"><sup>A$</sup>2,950</span><span class="pk-per">/mo</span></p>
+          <p class="pk-price"><span class="pk-amt" data-n="2950"><sup>A$</sup>2,950</span><span class="pk-per">/mo</span><span class="pk-tot">6 videos</span></p>
           <ul class="pk-stats">
-            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 4.5h2"/></svg><b>6</b><span>short edits</span></li>
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 4v16M16 4v16M4 8h4M4 16h4M4 12h16M16 8h4M16 16h4"/></svg><b>1</b><span>hero video</span></li>
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 4.5h2"/></svg><b>5</b><span>short cuts</span></li>
             <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="5" width="10" height="14" rx="1"/><path d="M21 17h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1M3 17h1a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H3"/></svg><b>2</b><span>carousels</span></li>
-            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 18a2 2 0 0 1 2 2 2 2 0 0 1 2-2 2 2 0 0 1-2-2 2 2 0 0 1-2 2zm0-12a2 2 0 0 1 2 2 2 2 0 0 1 2-2 2 2 0 0 1-2-2 2 2 0 0 1-2 2zM9 18a6 6 0 0 1 6-6 6 6 0 0 1-6-6 6 6 0 0 1-6 6 6 6 0 0 1 6 6z"/></svg><b>2</b><span>new scenes</span></li>
           </ul>
+          <p class="pk-add">Ad check <span class="pk-inc">Included</span></p>
         </div>
         <div class="pk-more">
           <h4>Growth<small>A$2,950 a month</small></h4>
           <ul class="pk-list">
-            <li>6 short edits</li>
+            <li>1 hero video (30–40 s)</li>
+            <li>5 short cuts (10–15 s)</li>
             <li>2 carousels</li>
-            <li>2 new AI scenes</li>
             <li>Monthly ad check <span class="pk-inc">Included</span></li>
             <li>1 round of changes included</li>
           </ul>
-          <p class="pk-lim">3 months minimum, then month to month. The ad check uses view access to your ad results: we show what worked best and make more like it.</p>
+          <p class="pk-lim">The ad check uses view access to your ad results: we show what worked best and make more like it.</p>
         </div>
         <div class="pk-foot"><button type="button" class="pk-tap" aria-expanded="false"><span class="pk-tap-t">Tap for details</span><i aria-hidden="true"></i></button></div>
       </article>
@@ -543,20 +550,21 @@ footer .duo{justify-content:center;margin-bottom:14px}
         <div class="pk-media"><img loading="lazy" decoding="async" src="media/warm/S1-sunset-v3.jpg" alt=""></div>
         <div class="pk-body">
           <h3>Fresh</h3>
-          <p class="pk-price"><span class="pk-amt" data-n="1650"><sup>A$</sup>1,650</span><span class="pk-per">/mo</span></p>
+          <p class="pk-price"><span class="pk-amt" data-n="1650"><sup>A$</sup>1,650</span><span class="pk-per">/mo</span><span class="pk-tot">4 videos</span></p>
           <ul class="pk-stats">
-            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 4.5h2"/></svg><b>4</b><span>short edits</span></li>
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 4v16M16 4v16M4 8h4M4 16h4M4 12h16M16 8h4M16 16h4"/></svg><b>1</b><span>hero video</span></li>
+            <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 4.5h2"/></svg><b>3</b><span>short cuts</span></li>
             <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="5" width="10" height="14" rx="1"/><path d="M21 17h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1M3 17h1a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H3"/></svg><b>1</b><span>carousel</span></li>
           </ul>
         </div>
         <div class="pk-more">
           <h4>Fresh<small>A$1,650 a month</small></h4>
           <ul class="pk-list">
-            <li>4 short edits from scenes already built</li>
+            <li>1 hero video (30–40 s)</li>
+            <li>3 short cuts (10–15 s)</li>
             <li>1 carousel</li>
             <li>1 round of changes included</li>
           </ul>
-          <p class="pk-lim">3 months minimum, then month to month.</p>
         </div>
         <div class="pk-foot"><button type="button" class="pk-tap" aria-expanded="false"><span class="pk-tap-t">Tap for details</span><i aria-hidden="true"></i></button></div>
       </article>
