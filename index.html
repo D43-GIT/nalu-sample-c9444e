@@ -287,6 +287,8 @@ footer .duo{justify-content:center;margin-bottom:14px}
 /* the top pick */
 .pk.star{background:var(--ink);border-color:transparent;color:var(--ivory)}
 .pk.star::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--ang,0deg),rgba(201,166,107,.15),#C9A66B,rgba(255,250,242,.9),#C9A66B,rgba(201,166,107,.15));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:pk-spin 9s linear infinite;pointer-events:none;z-index:4}
+/* the spinning border gets its own layer, so the card under it is not redrawn every frame (that redraw is what shimmered on iPhone) */
+.pk-grid.pk-snap .pk.star::before{will-change:transform}
 @property --ang{syntax:"<angle>";inherits:false;initial-value:0deg}
 @keyframes pk-spin{to{--ang:360deg}}
 .px:not(.inview) .pk.star::before{animation-play-state:paused}
@@ -330,7 +332,8 @@ footer .duo{justify-content:center;margin-bottom:14px}
 .ps-cut:nth-of-type(2){transition-delay:.9s}.ps-cut:nth-of-type(3){transition-delay:1.05s}.ps-cut:nth-of-type(4){transition-delay:1.2s}
 .px-rule.in .ps-hero,.px-rule.in .ps-cut{transform:none;opacity:1}
 .px-rule.in .ps-link{stroke-dashoffset:0}
-@media (max-width:599px){.px-rule{flex-direction:column;align-items:flex-start;gap:10px}.px-split{width:84px}}
+.px-shape{margin:8px 0 0;padding-left:112px;max-width:780px;font:400 15px/1.45 "Inter Tight",system-ui,sans-serif;color:var(--ink2)}
+@media (max-width:599px){.px-rule{flex-direction:column;align-items:flex-start;gap:10px}.px-split{width:84px}.px-shape{padding-left:0}}
 @media (prefers-reduced-motion:reduce){.ps-hero,.ps-cut{transform:none;opacity:1;transition:none}.ps-link{stroke-dashoffset:0;transition:none}}
 .pk-tot{flex-basis:100%;margin-top:6px;font:500 13px/1.2 "Inter Tight",system-ui,sans-serif;color:var(--ink2)}
 .pk-add{margin:-4px 0 12px;font:500 13.5px/1.3 "Inter Tight",system-ui,sans-serif;color:var(--ink)}
@@ -344,6 +347,8 @@ footer .duo{justify-content:center;margin-bottom:14px}
  .pk-body{padding:0 18px 4px}.pk-foot{padding:4px 18px 18px}.pk-more{padding:22px 18px 80px}.pk.open .pk-more{padding-bottom:6px}
 }
 @media (prefers-reduced-motion:reduce){.pk-media img,.pk-arw,.pk-dots i,.pk-more,.pk-tap i{transition:none}.pk.star::before{animation:none}}
+/* cards are a whole number of pixels wide (worked out by the script), so the front card rests exactly in place */
+.pk-grid.pk-snap .pk{width:var(--pkw)}
 </style>
   <div class="wrap px-wrap">
     <div class="px-head reveal">
@@ -351,6 +356,7 @@ footer .duo{justify-content:center;margin-bottom:14px}
       <h2 id="packages-title">Start with a <i>package.</i></h2>
     </div>
     <p class="px-rule reveal"><svg class="px-split" viewBox="0 0 120 44" aria-hidden="true"><rect class="ps-hero" x="2" y="17" width="50" height="10" rx="5"/><path class="ps-link" pathLength="1" d="M52 22C64 22 66 8 78 8"/><path class="ps-link" pathLength="1" d="M52 22H78"/><path class="ps-link" pathLength="1" d="M52 22C64 22 66 36 78 36"/><rect class="ps-cut" x="80" y="4" width="22" height="8" rx="4"/><rect class="ps-cut" x="80" y="18" width="22" height="8" rx="4"/><rect class="ps-cut" x="80" y="32" width="22" height="8" rx="4"/></svg><span>Every idea = 1 hero video (30–40 s) + short cuts (10–15 s) for ads and socials.</span></p>
+    <p class="px-shape reveal">Each hero video is made in one shape, wide (16:9) or vertical (9:16), your pick. The other shape is extra.</p>
     <div class="pk-grid swiper" id="pk-row-1" role="region" aria-label="Packages" tabindex="0">
       <div class="swiper-wrapper">
       <article class="pk star swiper-slide">
@@ -501,7 +507,7 @@ footer .duo{justify-content:center;margin-bottom:14px}
         <div class="pk-media"><img loading="lazy" decoding="async" src="media/shot-09.webp" alt=""><span class="pk-tag">Top pick</span></div>
         <div class="pk-body">
           <h3>Signature</h3>
-          <p class="pk-price"><span class="pk-amt" data-n="4500"><sup>A$</sup>4,500</span><span class="pk-per">/mo</span><span class="pk-tot">10 videos</span></p>
+          <p class="pk-price"><span class="pk-amt" data-n="5500"><sup>A$</sup>5,500</span><span class="pk-per">/mo</span><span class="pk-tot">10 videos</span></p>
           <ul class="pk-stats">
             <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 4v16M16 4v16M4 8h4M4 16h4M4 12h16M16 8h4M16 16h4"/></svg><b>2</b><span>hero videos</span></li>
             <li><svg class="pk-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 4.5h2"/></svg><b>8</b><span>short cuts</span></li>
@@ -510,7 +516,7 @@ footer .duo{justify-content:center;margin-bottom:14px}
           <p class="pk-add">Ad check <span class="pk-inc">Included</span></p>
         </div>
         <div class="pk-more">
-          <h4>Signature<small>A$4,500 a month</small></h4>
+          <h4>Signature<small>A$5,500 a month</small></h4>
           <ul class="pk-list">
             <li>2 hero videos (30–40 s)</li>
             <li>8 short cuts (10–15 s)</li>
@@ -575,7 +581,7 @@ footer .duo{justify-content:center;margin-bottom:14px}
       <div class="pk-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
       <button type="button" class="pk-arw" data-d="1" aria-label="Next plan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6l6 6-6 6"/></svg></button>
     </div>
-    <p class="pk-strip" role="group" aria-label="All monthly plans at a glance"><button type="button" data-i="0" aria-label="Show Signature, A$4,500"><b>Signature</b> A$4,500</button><span aria-hidden="true">·</span><button type="button" data-i="1" aria-label="Show Growth, A$2,950"><b>Growth</b> A$2,950</button><span aria-hidden="true">·</span><button type="button" data-i="2" aria-label="Show Fresh, A$1,650 a month"><b>Fresh</b> A$1,650 a month</button></p>
+    <p class="pk-strip" role="group" aria-label="All monthly plans at a glance"><button type="button" data-i="0" aria-label="Show Signature, A$5,500"><b>Signature</b> A$5,500</button><span aria-hidden="true">·</span><button type="button" data-i="1" aria-label="Show Growth, A$2,950"><b>Growth</b> A$2,950</button><span aria-hidden="true">·</span><button type="button" data-i="2" aria-label="Show Fresh, A$1,650 a month"><b>Fresh</b> A$1,650 a month</button></p>
 
     <p class="fr-deal reveal"><span class="fr-lock" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><span><b>Complete + any 3-month plan:</b> 2 extra reels a month and the ad check included, and your monthly price locked for 12 months.</span></p>
     <p class="px-fine">Prices in AUD incl. GST. Scenes are based on your approved renders. You keep the clean clips. 1 round of changes per cut.</p>
@@ -593,7 +599,15 @@ footer .duo{justify-content:center;margin-bottom:14px}
     function mark(i){i=mod(i);if(i===shown)return;shown=i;dots.forEach(function(d,k){d.classList.toggle('on',k===i)});names.forEach(function(b,k){b.classList.toggle('on',k===i);b.setAttribute('aria-pressed',k===i?'true':'false')})}
     // how far the side cards sit from the front card (a share of one card's width), and how far back they sit
     // Kept flat (no 3D depth): iPhone Safari cannot reliably tap a button on a card that sits in 3D space.
-    function side(){return wide.matches?'80%':'56%'}
+    // Whole-pixel cards. The cards used to be 78% of the screen (e.g. 306.54 px) and Swiper rounds that, so the front card
+    // never quite landed: it sat at 99.97% size, half a pixel off, under a faint veil. On iPhone that made its text and
+    // tiles shimmer (Jürgen: "a little shake or vibration"). Now each card is a whole number of pixels, with the same
+    // odd/even as the row, so the front card rests at exactly 100% on whole pixels. Same size to the eye.
+    var pkw=0;
+    function snap(){var el=wrap.children[0];grid.classList.remove('pk-snap');
+      var g=Math.round(grid.getBoundingClientRect().width),w=Math.floor(parseFloat(getComputedStyle(el).width));
+      if((g-w)%2)w-=1;grid.style.setProperty('--pkw',w+'px');grid.classList.add('pk-snap');var changed=w!==pkw;pkw=w;return changed}
+    function side(){return Math.round(pkw*(wide.matches?.8:.56))+'px'}
     function fx(){var x=side();return {limitProgress:2,perspective:false,
       prev:{shadow:true,translate:['-'+x,0,0],rotate:[0,0,0],scale:.9,opacity:1},
       next:{shadow:true,translate:[x,0,0],rotate:[0,0,0],scale:.9,opacity:1}}}
@@ -620,6 +634,7 @@ footer .duo{justify-content:center;margin-bottom:14px}
       for(var c=0;c<2;c++) real.forEach(function(el){var k=el.cloneNode(true);k.setAttribute('data-copy','');wrap.appendChild(k)});
       [].forEach.call(wrap.children,function(el,i){var p=el.querySelector('.pk-more'),b=el.querySelector('.pk-tap');p.id=grid.id+'-d'+i;b.setAttribute('aria-controls',p.id);p.inert=true;
         el.setAttribute('aria-label',el.querySelector('h3').textContent+', '+(i%n+1)+' of '+n)});
+      snap();
       sw=new Swiper(grid,{
         effect:'creative', creativeEffect:fx(), loop:true, centeredSlides:true, slidesPerView:'auto',
         speed:still?0:1000, grabCursor:true, slideToClickedSlide:true, longSwipesRatio:.2, threshold:6,
@@ -632,7 +647,7 @@ footer .duo{justify-content:center;margin-bottom:14px}
           slideChange:function(){closeAll()},
           slideChangeTransitionEnd:focusable,
           progress:fade, setTranslate:fade,
-          resize:function(w){w.params.creativeEffect=Object.assign(w.params.creativeEffect,fx());w.update()}
+          resize:function(w){if(!snap())return;w.params.creativeEffect=Object.assign(w.params.creativeEffect,fx());w.update()}
         }
       });
       // only slide on its own while this row is on screen; it always starts on the top pick
@@ -678,7 +693,7 @@ footer .duo{justify-content:center;margin-bottom:14px}
     <div class="k">Start with one residence</div>
     <h2>Pick one. <i>We'll bring it to life.</i></h2>
     <p class="lede" style="margin:14px auto 0">You approve the storyboard before anything is made.</p>
-    <p class="cta cta-alex">Ask Alex at Kollosche about this</p>
+    <p class="cta cta-alex">Message Brandon or Jürgen to start</p>
     <div class="wa">
       <a href="https://wa.me/61400357305"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.6-.1 1z"/></svg><span>Brandon<small>0400 357 305</small></span></a>
       <a href="https://wa.me/61426573420"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.6-.1 1z"/></svg><span>Jürgen<small>0426 573 420</small></span></a>
