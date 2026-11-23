@@ -271,6 +271,10 @@ footer .duo{justify-content:center;margin-bottom:14px}
 .pk.open .pk-tap i{transform:rotate(45deg)}
 .pk-more{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;padding:24px 22px 86px;background:var(--ivory);border-radius:inherit;overflow-y:auto;overscroll-behavior:contain;opacity:0;visibility:hidden;transform:translateY(18px);transition:opacity .9s var(--e),transform .9s var(--e),visibility 0s linear .9s}
 .pk.open .pk-more{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+/* open: the details take the place of the card face, so the card is exactly as tall as its details (no empty space) */
+.pk.open .pk-media,.pk.open .pk-body{display:none}
+.pk.open .pk-more{position:relative;inset:auto;flex:none;padding-bottom:6px;overflow:visible}
+.pk.open{align-self:center}
 .pk-more h4{font:500 1.7rem/1.05 "Cormorant Garamond",Georgia,serif}
 .pk-more h4 small{display:block;margin-top:6px;font:600 14px/1.2 "Inter Tight",system-ui,sans-serif;color:var(--gold-text)}
 .pk-list{list-style:none;display:grid;gap:9px;margin:16px 0 0;padding:14px 0 0;border-top:1px solid var(--beige)}
@@ -310,7 +314,7 @@ footer .duo{justify-content:center;margin-bottom:14px}
 @media (max-width:899px){
  .pk{width:min(360px,78%)}
  .pk-media{aspect-ratio:16/9}
- .pk-body{padding:0 18px 4px}.pk-foot{padding:4px 18px 18px}.pk-more{padding:22px 18px 80px}
+ .pk-body{padding:0 18px 4px}.pk-foot{padding:4px 18px 18px}.pk-more{padding:22px 18px 80px}.pk.open .pk-more{padding-bottom:6px}
 }
 @media (prefers-reduced-motion:reduce){.pk-media img,.pk-arw,.pk-dots i,.pk-more,.pk-tap i{transition:none}.pk.star::before{animation:none}}
 </style>
@@ -554,7 +558,7 @@ footer .duo{justify-content:center;margin-bottom:14px}
     </div>
 
     <p class="fr-deal reveal"><span class="fr-lock" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><span><b>Complete + any 3-month plan:</b> 2 extra reels a month and the ad check included, and your monthly price locked for 12 months.</span></p>
-    <p class="px-fine">Prices in AUD including GST. Generated scenes are based on your approved renders; you keep the clean clips from your project. One round of changes = one set of notes on the delivered cut. Supplied by Aurian Haus (The Trustee for House of Hansen Trust).</p>
+    <p class="px-fine">Prices in AUD incl. GST. Scenes are based on your approved renders. You keep the clean clips. 1 round of changes per cut.</p>
   </div>
 <script>
 (function(){
@@ -584,7 +588,10 @@ footer .duo{justify-content:center;margin-bottom:14px}
       card.classList.toggle('open',on);b.setAttribute('aria-expanded',on?'true':'false');
       b.querySelector('.pk-tap-t').textContent=on?'Close details':'Tap for details';
       p.inert=!on;p.setAttribute('aria-hidden',on?'false':'true');
-      if(on){openCard=card;pause()}else if(openCard===card){openCard=null;play()}}
+      if(on){openCard=card;pause()}else if(openCard===card){openCard=null;play()}
+      // keep the open card clear of the top bar: if its top is under the bar or its bottom is off screen, bring its top to just below the bar
+      if(on){var bar=document.getElementById('bar'),hb=bar?bar.getBoundingClientRect().bottom:0,r=card.getBoundingClientRect();
+        if(r.top<hb+8||r.bottom>innerHeight-8)window.scrollTo({top:Math.max(0,scrollY+r.top-hb-12),behavior:still?'auto':'smooth'})}}
     function closeAll(){[].forEach.call(wrap.querySelectorAll('.pk.open'),function(c){setOpen(c,false)})}
     real.forEach(function(el){var p=el.querySelector('.pk-more');p.inert=true;p.setAttribute('aria-hidden','true')});
     function boot(){
