@@ -443,6 +443,225 @@ footer .duo{justify-content:center;margin-bottom:14px}
 </script>
 </section>
 
+<section id="fresh" aria-labelledby="fresh-title">
+<style>
+#fresh{position:relative;background:radial-gradient(60% 40% at 88% 18%,rgba(201,166,107,.20),rgba(201,166,107,0) 70%),radial-gradient(50% 36% at 6% 62%,rgba(233,211,174,.55),rgba(233,211,174,0) 70%)}
+#fresh .fr-wrap{max-width:1180px}
+#fresh .fr-lede{max-width:52ch}
+/* why */
+.fr-why{display:grid;gap:18px;margin-top:30px}
+@media(min-width:860px){.fr-why{grid-template-columns:1.05fr 1fr;gap:28px;align-items:stretch}}
+.fr-steps{list-style:none;display:grid;gap:12px;counter-reset:fr}
+.fr-steps li{position:relative;display:flex;gap:16px;align-items:flex-start;padding:18px 20px;border-radius:20px;background:var(--glass);border:1px solid rgba(255,255,255,.75);box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 24px 50px -36px rgba(70,45,10,.45);opacity:0;transform:translateY(18px);transition:opacity 1s var(--e),transform 1s var(--e)}
+.fr-why.in .fr-steps li{opacity:1;transform:none}
+.fr-why.in .fr-steps li:nth-child(2){transition-delay:.15s}
+.fr-why.in .fr-steps li:nth-child(3){transition-delay:.3s}
+.fr-steps li::before{counter-increment:fr;content:counter(fr);flex:none;display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--gold);color:var(--ink);font:600 15px/1 "Inter Tight",system-ui,sans-serif}
+.fr-steps b{display:block;font:500 clamp(1.3rem,2.2vw,1.55rem)/1.15 "Cormorant Garamond",Georgia,serif;color:var(--ink)}
+.fr-steps span{display:block;margin-top:4px;font-size:14.5px;line-height:1.4;color:var(--ink2)}
+.fr-chart{position:relative;display:flex;flex-direction:column;justify-content:center;padding:22px 22px 18px;border-radius:24px;background:linear-gradient(180deg,rgba(255,250,242,.86),rgba(246,235,215,.7));border:1px solid rgba(255,255,255,.8);box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 34px 70px -44px rgba(70,45,10,.55);overflow:hidden}
+.fr-chart::before{content:"";position:absolute;width:70%;height:70%;right:-14%;top:-24%;background:radial-gradient(closest-side,rgba(201,166,107,.28),rgba(201,166,107,0));pointer-events:none}
+.fr-chart .k{position:relative}
+.fr-chart svg{position:relative;display:block;width:100%;height:auto;margin-top:12px;overflow:visible}
+.fr-line{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.2s var(--e)}
+.fr-line.old{stroke:#A89A85;stroke-width:3;stroke-dasharray:1;transition-delay:.1s}
+.fr-line.new{stroke:var(--gold);stroke-width:4;transition-delay:.45s}
+.fr-why.in .fr-line{stroke-dashoffset:0}
+.fr-dot{fill:var(--ivory);stroke:var(--gold-text);stroke-width:2.5;opacity:0;transform-box:fill-box;transform-origin:center;transform:scale(.4);transition:opacity .9s var(--e),transform .9s var(--e)}
+.fr-why.in .fr-dot{opacity:1;transform:none}
+.fr-why.in .fr-dot:nth-of-type(1){transition-delay:.7s}.fr-why.in .fr-dot:nth-of-type(2){transition-delay:.85s}
+.fr-why.in .fr-dot:nth-of-type(3){transition-delay:1s}.fr-why.in .fr-dot:nth-of-type(4){transition-delay:1.15s}
+.fr-glow{fill:url(#frGlow);opacity:0;transition:opacity 1.2s var(--e) .6s}
+.fr-why.in .fr-glow{opacity:1}
+.fr-key{position:relative;display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:14px;font:500 13px/1.3 "Inter Tight",system-ui,sans-serif;color:var(--ink2)}
+.fr-key span{display:inline-flex;align-items:center;gap:8px}
+.fr-key i{display:block;width:22px;height:4px;border-radius:4px;background:var(--gold)}
+.fr-key span+span i{background:#A89A85;height:3px}
+/* price board */
+.fr-board{margin-top:34px;border-radius:26px;padding:8px 22px 6px;background:linear-gradient(180deg,rgba(255,250,242,.88),rgba(255,250,242,.66));border:1px solid rgba(255,255,255,.8);box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 40px 80px -50px rgba(70,45,10,.55)}
+.fr-table{width:100%;border-collapse:separate;border-spacing:0;font-size:15px;line-height:1.4}
+.fr-table thead th{padding:16px 14px 10px;text-align:left;font:600 11px/1 "Inter Tight",system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2);border-bottom:1px solid var(--beige)}
+.fr-table .fr-grp th{padding:26px 14px 10px;text-align:left;font-weight:400}
+.fr-grp .k{display:block}
+.fr-grp strong{display:block;margin-top:8px;font:500 clamp(1.5rem,2.4vw,1.85rem)/1.1 "Cormorant Garamond",Georgia,serif;color:var(--ink)}
+.fr-grp small{display:block;margin-top:4px;font:400 14px/1.4 "Inter Tight",system-ui,sans-serif;color:var(--ink2)}
+.fr-table tbody tr:not(.fr-grp)>*{padding:16px 14px;border-bottom:1px solid rgba(229,218,194,.9);vertical-align:top;text-align:left}
+.fr-table tbody tr:last-child>*{border-bottom:0}
+.fr-name{font:500 1.55rem/1.05 "Cormorant Garamond",Georgia,serif;color:var(--ink)}
+.fr-name em{display:block;margin-top:5px;font:500 12.5px/1.3 "Inter Tight",system-ui,sans-serif;font-style:normal;color:var(--ink2)}
+.fr-top-tag{display:inline-block;vertical-align:.3em;margin-left:8px;padding:5px 9px 4px;border-radius:999px;font:700 10.5px/1 "Inter Tight",system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);background:var(--gold)}
+.fr-price{white-space:nowrap}
+.fr-from{display:block;margin-bottom:4px;font:600 10.5px/1 "Inter Tight",system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
+.fr-amt{font:600 2.1rem/1 "Cormorant Garamond",Georgia,serif;color:var(--gold-text);font-variant-numeric:lining-nums tabular-nums}
+.fr-amt sup{font-size:.46em;vertical-align:.8em;margin-right:1px}
+.fr-per{display:block;margin-top:4px;font:500 12.5px/1.3 "Inter Tight",system-ui,sans-serif;color:var(--ink2);white-space:normal}
+.fr-get ul,.fr-free ul{list-style:none;display:grid;gap:6px}
+.fr-get li{position:relative;padding-left:16px;color:var(--ink)}
+.fr-get li::before{content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.fr-get b,.fr-free b{font-weight:600}
+.fr-free li{color:var(--ink)}
+.fr-free .pk-ft{margin:0 6px 0 0;vertical-align:.1em}
+.fr-table tr.fr-top>*{background:linear-gradient(180deg,rgba(201,166,107,.17),rgba(201,166,107,.10))}
+.fr-table tr.fr-top>:first-child{box-shadow:inset 3px 0 0 var(--gold);border-radius:14px 0 0 14px}
+.fr-table tr.fr-top>:last-child{border-radius:0 14px 14px 0}
+.fr-board tbody tr:not(.fr-grp){opacity:0;transform:translateY(14px);transition:opacity 1s var(--e),transform 1s var(--e)}
+.fr-board.in tbody tr:not(.fr-grp){opacity:1;transform:none}
+.fr-board.in tbody tr:nth-child(3){transition-delay:.12s}.fr-board.in tbody tr:nth-child(4){transition-delay:.24s}
+.fr-board.in tbody+tbody tr:nth-child(2){transition-delay:.1s}.fr-board.in tbody+tbody tr:nth-child(3){transition-delay:.22s}.fr-board.in tbody+tbody tr:nth-child(4){transition-delay:.34s}
+.fr-terms{margin:14px 4px 0;color:var(--ink2);font-size:14px;line-height:1.5}
+.fr-terms b{color:var(--ink);font-weight:600}
+/* phone: every row becomes a small stacked card, nothing scrolls sideways */
+@media(max-width:759px){
+ .fr-board{padding:4px 12px 10px;border-radius:22px}
+ .fr-table,.fr-table tbody,.fr-table tr,.fr-table th,.fr-table td{display:block;width:auto}
+ .fr-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+ .fr-table .fr-grp th{padding:22px 6px 8px}
+ .fr-table tbody tr:not(.fr-grp){display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:12px;row-gap:12px;padding:16px 14px;margin:8px 0;border-radius:18px;background:rgba(255,250,242,.72);border:1px solid rgba(229,218,194,.95)}
+ .fr-table tbody tr:not(.fr-grp)>*{padding:0;border:0;background:none!important;box-shadow:none!important;border-radius:0!important}
+ .fr-table .fr-get,.fr-table .fr-free{grid-column:1/-1}
+ .fr-table .fr-free{padding-top:12px!important;border-top:1px solid rgba(229,218,194,.95)!important}
+ .fr-price{text-align:right!important}
+ .fr-per{max-width:13ch;margin-left:auto}
+ .fr-table tr.fr-top{background:linear-gradient(180deg,rgba(201,166,107,.22),rgba(201,166,107,.12))!important;border-color:rgba(201,166,107,.75)!important;box-shadow:inset 3px 0 0 var(--gold)}
+ .fr-top-tag{display:table;margin:8px 0 0}
+ .fr-name{font-size:1.45rem}
+}
+/* bundle */
+.fr-deal{position:relative;margin-top:26px;border-radius:28px;padding:34px clamp(22px,4vw,48px);background:var(--ink);color:var(--ivory);overflow:hidden;box-shadow:0 50px 90px -50px rgba(70,45,10,.75)}
+.fr-deal::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--ang,0deg),rgba(201,166,107,.15),#C9A66B,rgba(255,250,242,.9),#C9A66B,rgba(201,166,107,.15));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:pk-spin 9s linear infinite;pointer-events:none;z-index:2}
+#fresh:not(.inview) .fr-deal::before{animation-play-state:paused}
+.fr-deal::after{content:"";position:absolute;width:min(720px,110%);aspect-ratio:1;right:-30%;top:-45%;background:radial-gradient(closest-side,rgba(201,166,107,.32),rgba(201,166,107,0));pointer-events:none}
+.fr-deal>*{position:relative;z-index:1}
+.fr-deal-in{display:grid;gap:22px}
+@media(min-width:860px){.fr-deal-in{grid-template-columns:1fr 1.1fr;gap:40px;align-items:center}}
+.fr-deal .pk-tag{position:static;display:inline-block;background:#C9A66B;color:var(--ink);border-color:transparent}
+.fr-deal h3{margin-top:14px;font:400 clamp(2rem,4.4vw,3rem)/1.02 "Cormorant Garamond",Georgia,serif}
+.fr-deal h3 i{color:#D9BC86}
+.fr-deal p{margin-top:10px;color:rgba(255,250,242,.82);font-size:15px;max-width:40ch}
+.fr-perks{list-style:none;display:grid;gap:10px}
+.fr-perks li{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:16px;background:rgba(255,250,242,.06);border:1px solid rgba(201,166,107,.38);font:500 15.5px/1.35 "Inter Tight",system-ui,sans-serif;color:var(--ivory)}
+.fr-perks .pk-ft{flex:none;margin:0;vertical-align:0}
+.fr-lock{flex:none;display:grid;place-items:center;width:44px;height:22px;border-radius:999px;background:var(--gold);color:var(--ink)}
+.fr-lock svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.fr-deal .fr-fine{margin-top:14px;font-size:13px;color:rgba(255,250,242,.72)}
+.fr-ask{display:inline-flex;align-items:center;gap:10px;margin-top:18px;background:#C9A66B;color:var(--ink);border-radius:40px;padding:14px 22px;font:600 14.5px "Inter Tight",system-ui,sans-serif;transition:transform 1s var(--e),background 1s var(--e)}
+.fr-ask:hover{transform:translateY(-2px);background:#D9BC86}
+.fr-note{margin:18px 4px 0;color:var(--ink2);font-size:14px}
+@media(prefers-reduced-motion:reduce){
+ .fr-line{stroke-dashoffset:0}.fr-dot,.fr-glow,.fr-steps li,.fr-board tbody tr:not(.fr-grp){opacity:1;transform:none}
+ .fr-deal::before{animation:none}
+}
+</style>
+  <div class="wrap fr-wrap">
+    <div class="reveal">
+      <div class="k">After launch, every month</div>
+      <h2 id="fresh-title">Keep NALU <i>fresh.</i></h2>
+      <p class="lede fr-lede">Your first package builds every NALU scene, person and look. Each month after, we reuse them to make new videos fast.</p>
+    </div>
+
+    <div class="fr-why reveal">
+      <ol class="fr-steps" aria-label="Why fresh videos matter">
+        <li><div><b>People stop noticing the same ad.</b><span>After a few weeks, they scroll straight past it.</span></div></li>
+        <li><div><b>New videos keep your ads working.</b><span>Fresh ads get noticed again, so each enquiry costs less.</span></div></li>
+        <li><div><b>Buyers keep seeing NALU everywhere.</b><span>Right up until the keys are handed over in late 2028.</span></div></li>
+      </ol>
+      <figure class="fr-chart">
+        <figcaption class="k">People watching your ads</figcaption>
+        <svg viewBox="0 0 360 190" role="img" aria-label="A line chart. The same ad loses viewers week after week. With a new video each month, viewers come back every time.">
+          <defs>
+            <linearGradient id="frGlow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9A66B" stop-opacity=".30"/><stop offset="1" stop-color="#C9A66B" stop-opacity="0"/></linearGradient>
+          </defs>
+          <g stroke="rgba(201,166,107,.28)" stroke-width="1"><path d="M20 40H344M20 90H344M20 140H344"/></g>
+          <path d="M20 178H344" stroke="rgba(105,72,22,.35)" stroke-width="1.5"/>
+          <path class="fr-glow" d="M20 34 Q54 42 92 66 L92 34 Q126 42 164 66 L164 34 Q198 42 236 66 L236 34 Q270 42 308 66 L308 34 Q326 38 344 46 V178 H20Z"/>
+          <path class="fr-line old" pathLength="1" d="M20 34 C 80 46, 120 104, 190 134 S 300 166, 344 170"/>
+          <path class="fr-line new" pathLength="1" d="M20 34 Q54 42 92 66 L92 34 Q126 42 164 66 L164 34 Q198 42 236 66 L236 34 Q270 42 308 66 L308 34 Q326 38 344 46"/>
+          <circle class="fr-dot" cx="92" cy="34" r="6"/><circle class="fr-dot" cx="164" cy="34" r="6"/><circle class="fr-dot" cx="236" cy="34" r="6"/><circle class="fr-dot" cx="308" cy="34" r="6"/>
+        </svg>
+        <div class="fr-key" aria-hidden="true"><span><i></i>New video each month</span><span><i></i>Same ad, week after week</span></div>
+      </figure>
+    </div>
+
+    <div class="fr-board reveal">
+      <table class="fr-table">
+        <caption class="k" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">NALU prices: start with a package, then keep it fresh every month</caption>
+        <thead><tr><th scope="col">Plan</th><th scope="col">Price</th><th scope="col">What you get</th><th scope="col">Included free</th></tr></thead>
+        <tbody>
+          <tr class="fr-grp"><th colspan="4" scope="colgroup"><span class="k">Step 1</span><strong>Start with a package</strong><small>Builds every NALU scene, person and look we reuse each month.</small></th></tr>
+          <tr class="fr-top">
+            <th scope="row"><div class="fr-name">Complete wellness<span class="fr-top-tag">Top pick</span><em>The whole campaign, in one go</em></div></th>
+            <td class="fr-price"><span class="fr-from">Fixed price</span><span class="fr-amt"><sup>A$</sup>8,950</span></td>
+            <td class="fr-get"><ul><li><b>90s</b> piece, ocean to rooftop</li><li><b>8</b> short edits</li><li><b>6</b> carousels</li></ul></td>
+            <td class="fr-free"><ul><li><em class="pk-ft">Free</em>1 round of changes</li></ul></td>
+          </tr>
+          <tr>
+            <th scope="row"><div class="fr-name">Wellness and lifestyle<em>The whole building</em></div></th>
+            <td class="fr-price"><span class="fr-from">From</span><span class="fr-amt"><sup>A$</sup>6,950</span></td>
+            <td class="fr-get"><ul><li><b>60s</b> piece, ocean to rooftop</li><li><b>5</b> short edits</li><li><b>3</b> carousels</li></ul></td>
+            <td class="fr-free"><ul><li><em class="pk-ft">Free</em>1 round of changes</li></ul></td>
+          </tr>
+          <tr>
+            <th scope="row"><div class="fr-name">Apartment walkthrough<em>One home, room by room</em></div></th>
+            <td class="fr-price"><span class="fr-from">From</span><span class="fr-amt"><sup>A$</sup>3,750</span><span class="fr-per">per floor plan</span></td>
+            <td class="fr-get"><ul><li><b>45–60s</b> walkthrough</li><li><b>2</b> short edits</li><li><b>1</b> carousel</li></ul></td>
+            <td class="fr-free"><ul><li><em class="pk-ft">Free</em>1 round of changes</li></ul></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr class="fr-grp"><th colspan="4" scope="colgroup"><span class="k">Step 2</span><strong>Then keep it fresh, every month</strong><small>3 months minimum, then month to month.</small></th></tr>
+          <tr class="fr-top">
+            <th scope="row"><div class="fr-name">Signature<span class="fr-top-tag">Top pick</span><em>Most new videos, every month</em></div></th>
+            <td class="fr-price"><span class="fr-amt"><sup>A$</sup>4,500</span><span class="fr-per">a month</span></td>
+            <td class="fr-get"><ul><li><b>10</b> short edits</li><li><b>4</b> carousels</li><li><b>4</b> new AI scenes</li><li><b>1</b> new 30-second piece</li></ul></td>
+            <td class="fr-free"><ul><li><em class="pk-ft">Free</em>Extra reels</li><li><em class="pk-ft">Free</em>Monthly ad check</li><li><em class="pk-ft">Free</em>1 round of changes</li></ul></td>
+          </tr>
+          <tr>
+            <th scope="row"><div class="fr-name">Growth<em>More videos, smarter ads</em></div></th>
+            <td class="fr-price"><span class="fr-amt"><sup>A$</sup>2,950</span><span class="fr-per">a month</span></td>
+            <td class="fr-get"><ul><li><b>6</b> short edits</li><li><b>2</b> carousels</li><li><b>2</b> new AI scenes</li></ul></td>
+            <td class="fr-free"><ul><li><em class="pk-ft">Free</em>Monthly ad check</li><li><em class="pk-ft">Free</em>1 round of changes</li></ul></td>
+          </tr>
+          <tr>
+            <th scope="row"><div class="fr-name">Fresh<em>Keep your ads new</em></div></th>
+            <td class="fr-price"><span class="fr-amt"><sup>A$</sup>1,650</span><span class="fr-per">a month</span></td>
+            <td class="fr-get"><ul><li><b>4</b> short edits, from scenes already built</li><li><b>1</b> carousel</li></ul></td>
+            <td class="fr-free"><ul><li><em class="pk-ft">Free</em>1 round of changes</li></ul></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="fr-terms"><b>Monthly ad check:</b> we look at which videos worked best, then make more like the winners. All prices AUD, including GST.</p>
+
+    <div class="fr-deal reveal">
+      <div class="fr-deal-in">
+        <div>
+          <span class="pk-tag">Best value</span>
+          <h3>Complete <i>+ any <span style="white-space:nowrap">3-month plan</span></i></h3>
+          <p>Start with Complete, keep NALU fresh for 3 months or more, and you get all of this.</p>
+          <a class="fr-ask" href="mailto:hello@aurianhaus.com?subject=NALU%20Complete%20%2B%203-month%20plan">Ask about this →</a>
+        </div>
+        <div>
+          <ul class="fr-perks">
+            <li><em class="pk-ft">Free</em>Extra reels every month</li>
+            <li><em class="pk-ft">Free</em>Monthly ad check, to find your winners</li>
+            <li><span class="fr-lock" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>Your monthly price, locked for 12 months</li>
+          </ul>
+          <p class="fr-fine">On Signature, the reels and ad check are already free, so you get the 12-month price lock.</p>
+        </div>
+      </div>
+    </div>
+    <p class="fr-note">Generated scenes are based on your approved renders. You keep the clean clips from your project.</p>
+  </div>
+<script>
+(function(){
+  var s=document.getElementById('fresh');if(!s)return;
+  // only spin the gold border while this section is on screen
+  if('IntersectionObserver' in window) new IntersectionObserver(function(es){s.classList.toggle('inview',es[0].isIntersecting)},{rootMargin:'100px 0px'}).observe(s);
+  else s.classList.add('inview');
+})();
+</script>
+</section>
+
 <section id="talk">
   <div class="wrap"><div class="talk reveal">
     <div class="k">Start with one residence</div>
