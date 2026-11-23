@@ -324,6 +324,8 @@ footer .duo{justify-content:center;margin-bottom:14px}
 /* the one line: a hero video splitting into short cuts (draws in once when seen) */
 .px-rule{display:flex;align-items:center;gap:16px;margin:18px 0 0;max-width:780px;font:500 16px/1.45 "Inter Tight",system-ui,sans-serif;color:var(--ink)}
 .px-split{flex:none;width:96px;height:auto;overflow:visible}
+.px-shape{margin:10px 0 0 112px;max-width:668px;font:400 16px/1.5 "Inter Tight",system-ui,sans-serif;color:var(--ink);opacity:.72}
+@media (max-width:640px){.px-shape{margin-left:0}}
 .ps-hero,.ps-cut{fill:var(--gold);transform-box:fill-box;transform-origin:left center;transform:scaleX(0);transition:transform 1s var(--e)}
 .ps-cut{opacity:0;transition:transform 1s var(--e),opacity 1s var(--e)}
 .ps-link{fill:none;stroke:var(--gold);stroke-width:1.6;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1s var(--e) .45s}
@@ -351,6 +353,7 @@ footer .duo{justify-content:center;margin-bottom:14px}
       <h2 id="packages-title">Start with a <i>package.</i></h2>
     </div>
     <p class="px-rule reveal"><svg class="px-split" viewBox="0 0 120 44" aria-hidden="true"><rect class="ps-hero" x="2" y="17" width="50" height="10" rx="5"/><path class="ps-link" pathLength="1" d="M52 22C64 22 66 8 78 8"/><path class="ps-link" pathLength="1" d="M52 22H78"/><path class="ps-link" pathLength="1" d="M52 22C64 22 66 36 78 36"/><rect class="ps-cut" x="80" y="4" width="22" height="8" rx="4"/><rect class="ps-cut" x="80" y="18" width="22" height="8" rx="4"/><rect class="ps-cut" x="80" y="32" width="22" height="8" rx="4"/></svg><span>Every idea = 1 hero video (30–40 s) + short cuts (10–15 s) for ads and socials.</span></p>
+<p class="px-shape">Choose landscape (16:9) or portrait (9:16) for each hero video. Reframing to the other format costs extra. Complete includes three heroes, which can use a mix of both formats.</p>
     <div class="pk-grid swiper" id="pk-row-1" role="region" aria-label="Packages" tabindex="0">
       <div class="swiper-wrapper">
       <article class="pk star swiper-slide">
@@ -796,14 +799,17 @@ Object.keys(R).forEach(function(k){
  });
  // card positions are measured once (and on resize), so scrolling never forces a layout per card
  var raf=0,geo=null;function measure(){geo={w:rail.clientWidth,c:cards.map(function(c){return [c.offsetLeft+c.offsetWidth/2,c.offsetWidth]})}}
- function tilt(){raf=0;if(!geo)measure();var mid=rail.scrollLeft+geo.w/2,best=0,bd=1e9;
-  cards.forEach(function(c,i){var cm=geo.c[i][0],d=(cm-mid)/geo.c[i][1],a=Math.min(Math.abs(d),1.4);
-   c.style.setProperty("--s",(1-a*.1).toFixed(3));c.style.setProperty("--ry",(d>0?-1:1)*Math.min(a,1)*14+"deg");c.style.setProperty("--sat",(1-a*.25).toFixed(2));c.style.setProperty("--br",(1-a*.06).toFixed(2));
+ // 23 Nov fix (Jürgen: cards shake): the browser can bounce the snapped row by 1px forever, and every bounce re-tilted the cards.
+ // So moves under 2px are ignored, and the card in front lies perfectly flat.
+ var lastSL=null;
+ function tilt(){raf=0;if(!geo)measure();var sl=rail.scrollLeft;if(lastSL!==null&&Math.abs(sl-lastSL)<2)return;lastSL=sl;var mid=sl+geo.w/2,best=0,bd=1e9;
+  cards.forEach(function(c,i){var cm=geo.c[i][0],d=(cm-mid)/geo.c[i][1],a=Math.min(Math.abs(d),1.4);if(a<.03)a=0;
+   c.style.setProperty("--s",(1-a*.1).toFixed(3));c.style.setProperty("--ry",a?(d>0?-1:1)*Math.min(a,1)*14+"deg":"0deg");c.style.setProperty("--sat",(1-a*.25).toFixed(2));c.style.setProperty("--br",(1-a*.06).toFixed(2));
    if(Math.abs(d)<bd){bd=Math.abs(d);best=i}});
   arrows[0].disabled=best===0;arrows[1].disabled=best===cards.length-1;
   ds.forEach(function(x,i){x.classList.toggle("on",i===best)})}
- rail.addEventListener("scroll",function(){if(!raf)raf=requestAnimationFrame(tilt)},{passive:true});addEventListener("resize",function(){geo=null;tilt()});tilt();
- if(window.ResizeObserver)new ResizeObserver(function(){geo=null;if(!raf)raf=requestAnimationFrame(tilt)}).observe(rail);
+ rail.addEventListener("scroll",function(){if(!raf)raf=requestAnimationFrame(tilt)},{passive:true});addEventListener("resize",function(){geo=null;lastSL=null;tilt()});tilt();
+ if(window.ResizeObserver)new ResizeObserver(function(){geo=null;lastSL=null;if(!raf)raf=requestAnimationFrame(tilt)}).observe(rail);
  rail.__cards=cards;
 });
 const make=document.querySelector("#make"),offers=[...make.querySelectorAll(".offer")];
